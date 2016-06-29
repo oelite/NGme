@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "NGmeLayout.js",
+  "sourceRoot": "",
+  "sources": [
+    "NGmeLayout.ts"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;GAEG;AACH;IAAA;QACI,sBAAiB,GAAkB,cAAc,CAAC,UAAU,CAAC;IAEjE,CAAC;IAAD,iBAAC;AAAD,CAAC,AAHD,IAGC;AAHY,kBAAU,aAGtB,CAAA;AAED,WAAY,cAAc;IACtB,+DAAc,CAAA;IACd,8DAAc,CAAA;AAClB,CAAC,EAHW,sBAAc,KAAd,sBAAc,QAGzB;AAHD,IAAY,cAAc,GAAd,sBAGX,CAAA"
+}

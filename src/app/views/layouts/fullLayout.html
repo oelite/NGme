@@ -1,0 +1,29 @@
+<oe-partial-view *ngIf="isViewable(topOuterNav)" [oeSelect]="topOuterNav">
+    this is used to display side nav that should be fully out of main frame
+</oe-partial-view>
+<div *ngIf="isViewable(leftOuterNav)">
+    this is used to display sid nav that should be located inside of main frame
+</div>
+<div class="oe-layout-screen">
+    <div *ngIf="isViewable(leftInnerNav)">
+        leftInnerNav
+    </div>
+    <div *ngIf="isViewable(topInnerNav)">
+        topInnerNav
+    </div>
+    <div *ngIf="isViewable(mainContent)">
+        mainContent
+    </div>
+    <div *ngIf="isViewable(bottomInnerNav)">
+        bottomInnerNav
+    </div>
+    <div *ngIf="isViewable(rightInnerNav)">
+        rightInnerNav
+    </div>
+</div>
+<div *ngIf="isViewable(bottomOuterNav)">
+    bottomOuterNav
+</div>
+<div *ngIf="isViewable(rightOuterNav)">
+    rightOuterNav
+</div>
