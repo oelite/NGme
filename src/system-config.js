@@ -42,7 +42,7 @@ var barrels = [
     '@angular/core',
     '@angular/common',
     '@angular/compiler',
-    '@angular/http',
+    '@angular/service',
     '@angular/router',
     '@angular/platform-browser',
     '@angular/platform-browser-dynamic',

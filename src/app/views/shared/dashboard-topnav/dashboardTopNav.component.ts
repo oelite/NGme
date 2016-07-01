@@ -2,16 +2,26 @@
  * Created by mleader1 on 29/06/2016.
  */
 import {Component} from "@angular/core";
-import {MdToolbar, MdButton, MdSlideToggle} from "../../../plugins/material.components";
+import {User} from "../../../core/abstractions/users/user";
+import {SignInService} from "../../../core/abstractions/users/signin.service";
+import {UserService} from "../../../core/abstractions/users/user.service";
+import {OEmeView} from "../../../core/framework/OEmeView";
+import {OEmeLayoutState} from "../../../core/framework/layout/OEmeLayoutState";
 
 @Component({
     moduleId: module.id,
-    selector: 'oe-topNav',
+    selector: 'oe-topOuterNav',
     templateUrl: 'dashboardTopNav.component.html',
-    directives: [MdToolbar, MdButton, MdSlideToggle]
+    styleUrls: ['dashboardTopNav.component.css']
 })
 
-export class DashboardTopNavComponent {
-    constructor() {
+export class DashboardTopNavComponent extends OEmeView {
+    private currentUser:User;
+
+    constructor(public parentLayoutState:OEmeLayoutState, private signinManager:SignInService, private userManager:UserService) {
+        super();
+        userManager.getCurrentUser().subscribe(result=> {
+            this.currentUser = result;
+        });
     }
 }

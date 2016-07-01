@@ -5,9 +5,19 @@ export * from './framework/IOEmeModule';
 export * from './framework/IOEmeLayout';
 export * from './framework/OEmeView';
 
-export * from './framework/layout/OEmeLayout';
-export  * from './framework/layout/OEmeLayout.html';
 
+/** layout **/
+export * from './framework/layout/OEmeLayoutState';
+
+
+/** ui **/
 export * from './framework/ui/OEmePartialView';
+export * from './framework/ui/OEmeUIState';
 
+/** service **/
+export * from './framework/service/ApiGateway';
+
+
+/** utils **/
 export * from './utils/funcs';
+

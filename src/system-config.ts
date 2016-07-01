@@ -34,6 +34,7 @@ materialPkgs.forEach((pkg) => {
     packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
 });
 
+packages['ng2-material'] = {main: 'index.js'};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -45,6 +46,7 @@ const barrels:string[] = [
     '@angular/common',
     '@angular/compiler',
     '@angular/forms',
+    '@angular/service',
     '@angular/http',
     '@angular/router',
     '@angular/platform-browser',

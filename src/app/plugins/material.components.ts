@@ -15,3 +15,9 @@ export * from '@angular2-material/sidenav';
 export * from '@angular2-material/slide-toggle';
 export * from '@angular2-material/tabs';
 export * from '@angular2-material/toolbar';
+
+
+//export * from './materials/index';
+
+
+export * from './mdl/mdl.component';

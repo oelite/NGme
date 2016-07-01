@@ -1,29 +1,66 @@
-<oe-partial-view *ngIf="isViewable(topOuterNav)" [oeSelect]="topOuterNav">
-    this is used to display side nav that should be fully out of main frame
-</oe-partial-view>
-<div *ngIf="isViewable(leftOuterNav)">
-    this is used to display sid nav that should be located inside of main frame
-</div>
-<div class="oe-layout-screen">
+<md-sidenav-layout>
+    <oe-partial-view *ngIf="isViewable(topOuterView)" [oeSelect]="topOuterView"
+                     class="oe-top-outer"
+                     [ngClass]="{'fixed':  topOuterView.uiState.isFixed}">
+        <!--top-outer-nav-->
+    </oe-partial-view>
+    <md-sidenav #leftOuter align="start" class="oe-left-outer"
+                [ngClass]="{'fixed': isViewable(leftOuterNav) && leftOuterNav.uiState.isFixed}">
+        <oe-partial-view *ngIf="isViewable(leftOuterNav)" [oeSelect]="leftOuterNav">
+            <!--left-outer-nav-->
+        </oe-partial-view>
+    </md-sidenav>
+
+    <md-sidenav #rightOuter align="end">
+        <div *ngIf="isViewable(rightOuterNav)" class="oe-right-outer">
+            End Sidenav.
+            <button md-button (click)="rightOuter.close()">Close</button>
+        </div>
+    </md-sidenav>
+
+
+    <md-content class="oe-layout-screen">
+        <button md-button (click)="leftOuter.toggle()">toggle left</button>
+        <button md-button (click)="rightOuter.toggle()">toggle right</button>
+        <md-sidenav-layout>
+            <md-sidenav #leftInner>
+                Start Sidenav.
+                <br>
+                <button md-button (click)="leftInner.close()">Close</button>
+                <!--left-outer-nav-->
+            </md-sidenav>
+            <md-sidenav #rightInner align="end">
+                End Sidenav.
+                <button md-button (click)="rightInner.close()">Close</button>
+            </md-sidenav>
+            <md-content>
+                <button md-button (click)="leftInner.toggle()">Click</button>
+                <button md-button (click)="rightInner.toggle()">Click</button>
+            </md-content>
+        </md-sidenav-layout>
+    </md-content>
+</md-sidenav-layout>
+
+<div>
     <div *ngIf="isViewable(leftInnerNav)">
-        leftInnerNav
+        <!--left-inner-nav-->
     </div>
     <div *ngIf="isViewable(topInnerNav)">
-        topInnerNav
+        <!--top-inner-nav-->
     </div>
     <div *ngIf="isViewable(mainContent)">
-        mainContent
+        <!--main-content-->
     </div>
     <div *ngIf="isViewable(bottomInnerNav)">
-        bottomInnerNav
+        <!--bottom-inner-nav-->
     </div>
     <div *ngIf="isViewable(rightInnerNav)">
-        rightInnerNav
+        <!--right-inner-nav-->
     </div>
 </div>
 <div *ngIf="isViewable(bottomOuterNav)">
-    bottomOuterNav
+    <!--bottom-outer-nav-->
 </div>
 <div *ngIf="isViewable(rightOuterNav)">
-    rightOuterNav
+    <!--right-outer-nav-->
 </div>

@@ -37,9 +37,10 @@ wer
 ## Module Blueprints
 
 
-| Module  | Idea | Status | Make a wish 
-|---|
-| app.core.framework  | global settings and core initializer of the application | 1.0.0 | 
+ | Module  | Idea | Status | Make a wish 
+ |---|
+ | app.core.framework  | global settings and core initializer of the application | 1.0.0 |
+ | app.views | defines all visible views of the app | 1.0.0 |
 
 
 ## Update Logs

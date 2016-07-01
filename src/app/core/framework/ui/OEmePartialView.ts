@@ -8,7 +8,7 @@ import {
     ViewEncapsulation,
     OnChanges
 } from "@angular/core";
-import {NavLayoutSet} from "../IOEmeLayout";
+import {OEmeLayoutDefinition} from "../IOEmeLayout";
 
 /**
  * Created by mleader1 on 29/06/2016.
@@ -29,7 +29,7 @@ export function createComponentFactory(resolver:ComponentResolver, metadata:Comp
 })
 
 export class OEmePartialView implements OnChanges {
-    public oeSelect:NavLayoutSet;
+    public oeSelect:OEmeLayoutDefinition;
 
     constructor(private viewContainerRef:ViewContainerRef, private resolver:ComponentResolver) {
         this.oeSelect = null;
@@ -37,13 +37,12 @@ export class OEmePartialView implements OnChanges {
 
     ngOnChanges() {
         if (!this.oeSelect) return;
-        var src = '<' + this.oeSelect.contentViewSelector + '></' + this.oeSelect.contentViewSelector + '>';
-
+        var src = '<' + this.oeSelect.viewDefinition.viewSelector + ' ></' + this.oeSelect.viewDefinition.viewSelector + '>';
         const metaData = new ComponentMetadata({
             selector: 'view',
             template: src,
-            directives: this.oeSelect.contentViewDirectives,
-            providers: this.oeSelect.contentViewProviders
+            directives: this.oeSelect.viewDefinition.viewDirectives,
+            providers: this.oeSelect.viewDefinition.viewProviders
         });
 
         createComponentFactory(this.resolver, metaData)

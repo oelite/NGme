@@ -16,7 +16,6 @@ var bootstrapProviders = [];
 var bootstrapDirectives = [];
 
 for (var module of oeConfig.registeredModules) {
-    console.log(module.oeId);
     //load routing configurations
     if (module.routes && module.routes.length > 0) {
         appRoutesProviders = Utils.mergeArray(appRoutesProviders, module.routes, "path");
@@ -41,6 +40,6 @@ bootstrapProviders = Utils.mergeArray(bootstrapProviders, Utils.flatArrays(oeCon
 bootstrapDirectives = Utils.mergeArray(bootstrapDirectives, Utils.flatArrays(oeConfig.registeredDirectives));
 
 bootstrap(oeConfig.projectInitiator, [
-    provideRouter(appRoutesProviders), bootstrapProviders
+    provideRouter(appRoutesProviders), bootstrapProviders, bootstrapDirectives
 ]);
 

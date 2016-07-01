@@ -1,0 +1,15 @@
+.oe-me, .oe-layout, .oe-layout-screen, md-sidenav-layout, div[md-sidenav-layout] {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* layout */
+.md-sidenav-backdrop.md-sidenav-shown {
+  background: transparent !important;
+}
+
+.divider-right {
+  border-right: 1px solid #b6b6b6;
+}

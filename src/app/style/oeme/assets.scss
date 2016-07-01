@@ -1,0 +1,20 @@
+.oe-logo-circle {
+  background: url('../../../assets/img/logo_circle.png') no-repeat;
+  -webkit-background-size: cover;
+  background-size: 100%;
+  margin: 0;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.oe-logo-circle:hover {
+  animation: rotate 0.8s infinite linear;
+  border: 6px solid #8bc34a;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border-right-color: #74787A;
+  border-radius: 50%;
+  display: inline-block;
+}

@@ -1,0 +1,22 @@
+.oe-top-navBar, .oe-top-navBar button {
+  padding: 0;
+  height: 64px;
+  line-height: 64px;
+}
+
+.oe-top-navBar .mdl-grid .mdl-cell {
+  position: relative;
+}
+
+.oe-top-navBar .leftNavSwitch {
+  margin-left: 20px;
+}
+
+.oe-top-navBar .leftNavSwitch[md-button]:hover::after, .oe-top-navBar .leftNavSwitch[md-icon-button]:hover::after {
+  background: none !important;
+}
+
+.oe-top-navBar .rightNavButtons {
+  padding: 8px;
+  min-width: 40px;
+}
