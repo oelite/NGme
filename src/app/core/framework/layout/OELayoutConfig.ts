@@ -14,7 +14,7 @@ export enum  LayoutSection
     RightInner = 60, //"oe.base.right.inner",
     BottomOuter = 70, //"oe.base.bottom.outer",
     BottomInner = 80, //"oe.base.bottom.inner",
-    Main = 0; //"oe.base.main"
+    Main = 0 //"oe.base.main"
 }
 
 
@@ -42,7 +42,7 @@ export class OELayoutConfig {
      * @param viewDirectives - required directives for the viewComponent in the layout
      * @param viewProviders - required providers for the viewComponent
      * @param uiState
-     * @param layoutId
+     * @param layoutSection -
      */
     constructor(viewSelector?:string, viewDirectives?:any[], uiState?:OEUIState, layoutSection?:LayoutSection, viewProviders?:any[]) {
         this.layoutSection = layoutSection || this.layoutSection;
