@@ -11,7 +11,6 @@ declare var componentHandler:any;
 
 export class MdlUpgradeDirective implements OnInit {
     constructor(public elem:ElementRef) {
-        console.log('mdl called');
     }
 
     ngOnInit() {

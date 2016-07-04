@@ -1,0 +1,130 @@
+@import "../../../style/theme";
+
+$large-icon-size: 42px;
+
+oe-layout-top-outer, section[oe-layout-top-outer], .oe-layout-top-outer {
+  height: $layout-top-outer-visible-height -1px;
+  md-card {
+    padding: 0;
+    .leftNavSwitch {
+      margin: 10px 16px;
+    }
+  }
+  .navButtons {
+    button {
+      min-width: 48px !important;
+      padding: 12px;
+      border-radius: 0;
+    }
+    .userMenu {
+      img:first-of-type {
+        margin-right: 5px;
+      }
+      md-icon:last-of-type {
+        margin-left: 10px;
+      }
+    }
+  }
+
+}
+
+oe-layout-left-outer, .oe-layout-left-outer {
+
+  .logo {
+    position: absolute;
+    top: -4px;
+    width: 123px;
+    height: 46px;
+    display: inline-block;
+    text-align: center;
+    background: url('../../../assets/img/logo_reversed.png') no-repeat;
+    background-size: cover;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .oe-logo-circle {
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  md-card:first-of-type {
+    background: md-color($md-light-theme-background, card);
+    margin-top: 5px;
+    padding: 0;
+    height: 100%;
+    width: 72px;
+    -webkit-transition: opacity 1s, width 0.5s; /* Safari */
+    transition: opacity 1s, width 0.5s;
+
+    .leftNavSwitch {
+      margin: 10px 16px;
+    }
+    .leftNavSwitch-toggle {
+      margin-right: 10px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    oe-nav-list-item.active oe-nav-list-group {
+      opacity: 0;
+      visibility: hidden;
+      height: 0 !important;
+      display: none;
+    }
+    oe-nav-list-item-heading {
+      opacity: 0;
+    }
+
+  }
+
+  &:hover, &.active {
+    md-card:first-of-type {
+      width: 240px;
+      .logo {
+        opacity: 1;
+      }
+      .oe-logo-circle {
+        opacity: 0;
+      }
+      .leftNavSwitch {
+        background: none;
+        &:after {
+          background: none;
+        }
+      }
+      .leftNavSwitch-toggle {
+        opacity: 1;
+
+        &.md-checked .md-slide-toggle-bar {
+          background: rgba(255, 255, 255, 0.5);
+        }
+        &.md-checked .md-slide-toggle-thumb {
+          background: #fff;
+
+        }
+      }
+
+      oe-nav-list-item.active oe-nav-list-group {
+        opacity: 1;
+        visibility: visible;
+        height: auto !important;
+        display: block;
+      }
+      oe-nav-list-item-heading {
+        opacity: 1;
+      }
+
+    }
+  }
+}
+

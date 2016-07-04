@@ -1,3 +1,5 @@
+$oe-indicator-icon-size: 24px;
+
 .oe-logo-circle {
   background: url('../../../assets/img/logo_circle.png') no-repeat;
   -webkit-background-size: cover;
@@ -6,15 +8,27 @@
   display: inline-block;
   width: 40px;
   height: 40px;
+  &.reversed {
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+  }
 }
 
-.oe-logo-circle:hover {
+.oe-logo-circle.active {
   animation: rotate 0.8s infinite linear;
-  border: 6px solid #8bc34a;
-  width: 28px;
-  height: 28px;
+  border: 6px solid #fff;
+  width: $oe-indicator-icon-size;
+  height: $oe-indicator-icon-size;
   background: none;
-  border-right-color: #74787A;
+  border-right-color: #acd036;
   border-radius: 50%;
   display: inline-block;
+  -webkit-filter: none;
+  filter: none;
+
 }
+
+.material-icons {
+  vertical-align: middle;
+}
+

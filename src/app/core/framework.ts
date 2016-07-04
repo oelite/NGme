@@ -1,18 +1,18 @@
 /**
  * Created by mleader1 on 28/06/2016.
  */
-export * from './framework/IOEmeModule';
-export * from './framework/IOEmeLayout';
-export * from './framework/OEmeView';
+export * from './framework/IOEModule';
+export * from './framework/layout/OELayoutConfig';
+export * from './framework/ui/view/OEView';
 
 
 /** layout **/
-export * from './framework/layout/OEmeLayoutState';
+export * from './framework/layout/OELayoutState';
 
 
 /** ui **/
-export * from './framework/ui/OEmePartialView';
-export * from './framework/ui/OEmeUIState';
+export * from './framework/ui/view/OEPartialView';
+export * from './framework/layout/OEUIState';
 
 /** service **/
 export * from './framework/service/ApiGateway';

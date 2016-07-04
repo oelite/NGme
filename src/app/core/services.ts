@@ -3,9 +3,9 @@
  */
 
 /** Core*/
-export * from './framework/layout/OEmeLayoutState';
-export * from './framework/ui/OEmeUIState';
-export * from './framework/IOEmeLayout';
+export * from './framework/layout/OELayoutState';
+export * from './framework/layout/OEUIState';
+export * from './framework/layout/OELayoutConfig';
 
 /** Users */
 export * from './abstractions/users/user.service';

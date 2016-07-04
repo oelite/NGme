@@ -18,7 +18,7 @@ import oeConfig = require("./globals");
     directives: [ROUTER_DIRECTIVES],
     providers: [],
     encapsulation: ViewEncapsulation.None,
-    template: '<router-outlet></router-outlet>',
+    template: '<router-outlet></router-outlet>'
 })
 
 
@@ -26,6 +26,11 @@ export class CosmosComponent {
 
     constructor(private titleService:Title) {
         titleService.setTitle(oeConfig.appName);
+    }
+
+    ngOnChanges(changes) {
+        console.log('cosmos changes');
+        console.log(changes);
     }
 
 }

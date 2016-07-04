@@ -6,9 +6,10 @@ import {
     ComponentFactory,
     ReflectiveInjector,
     ViewEncapsulation,
-    OnChanges
+    OnChanges,
+    Input
 } from "@angular/core";
-import {OEmeLayoutDefinition} from "../IOEmeLayout";
+import {OELayoutConfig} from "../../layout/OELayoutConfig";
 
 /**
  * Created by mleader1 on 29/06/2016.
@@ -23,26 +24,26 @@ export function createComponentFactory(resolver:ComponentResolver, metadata:Comp
 
 @Component({
     selector: "oe-partial-view",
-    inputs: ["oeSelect"],
     encapsulation: ViewEncapsulation.None,
     template: ""
 })
 
-export class OEmePartialView implements OnChanges {
-    public oeSelect:OEmeLayoutDefinition;
+export class OEPartialView implements OnChanges {
+    @Input()
+    public layoutConfig:OELayoutConfig;
 
     constructor(private viewContainerRef:ViewContainerRef, private resolver:ComponentResolver) {
-        this.oeSelect = null;
+        this.layoutConfig = null;
     }
 
     ngOnChanges() {
-        if (!this.oeSelect) return;
-        var src = '<' + this.oeSelect.viewDefinition.viewSelector + ' ></' + this.oeSelect.viewDefinition.viewSelector + '>';
+        if (!this.layoutConfig) return;
+        var src = '<' + this.layoutConfig.viewSelector + ' ></' + this.layoutConfig.viewSelector + '>';
         const metaData = new ComponentMetadata({
             selector: 'view',
             template: src,
-            directives: this.oeSelect.viewDefinition.viewDirectives,
-            providers: this.oeSelect.viewDefinition.viewProviders
+            directives: this.layoutConfig.viewDirectives,
+            providers: this.layoutConfig.viewProviders
         });
 
         createComponentFactory(this.resolver, metaData)

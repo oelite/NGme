@@ -11,7 +11,7 @@
 *
 */
 
-// Layout
+// layout
 // ------------------------------
 
 $baseline-grid: 8px !default;
@@ -464,7 +464,7 @@ $layout-breakpoint-lg: 1920px !default;
 }
 
 /*
- *  Apply Mixins to create Layout/Flexbox styles
+ *  Apply Mixins to create layout/Flexbox styles
  *
  */
 
@@ -566,3 +566,110 @@ $layout-breakpoint-lg: 1920px !default;
     display: none;
   }
 }
+
+/**
+ * `transparent-gt-sm opaque-gt-lg` should transparent from 600px to 1200px
+ * `opaque-md transparent-gt-sm` should opaque from 0px to 960px and transparent at >960px
+ * `transparent-gt-md opaque-gt-sm` should opaque everywhere (opaque overrides transparent)`
+ *
+ *  transparent means transparent everywhere
+ *  Sizes:
+ *         $layout-breakpoint-xs:     600px !default;
+ *         $layout-breakpoint-sm:     960px !default;
+ *         $layout-breakpoint-md:     1280px !default;
+ *         $layout-breakpoint-lg:     1920px !default;
+ */
+
+@media (max-width: $layout-breakpoint-xs - 1) {
+  // Xtra-SMALL  SCREEN
+  [transparent-xs], [transparent] {
+    &:not([opaque-xs]):not([opaque]) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  @include layouts_for_breakpoint(xs);
+}
+
+@media (min-width: $layout-breakpoint-xs) {
+  // BIGGER THAN Xtra-SMALL SCREEN
+  @include layouts_for_breakpoint(gt-xs);
+
+}
+
+@media (min-width: $layout-breakpoint-xs) and (max-width: $layout-breakpoint-sm - 1) {
+  // SMALL SCREEN
+  [transparent-sm], [transparent-gt-xs] {
+    &:not([opaque-gt-xs]):not([opaque-sm]):not([opaque]) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  [transparent-sm]:not([opaque-sm]):not([opaque]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+  @include layouts_for_breakpoint(sm);
+}
+
+@media (min-width: $layout-breakpoint-sm) {
+  // BIGGER THAN SMALL SCREEN
+  @include layouts_for_breakpoint(gt-sm);
+
+}
+
+@media (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md - 1) {
+  // MEDIUM SCREEN
+  [transparent], [transparent-gt-xs], [transparent-gt-sm] {
+    &:not([opaque-gt-xs]):not([opaque-gt-sm]):not([opaque-md]):not([opaque]) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  [transparent-md]:not([opaque-md]):not([opaque]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+  @include layouts_for_breakpoint(md);
+}
+
+@media (min-width: $layout-breakpoint-md) {
+  // BIGGER THAN MEDIUM SCREEN
+  @include layouts_for_breakpoint(gt-md);
+}
+
+@media (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) {
+  // LARGE SCREEN
+  [transparent], [transparent-gt-xs], [transparent-gt-sm], [transparent-gt-md] {
+    &:not([opaque-gt-xs]):not([opaque-gt-sm]):not([opaque-gt-md]):not([opaque-lg]):not([opaque]) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  [transparent-lg]:not([opaque-lg]):not([opaque]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @include layouts_for_breakpoint(lg);
+}
+
+@media (min-width: $layout-breakpoint-lg) {
+  // BIGGER THAN LARGE SCREEN
+  @include layouts_for_breakpoint(gt-lg);
+  @include layouts_for_breakpoint(xl);
+
+  // BIGGER THAN LARGE SCREEN
+  [transparent], [transparent-gt-xs], [transparent-gt-sm], [transparent-gt-md], [transparent-gt-lg] {
+    &:not([opaque-gt-xs]):not([opaque-gt-sm]):not([opaque-gt-md]):not([opaque-gt-lg]):not([opaque-xl]):not([opaque]) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  [transparent-xl]:not([opaque-xl]):not([opaque-gt-lg]):not([opaque]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+

@@ -1,0 +1,109 @@
+@import "../../../../style/theme";
+
+@mixin position($position, $side, $size:"" ) {
+  position: $position;
+  @if $side== top {
+    top: 0;
+    @if ($size != "") {
+      height: $size;
+    }
+  } @else if $side == right {
+    right: 0;
+    @if ($size != "") {
+      width: $size;
+    }
+  } @else if $side == bottom {
+    bottom: 0;
+    @if ($side != "") {
+      height: $size;
+    }
+  } @else if $side == left {
+    left: 0;
+    @if ($size != "") {
+      width: $size;
+    }
+  }
+}
+
+oe-layout {
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+
+  .oe-layout-top-outer {
+    .fixed {
+      @include position('fixed', top, $layout-top-outer-visible-height);
+
+    }
+  }
+
+  .oe-layout-top-inner {
+    .fixed {
+      @include position('fixed', top);
+    }
+  }
+
+  .oe-layout-left-outer, .oe-layout-right-outer {
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+
+    &.active {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+  }
+
+  .oe-layout-left-outer {
+    .fixed {
+      @include position('fixed', left, $layout-top-outer-visible-height);
+    }
+  }
+
+  .oe-layout-left-inner {
+    .fixed {
+      @include position('fixed', left, $layout-left-outer-visible-width);
+    }
+  }
+
+  .oe-layout-right-outer {
+    .fixed {
+      @include position('fixed', right, $layout-right-outer-visible-width);
+    }
+  }
+
+  .oe-layout-right-inner {
+    .fixed {
+      @include position('fixed', right);
+    }
+  }
+
+  .oe-layout-bottom-outer, .oe-layout-bottom-inner {
+    .fixed {
+      @include position('fixed', bottom, $layout-bottom-outer-visible-height);
+    }
+  }
+  .oe-layout-bottom-inner {
+    .fixed {
+      @include position('fixed', bottom);
+    }
+  }
+
+  .oe-screen {
+    width: 100%;
+    height: 100%;
+    margin: $layout-top-outer-visible-height $layout-right-outer-visible-width $layout-bottom-outer-visible-height $layout-left-outer-visible-width;
+    display: block;
+    position: relative;
+  }
+  .oe-main-screen {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

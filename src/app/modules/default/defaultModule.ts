@@ -2,10 +2,10 @@
  * Created by mleader1 on 29/06/2016.
  */
 
-import {IOEmeModule} from "../../core/framework";
-import {HomeComponent} from "../../views/home/home.component";
+import {IOEModule} from "../../core/framework";
+import {HomePageView} from "../../views/pages/dashboard/dashboard.page";
 
-export class DefaultModule implements IOEmeModule {
+export class DefaultModule implements IOEModule {
 
     moduleId = module.id;
     oeId = "modules.default";
@@ -15,8 +15,8 @@ export class DefaultModule implements IOEmeModule {
     routes = [
         {
             path: '',
-            name: 'home',
-            component: HomeComponent
+            name: 'base',
+            component: HomePageView
         }
     ];
 

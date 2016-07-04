@@ -1,9 +1,9 @@
-import {IOEmeModule} from "../../core/framework";
+import {IOEModule} from "../../core/framework";
 import {ErrorComponent} from "./errorComponent";
 import {Http} from "@angular/http";
 
 
-export class ErrorHandlingModule implements IOEmeModule {
+export class ErrorHandlingModule implements IOEModule {
     moduleId = module.id;
 
     oeId = "app.modules.errorHandling";
