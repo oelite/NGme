@@ -1,4 +1,8 @@
 import {OE_NAVLIST_DIRECTIVES} from "./oeme/navlist/navlist";
+import {MdInk} from "./materials/ink/ink";
+import {OE_JQuery_BackStretch} from "./oeme/backstretch/backstrech";
+import {MdlSnackbar} from "./mdl/mdl-snackbar/snackbar";
+
 export * from '@angular2-material/core';
 export * from '@angular2-material/icon';
 export * from '@angular2-material/button';
@@ -26,8 +30,15 @@ export * from './mdl/mdl.component';
 
 //OElite Custom Plugins
 export * from './oeme/navlist/navlist';
+export * from './oeme/backstretch/backstrech';
+export * from './mdl/mdl-snackbar/snackbar';
 
 
 export const OE_MD_DIRECTIVES = [
-    OE_NAVLIST_DIRECTIVES
+    MdInk,
+
+    OE_NAVLIST_DIRECTIVES,
+    OE_JQuery_BackStretch,
+
+    MdlSnackbar
 ];

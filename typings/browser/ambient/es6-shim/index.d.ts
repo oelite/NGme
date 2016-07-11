@@ -300,7 +300,7 @@ interface NumberConstructor {
     /**
      * Converts A string to an integer.
      * @param s A string to convert into a number.
-     * @param radix A value between 2 and 36 that specifies the pages of the number in numString.
+     * @param radix A value between 2 and 36 that specifies the base of the number in numString.
      * If this argument is not supplied, strings with a prefix of '0x' are considered hexadecimal.
      * All other strings are considered decimal.
      */
@@ -369,13 +369,13 @@ interface Math {
     sign(x:number):number;
 
     /**
-     * Returns the pages 10 logarithm of a number.
+     * Returns the base 10 logarithm of a number.
      * @param x A numeric expression.
      */
     log10(x:number):number;
 
     /**
-     * Returns the pages 2 logarithm of a number.
+     * Returns the base 2 logarithm of a number.
      * @param x A numeric expression.
      */
     log2(x:number):number;
@@ -387,7 +387,7 @@ interface Math {
     log1p(x:number):number;
 
     /**
-     * Returns the result of (e^x - 1) of x (e raised to the power of x, where e is the pages of
+     * Returns the result of (e^x - 1) of x (e raised to the power of x, where e is the base of
      * the natural logarithms).
      * @param x A numeric expression.
      */

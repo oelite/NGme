@@ -1,20 +1,18 @@
-import {IOEModule} from "../../core/framework";
-import {ErrorComponent} from "./errorComponent";
-import {Http} from "@angular/http";
+import {ErrorPage} from "../../views/pages/error/error.page";
+import {SimpleMasterPage} from "../../views/masterpages/simple/simple.masterpage";
 
 
-export class ErrorHandlingModule implements IOEModule {
-    moduleId = module.id;
+export const MODULES_ERRORHANDLING = {
+    oeId: "app.modules.errorHandling",
+    oeVersion: "1.0.0",
 
-    oeId = "app.modules.errorHandling";
-    oeVersion = "1.0.0";
-    routes = [
+    routes: [
         {
             path: 'error',
             name: 'general error',
-            component: ErrorComponent
+            viewSelector: ErrorPage.viewSelector,
+            page: ErrorPage,
+            master: SimpleMasterPage
         }
-    ];
-    moduleProviders = [Http];
-    moduleDirectives = [];
-}
+    ]
+};

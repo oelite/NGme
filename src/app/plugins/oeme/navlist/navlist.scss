@@ -41,6 +41,7 @@ $oe-list-item-small-text-size: 14px;
       color: md-color($md-primary);
     }
     .oe-nav-list-item-heading {
+      cursor: pointer;
       overflow: hidden;
       padding-left: $oe-list-side-padding;
       font-size: $oe-list-item-standard-text-size;
@@ -54,6 +55,11 @@ $oe-list-item-small-text-size: 14px;
       position: absolute;
       right: -$oe-indicator-icon-size/3*2;
       color: md-color($md-accent);
+    }
+
+    .md-ripple-container {
+      max-height: $oe-indicator-icon-size*2;
+
     }
   }
 

@@ -1,0 +1,16 @@
+@import "../plugins/materials/core/style/default-theme";
+
+html, body {
+  background: none;
+  color: md-color($md-grey, 600);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+.appNotificationBar {
+  position: fixed;
+  z-index: 99999;
+  bottom: 10px;
+}

@@ -11,7 +11,7 @@
 *
 */
 
-// layout
+// masterpages
 // ------------------------------
 
 $baseline-grid: 8px !default;
@@ -283,7 +283,7 @@ $layout-breakpoint-lg: 1920px !default;
 
 @mixin layout-align-for-name($suffix: null) {
 
-  // Alignment attributes for layout containers' children
+  // Alignment attributes for masterpages containers' children
   // Arrange on the Main Axis
   // center, start, end, space-between, space-around
   // flex-start is the default for justify-content
@@ -464,7 +464,7 @@ $layout-breakpoint-lg: 1920px !default;
 }
 
 /*
- *  Apply Mixins to create layout/Flexbox styles
+ *  Apply Mixins to create masterpages/Flexbox styles
  *
  */
 
@@ -478,10 +478,10 @@ $layout-breakpoint-lg: 1920px !default;
  *
  *  hide means hide everywhere
  *  Sizes:
- *         $layout-breakpoint-xs:     600px !default;
- *         $layout-breakpoint-sm:     960px !default;
- *         $layout-breakpoint-md:     1280px !default;
- *         $layout-breakpoint-lg:     1920px !default;
+ *         $masterpages-breakpoint-xs:     600px !default;
+ *         $masterpages-breakpoint-sm:     960px !default;
+ *         $masterpages-breakpoint-md:     1280px !default;
+ *         $masterpages-breakpoint-lg:     1920px !default;
  */
 
 @media (max-width: $layout-breakpoint-xs - 1) {
@@ -574,10 +574,10 @@ $layout-breakpoint-lg: 1920px !default;
  *
  *  transparent means transparent everywhere
  *  Sizes:
- *         $layout-breakpoint-xs:     600px !default;
- *         $layout-breakpoint-sm:     960px !default;
- *         $layout-breakpoint-md:     1280px !default;
- *         $layout-breakpoint-lg:     1920px !default;
+ *         $masterpages-breakpoint-xs:     600px !default;
+ *         $masterpages-breakpoint-sm:     960px !default;
+ *         $masterpages-breakpoint-md:     1280px !default;
+ *         $masterpages-breakpoint-lg:     1920px !default;
  */
 
 @media (max-width: $layout-breakpoint-xs - 1) {

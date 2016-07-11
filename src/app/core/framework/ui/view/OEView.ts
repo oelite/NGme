@@ -1,34 +1,41 @@
-import {OELayoutState} from "../../layout/OELayoutState";
-import {Component, Input} from "@angular/core";
+import {Component, Input, Output} from "@angular/core";
 import {OELayoutConfig, LayoutSection} from "../../layout/OELayoutConfig";
 import {Utils} from "../../../utils/funcs";
+import {IOERoute} from "../../IOEModule";
+import {OEUIState} from "../../layout/OEUIState";
+import {OEAppState} from "../../OEAppState";
 
 /**
  * Created by mleader1 on 28/06/2016.
  */
 export interface IOEView {
-    layoutState:OELayoutState;
+    appState:OEAppState;
 }
 
 @Component({
-    selector: 'oeView',
-    template: '<ng-content></ng-content>'
+    selector: OEView.viewSelector,
+    template: '<ng-content select="oeview-enforced"></ng-content>'
 })
 
 
 export class OEView implements IOEView {
+    public static viewSelector:string = 'oeView-' + Utils.NewGuid().toString();
+
 
     @Input()
     public parentView:OEView = null;
+    @Output()
+    public view:OEView = this;
     @Input()
     public viewId:string = Utils.NewGuid().toString();
-    public layoutState:OELayoutState = new OELayoutState();
 
-    constructor(appLayoutState?:OELayoutState, parentView?:OEView) {
-        this.layoutState = appLayoutState || this.layoutState;
-        this.parentView = parentView || this.parentView;
-        if (!parentView)
+    constructor(public appState:OEAppState) {
+
+        if (!this.parentView)
             this.viewId = '';
+        this.view = this;
+        if (this.viewId == '')
+            this.initMainView();
     }
 
     public isViewable(viewDefinition:OELayoutConfig):boolean {
@@ -36,11 +43,11 @@ export class OEView implements IOEView {
     }
 
     public getLayoutDefinition(layoutSection:LayoutSection):OELayoutConfig {
-        return this.layoutState.getState(layoutSection, this.viewId);
+        return this.appState.layoutState.getState(layoutSection, this.viewId);
     }
 
     public setLayoutDefinition(definition:OELayoutConfig):void {
-        this.layoutState.setState(definition, this.viewId);
+        this.appState.layoutState.setState(definition, this.viewId);
     }
 
     public get topOuterView():OELayoutConfig {
@@ -115,8 +122,42 @@ export class OEView implements IOEView {
         this.setLayoutDefinition(value);
     }
 
-    ngOnChangess(changes) {
-        console.log(changes);
+    /**
+     * init a main view based on the route hitting the current page
+     */
+    private initMainView(triggeredByRoute?:IOERoute) {
+        var mainViewLocal = this.mainView;
+        // if (mainViewLocal)
+        //     return;
+
+        if (this.appState.routeState) {
+            var existingOERoute:IOERoute = triggeredByRoute || this.appState.routeState.findRouteByPath(document.location.pathname);
+
+            if (!existingOERoute || !existingOERoute.page) {
+                //give another try using wild card
+                /**
+                 ** validate   pathSec1/**,  pathSec1/pathSec2/**, ....  ,path/**  and **
+                 */
+                var segments = document.location.pathname.split('/');
+                if (segments && segments.length > 0) {
+                    var segmentGrowth = '';
+                    //lowest priority check
+                    existingOERoute = this.appState.routeState.findRouteByPath('**');
+                    for (var seg of segments) {
+                        segmentGrowth = segmentGrowth == '' ? seg : segmentGrowth + '/' + seg;
+                        var higherPriorityCheck = this.appState.routeState.findRouteByPath(segmentGrowth + '/**');
+                        if (higherPriorityCheck && higherPriorityCheck.page)
+                            existingOERoute = higherPriorityCheck;
+                    }
+                }
+
+            }
+            if (!mainViewLocal || (existingOERoute && existingOERoute.page && existingOERoute.viewSelector != mainViewLocal.viewSelector)) {
+                mainViewLocal = new OELayoutConfig(existingOERoute.viewSelector, [existingOERoute.page], new OEUIState(true, false, false, null), LayoutSection.Main);
+                this.mainView = mainViewLocal;
+            }
+        }
+
     }
 
 }

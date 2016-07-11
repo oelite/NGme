@@ -1,0 +1,24 @@
+<div flex flex-auto class="mdl-typography--text-right navButtons" mdlUpgrade>
+    <div style="display:block;visibility: visible; overflow: visible;">
+        <button md-button id="demo-menu-lower-left3"
+                class="mdl-js-button mdl-js-ripple-effect divider-right userMenu">
+
+            <img src="../../../../assets/img/avatar/profile.jpg"
+                 class="img-responsive img-circle box-32-32"/>
+            <span>Lida Weng</span>
+            <md-icon>keyboard_arrow_down</md-icon>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right  mdl-js-menu mdl-js-ripple-effect"
+            for="demo-menu-lower-left3">
+            <li class="mdl-menu__item">Some Action222</li>
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider">Another Action</li>
+            <li disabled class="mdl-menu__item">Disabled Action</li>
+            <li class="mdl-menu__item"><a [routerLink]="['/login']">Yet Another Action</a></li>
+        </ul>
+
+        <button md-button id="btnRightOuterMenuToggle"
+                class="mdl-js-button mdl-js-ripple-effect divider-right ">
+            <md-icon>more_vert</md-icon>
+        </button>
+    </div>
+</div>

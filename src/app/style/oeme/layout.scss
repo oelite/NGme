@@ -59,7 +59,7 @@ section {
 .oe-layout-main,
 .oe-main-screen {
   display: block;
-  z-index: default;
+  z-index: inherit;
 }
 
 .divider-right {

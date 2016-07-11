@@ -40,11 +40,11 @@ oe-layout-left-outer, .oe-layout-left-outer {
     background: url('../../../assets/img/logo_reversed.png') no-repeat;
     background-size: cover;
     opacity: 0;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s fade;
+    -moz-transition: opacity 0.5s fade;
+    -ms-transition: opacity 0.5s fade;
+    -o-transition: opacity 0.5s fade;
+    transition: opacity 0.5s fadet;
   }
   .oe-logo-circle {
     opacity: 1;
@@ -61,7 +61,10 @@ oe-layout-left-outer, .oe-layout-left-outer {
     padding: 0;
     height: 100%;
     width: 72px;
-    -webkit-transition: opacity 1s, width 0.5s; /* Safari */
+    -webkit-transition: opacity 1s, width 0.5s;
+    -moz-transition: opacity 1s, width 0.5s;
+    -ms-transition: opacity 1s, width 0.5s;
+    -o-transition: opacity 1s, width 0.5s;
     transition: opacity 1s, width 0.5s;
 
     .leftNavSwitch {
@@ -128,3 +131,30 @@ oe-layout-left-outer, .oe-layout-left-outer {
   }
 }
 
+oe-layout-right-inner {
+  position: absolute;
+  pointer-events: none;
+  width: 0px;
+  top: 0;
+  right: 0;
+  height: 100%;
+  -webkit-transition: width 0.5s;
+  -moz-transition: width 0.5s;
+  -ms-transition: width 0.5s;
+  -o-transition: width 0.5s;
+  transition: width 0.5s;
+
+  md-card:first-of-type {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: md-color($md-light-theme-background, card);
+  }
+  &:hover, &.active {
+    width: 240px;
+    pointer-events: auto;
+  }
+
+}

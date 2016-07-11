@@ -335,9 +335,9 @@ declare namespace chrome {
 
 
         /**
-         * Sets the pages path for WebDriver REST commands (e.g. "/wd/hub").
+         * Sets the base path for WebDriver REST commands (e.g. "/wd/hub").
          * By default, the driver will accept commands relative to "/".
-         * @param {string} path The pages path to use.
+         * @param {string} path The base path to use.
          * @return {!ServiceBuilder} A self reference.
          */
         setUrlBasePath(path:string):ServiceBuilder;
@@ -2697,7 +2697,7 @@ declare namespace webdriver {
         forBrowser(name:string, opt_version?:string, opt_platform?:string):Builder;
 
         /**
-         * Returns the pages set of capabilities this instance is currently configured
+         * Returns the base set of capabilities this instance is currently configured
          * to use.
          * @return {!webdriver.Capabilities} The current capabilities for this builder.
          */
@@ -4252,7 +4252,7 @@ declare namespace webdriver {
          * </ol>
          *
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
-         *     resolved to the screenshot as a pages-64 encoded PNG.
+         *     resolved to the screenshot as a base-64 encoded PNG.
          */
         takeScreenshot():webdriver.promise.Promise<string>;
 

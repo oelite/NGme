@@ -1,9 +1,8 @@
 import {OEView} from "./OEView";
-import {OELayoutState} from "../../layout/OELayoutState";
 import {SignInService} from "../../../abstractions/users/signin.service";
-import {UserService} from "../../../abstractions/users/user.service";
 import {User} from "../../../abstractions/users/user";
-import {loginPath} from "../../../../../custom/globals";
+import {OEAppState} from "../../OEAppState";
+import {Utils} from "../../../utils/funcs";
 /**
  * Created by mleader1 on 04/07/2016.
  */
@@ -11,21 +10,14 @@ import {loginPath} from "../../../../../custom/globals";
 
 export abstract class AuthorizedView extends OEView {
     public currentUser:User;
+    public static viewSelector:string = "oe-auth-view-" + Utils.NewGuid().toString();
 
-    constructor(appLayoutState:OELayoutState, signInService:SignInService, userService:UserService) {
-        super(appLayoutState);
+    constructor(appState:OEAppState, signInService:SignInService) {
+        super(appState);
 
-        signInService.Authenticate().subscribe(result=> {
-            if (result)
-                this.currentUser = signInService.loggedInUser;
-            else
-                window.location.href = loginPath;
-        }, (error:any)=> {
-            console.warn('failed retrieving user details');
-            console.warn(error);
-
-            window.location.href = loginPath;
-
-        });
+        signInService.onUserAuthenticated$.subscribe(result=> {
+            console.log('user authenticated' + JSON.stringify(result));
+            this.currentUser = result;
+        })
     }
 }

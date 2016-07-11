@@ -3,9 +3,10 @@
  */
 
 import {Component, ViewEncapsulation, Input, ElementRef} from "@angular/core";
-import {OEView, OELayoutState, OELayoutConfig, OEPartialView} from "../../../framework";
+import {OEView, OELayoutConfig, OEPartialView} from "../../../framework";
 import {LayoutSection} from "../../layout/OELayoutConfig";
 import {OELayoutStateChange} from "../../layout/OELayoutState";
+import {OEAppState} from "../../OEAppState";
 declare var $:any;  //jquery support
 
 
@@ -25,9 +26,10 @@ export class OELayout {
     @Input('view')
     view:OEView;
 
-    constructor(el:ElementRef, appLayoutState:OELayoutState) {
+    constructor(el:ElementRef, public appState:OEAppState) {
         this.el = el.nativeElement;
-        appLayoutState.rootLayoutsUpdated$.subscribe(item=>this.viewStateUpdated(item));
+        if (this.view && this.view.viewId == '')
+            appState.layoutState.rootLayoutsUpdated$.subscribe(item=>this.viewStateUpdated(item));
 
     }
 
@@ -37,9 +39,14 @@ export class OELayout {
     }
 
     viewStateUpdated(item:OELayoutStateChange) {
-        console.log(item);
         if (item && this.view && item.viewId == this.view.viewId) {
             switch (item.updatedLayoutConfig.layoutSection) {
+                case LayoutSection.TopOuter:
+                    this.topOuterView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.TopInner:
+                    this.topInnerView = item.updatedLayoutConfig;
+                    break;
                 case LayoutSection.LeftOuter:
                     if (item.updatedLayoutConfig.uiState.isFixed) {
                         //shrink the main content for additional left padding for the left nav
@@ -53,6 +60,25 @@ export class OELayout {
                     }
                     else
                         $(this.el).find('.oe-layout-left-outer').removeClass('active');
+                    this.leftOuterView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.LeftInner:
+                    this.leftInnerView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.RightOuter:
+                    this.rightOuterView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.RightInner:
+                    this.rightInnerView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.BottomOuter:
+                    this.bottomOuterView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.BottomInner:
+                    this.bottomInnerView = item.updatedLayoutConfig;
+                    break;
+                case LayoutSection.Main:
+                    this.mainView = item.updatedLayoutConfig;
                     break;
                 default:
                     break;

@@ -17,6 +17,11 @@ export class ApiGatewayOptions {
     headers = {};
     params = {};
     data = {};
+    contentType:ApiContentType = ApiContentType.Json;
+}
+export enum ApiContentType{
+    Json = 0,
+    WwwForm = 10
 }
 
 
@@ -36,20 +41,21 @@ export class ApiGateway {
     // Provide the *public* Observable that clients can subscribe to
     pendingCommands$:Observable<number>;
 
-    constructor(private http:Http) {
+    constructor(protected http:Http) {
         // Create our observables from the subjects
         this.errors$ = this.errorsSubject.asObservable();
         this.pendingCommands$ = this.pendingCommandsSubject.asObservable();
-
     }
 
     // I perform a GET request to the API, appending the given params
     // as URL search parameters. Returns a stream.
-    get(url:string, params:any):Observable<Response> {
+    get(url:string, params:any, headers?:any, contentType?:ApiContentType):Observable<any> {
         let options = new ApiGatewayOptions();
         options.method = RequestMethod.Get;
         options.url = url;
         options.params = params;
+        options.headers = headers;
+        options.contentType = contentType || ApiContentType.Json;
 
         return this.request(options);
     }
@@ -60,7 +66,7 @@ export class ApiGateway {
     // and the data will be serialized as a JSON payload. If only the
     // data is present, it will be serialized as a JSON payload. Returns
     // a stream.
-    post(url:string, params:any, data:any):Observable<Response> {
+    post(url:string, params:any, data:any, headers?:any, contentType?:ApiContentType):Observable<any> {
         if (!data) {
             data = params;
             params = {};
@@ -70,6 +76,8 @@ export class ApiGateway {
         options.url = url;
         options.params = params;
         options.data = data;
+        options.headers = headers;
+        options.contentType = contentType || ApiContentType.Json;
 
         return this.request(options);
     }
@@ -93,6 +101,10 @@ export class ApiGateway {
         requestOptions.headers = <Headers> options.headers;
         requestOptions.search = this.buildUrlSearchParams(options.params);
         requestOptions.body = JSON.stringify(options.data);
+        if (options.method == RequestMethod.Post) {
+            requestOptions.body = requestOptions.search + '&' + this.buildUrlSearchParams(options.data);
+            requestOptions.search = null;
+        }
 
         let isCommand = (options.method !== RequestMethod.Get);
 
@@ -102,6 +114,7 @@ export class ApiGateway {
 
         let stream = this.http.request(options.url, requestOptions)
             .catch((error:any) => {
+                console.log(error);
                 this.errorsSubject.next(error);
                 return Observable.throw(error);
             })
@@ -120,8 +133,14 @@ export class ApiGateway {
 
 
     private addContentType(options:ApiGatewayOptions):ApiGatewayOptions {
-        if (options.method !== RequestMethod.Get) {
-            options.headers["Content-Type"] = "application/json; charset=UTF-8";
+        switch (options.contentType) {
+            case  ApiContentType.WwwForm:
+                options.headers["Content-Type"] = "application/x-www-form-urlencoded";
+                break;
+            default:
+            case ApiContentType.Json:
+                options.headers["Content-Type"] = "application/json; charset=UTF-8";
+                break;
         }
         return options;
     }
@@ -158,6 +177,17 @@ export class ApiGateway {
     }
 
     private interpolateUrl(options:ApiGatewayOptions):ApiGatewayOptions {
+        var isHttp = options.url.toLowerCase().startsWith('http://');
+        var isHttps = options.url.toLowerCase().startsWith('https://');
+        var isDefaultProtocol = options.url.toLowerCase().startsWith('//');
+
+        if (isHttp)
+            options.url = options.url.substring(7);
+        else if (isHttps)
+            options.url = options.url.substring(8);
+        else if (isDefaultProtocol)
+            options.url = options.url.substring(2);
+
         options.url = options.url.replace(
             /:([a-zA-Z]+[\w-]*)/g,
             ($0, token) => {
@@ -178,6 +208,12 @@ export class ApiGateway {
         options.url = options.url.replace(/\/{2,}/g, "/");
         // Clean up any trailing slashes.
         options.url = options.url.replace(/\/+$/g, "");
+        if (isHttp)
+            options.url = 'http://' + options.url;
+        else if (isHttps)
+            options.url = 'https://' + options.url;
+        else if (isDefaultProtocol)
+            options.url = '//' + options.url;
 
         return options;
     }
@@ -196,4 +232,5 @@ export class ApiGateway {
     private unwrapHttpValue(value:Response):any {
         return (value.json());
     }
+
 }

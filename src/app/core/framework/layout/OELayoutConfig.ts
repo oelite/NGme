@@ -24,6 +24,7 @@ export class OELayoutConfig {
         return this.uiState
             && this.uiState.visible === true
             && this.viewSelector != null
+            && this.viewSelector != 'unnamed-view'
             && this.viewSelector.length > 0;
     };
 

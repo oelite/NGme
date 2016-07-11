@@ -30,10 +30,11 @@ export class OELayoutState {
 
     public setState(definition:OELayoutConfig, viewId:string):void {
 
-        if (definition && definition.layoutSection) {
+        if (definition) {
             viewId = viewId || '';
 
             this.layouts[viewId + definition.layoutSection] = definition;
+            console.log(' new layoutstate set: ' + viewId + definition.layoutSection);
 
             if (viewId == '')
                 this.rootLayoutsUpdated$.emit(new OELayoutStateChange(viewId, definition));

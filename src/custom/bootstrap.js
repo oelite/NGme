@@ -6,7 +6,7 @@ var core_1 = require('@angular/core');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var platform_browser_1 = require('@angular/platform-browser');
 var router_1 = require('@angular/router');
-var cosmos_component_1 = require('./cosmos.ts');
+var cosmos_component_1 = require('./../app/core/framework/ui/view/cosmos.ts');
 var environment_1 = require('./environment');
 if (environment_1.environment.production) {
     core_1.enableProdMode();

@@ -5,7 +5,18 @@ export interface IOEModule {
     oeId:string;
     oeVersion:string;
 
-    routes:any[];
-    moduleProviders:any[],
-    moduleDirectives:any[];
+    routes:IOERoute[];
 }
+export interface IOERoute {
+    name?:string;
+    path?:string;
+    page?:string;
+    master?:string;
+    viewSelector?:string;
+
+}
+
+
+
+
+

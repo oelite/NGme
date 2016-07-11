@@ -36,14 +36,16 @@ export class Utils {
     public static flatArrays(arr:any, prop?:string):any[] {
         var result = [];
         for (var item of arr) {
-            if (!item.isArray) {
-                if (result.indexOf(item) < 0)
-                    result.push(item);
-            }
-            else {
-                var children = this.flatArrays(item);
-                if (children) {
-                    result = this.mergeArray(result, children, prop);
+            if (item) {
+                if (!item.isArray) {
+                    if (result.indexOf(item) < 0)
+                        result.push(item);
+                }
+                else {
+                    var children = this.flatArrays(item);
+                    if (children) {
+                        result = this.mergeArray(result, children, prop);
+                    }
                 }
             }
         }
