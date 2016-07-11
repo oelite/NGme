@@ -51,7 +51,7 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 * **9. Bottom Row** BottomOuterSection: Normally used as Bottom Navigation Bar (or copyright etc.)
 
 | 12 | 1 | 1 | 1 | 13 |
-|--|
+|-|-|-|-|-|
 | 2 | 45 | 4 | 47 | 3 |
 | 2 | 5 | 6 | 7 | 3 |
 | 2 | 85 | 8 | 87 | 3 |
@@ -68,7 +68,7 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 ## Module Blueprints
 
 | Module  | Idea | Version | Status |
-|-|
+|-|-|-|-|
 | concept | proof of concept | 1.0.0-alpha | Toddler |
 | app.core.framework  | global settings and core initializer of the application | 1.0.0-alpha | Toddler |
 | app.core.abstractions | global entities that serves core features | 1.0.0-alpha | Infant |
@@ -77,8 +77,6 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 
 
 ## Update Logs
-* _TODO 3: Make Api calls on services_
-* _TODO 2: Make login page, login logic_
-* _TODO 1: Now make dynamic routing work (navigate from one layout to another, render full page view when partial view route is visited)_
+* 11/07/2016 - dynamic routing (masterpage + page), login page, api service 
 * 01/07/2016 - Finally got the first view (home) working with 8-sides (4 outer + 4 inner) views surrounded the main content (screen) view
 * 27/06/2016 - Build the first draft of framework structure
