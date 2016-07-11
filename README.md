@@ -51,7 +51,7 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 * **9. Bottom Row** BottomOuterSection: Normally used as Bottom Navigation Bar (or copyright etc.)
 
 | 12 | 1 | 1 | 1 | 13 |
-|-|-|-|-|-|
+|---|---|---|---|---|
 | 2 | 45 | 4 | 47 | 3 |
 | 2 | 5 | 6 | 7 | 3 |
 | 2 | 85 | 8 | 87 | 3 |
@@ -68,7 +68,7 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 ## Module Blueprints
 
 | Module  | Idea | Version | Status |
-|-|-|-|-|
+|---|---|---|---|
 | concept | proof of concept | 1.0.0-alpha | Toddler |
 | app.core.framework  | global settings and core initializer of the application | 1.0.0-alpha | Toddler |
 | app.core.abstractions | global entities that serves core features | 1.0.0-alpha | Infant |
