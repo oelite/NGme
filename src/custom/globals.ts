@@ -11,6 +11,8 @@ import * as OE_CORE from "../app/core/components";
 import * as OE_MD from "../app/plugins/material.components";
 import {PLATFORM_DIRECTIVES, provide} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
+import {OELayout} from "../app/core/framework/ui/layout/layout";
+import {CookieService} from "angular2-cookie/core";
 
 export * from './modules';
 
@@ -35,6 +37,7 @@ export const registeredProviders:any[] = [
     OE_SERVICES.SignInService,
     OE_SERVICES.ALL_SERVICES,
     OE_MD.MdIconRegistry,
+    CookieService
 ];
 
 export const registeredDirectives:any[] = [

@@ -3,10 +3,12 @@
  */
 
 import {Component, ViewEncapsulation, Input, ElementRef} from "@angular/core";
-import {OEView, OELayoutConfig, OEPartialView} from "../../../framework";
+import {OELayoutConfig, OEPartialView} from "../../../framework";
 import {LayoutSection} from "../../layout/OELayoutConfig";
 import {OELayoutStateChange} from "../../layout/OELayoutState";
 import {OEAppState} from "../../OEAppState";
+import {OEUIState} from "../../layout/OEUIState";
+import {IOERoute} from "../../IOEModule";
 declare var $:any;  //jquery support
 
 
@@ -23,23 +25,43 @@ declare var $:any;  //jquery support
 export class OELayout {
     private el:HTMLElement;
 
-    @Input('view')
-    view:OEView;
+    public topOuterView:OELayoutConfig;
+    public mainView:OELayoutConfig;
+    public bottomInnerView:OELayoutConfig;
+    public bottomOuterView:OELayoutConfig;
+    public rightInnerView:OELayoutConfig;
+    public rightOuterView:OELayoutConfig;
+    public leftInnerView:OELayoutConfig;
+    public leftOuterView:OELayoutConfig;
+    public topInnerView:OELayoutConfig;
+
+
+    @Input('viewId')
+    viewId:string;
 
     constructor(el:ElementRef, public appState:OEAppState) {
         this.el = el.nativeElement;
-        if (this.view && this.view.viewId == '')
-            appState.layoutState.rootLayoutsUpdated$.subscribe(item=>this.viewStateUpdated(item));
-
+        appState.layoutState.rootLayoutsUpdated$.subscribe(item=>this.viewStateUpdated(item));
     }
 
+    ngOnInit() {
+        this.topOuterView = this.appState.layoutState.getState(LayoutSection.TopOuter, this.viewId);
+        this.mainView = this.appState.layoutState.getState(LayoutSection.Main, this.viewId);
+        this.bottomInnerView = this.appState.layoutState.getState(LayoutSection.BottomInner, this.viewId);
+        this.bottomOuterView = this.appState.layoutState.getState(LayoutSection.BottomOuter, this.viewId);
+        this.rightInnerView = this.appState.layoutState.getState(LayoutSection.RightInner, this.viewId);
+        this.rightOuterView = this.appState.layoutState.getState(LayoutSection.RightOuter, this.viewId);
+        this.leftInnerView = this.appState.layoutState.getState(LayoutSection.LeftInner, this.viewId);
+        this.leftOuterView = this.appState.layoutState.getState(LayoutSection.LeftOuter, this.viewId);
+        this.topInnerView = this.appState.layoutState.getState(LayoutSection.TopInner, this.viewId);
+    }
 
     isViewable(viewConfig:OELayoutConfig):boolean {
         return viewConfig && viewConfig.isViewable();
     }
 
     viewStateUpdated(item:OELayoutStateChange) {
-        if (item && this.view && item.viewId == this.view.viewId) {
+        if (item && item.viewId == this.viewId) {
             switch (item.updatedLayoutConfig.layoutSection) {
                 case LayoutSection.TopOuter:
                     this.topOuterView = item.updatedLayoutConfig;
@@ -87,84 +109,4 @@ export class OELayout {
         }
     }
 
-    get mainView():OELayoutConfig {
-        return this.view ? this.view.mainView : null;
-    }
-
-    set mainView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.mainView = value;
-    }
-
-    get bottomInnerView():OELayoutConfig {
-        return this.view ? this.view.bottomInnerView : null;
-    }
-
-    set bottomInnerView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.bottomInnerView = value;
-    }
-
-    get bottomOuterView():OELayoutConfig {
-        return this.view ? this.view.bottomOuterView : null;
-    }
-
-    set bottomOuterView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.bottomOuterView = value;
-    }
-
-    get rightInnerView():OELayoutConfig {
-        return this.view ? this.view.rightInnerView : null;
-    }
-
-    set rightInnerView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.rightInnerView = value;
-    }
-
-    get rightOuterView():OELayoutConfig {
-        return this.view ? this.view.rightOuterView : null;
-    }
-
-    set rightOuterView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.rightOuterView = value;
-    }
-
-    get leftInnerView():OELayoutConfig {
-        return this.view ? this.view.leftInnerView : null;
-    }
-
-    set leftInnerView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.leftInnerView = value;
-    }
-
-    get leftOuterView():OELayoutConfig {
-        return this.view ? this.view.leftOuterView : null;
-    }
-
-    set leftOuterView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.leftOuterView = value;
-    }
-
-    get topInnerView():OELayoutConfig {
-        return this.view ? this.view.topInnerView : null;
-    }
-
-    set topInnerView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.topInnerView = value;
-    }
-
-    get topOuterView():OELayoutConfig {
-        return this.view ? this.view.topOuterView : null;
-    }
-
-    set topOuterView(value:OELayoutConfig) {
-        if (this.view)
-            this.view.topOuterView = value;
-    }
 }

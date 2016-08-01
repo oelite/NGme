@@ -19,7 +19,7 @@ declare var $:any;
     styleUrls: ['login.css']
 })
 
-export class LoginPage extends SimpleMasterPage {
+export class LoginPage  {
     public static viewSelector:string = 'oe-page.oe-page-login';
     loginBg:string;
     loginBgs:string[] = [
@@ -37,7 +37,6 @@ export class LoginPage extends SimpleMasterPage {
 
     private email:string = null;
     private password:string = null;
-    private keepSignedIn:boolean = false;
     private returnUrl:string = null;
     private txtPasswordColor:string = 'primary';
     private txtEmailColor:string = 'primary';
@@ -48,7 +47,7 @@ export class LoginPage extends SimpleMasterPage {
     private notificationBar:MdlSnackbar;
 
     constructor(appState:OEAppState, private router:Router, private signinService:SignInService) {
-        super(appState);
+        //super(appState);
         this.loginBg = this.loginBgs[Math.floor(Math.random() * this.loginBgs.length)];
         router.routerState.queryParams.subscribe(params=> {
             this.returnUrl = params['returnUrl'];
@@ -60,7 +59,7 @@ export class LoginPage extends SimpleMasterPage {
 
     onSubmit():void {
         this.isValidating = true;
-        this.signinService.SignIn(this.email, this.password, this.keepSignedIn).then((result)=> {
+        this.signinService.SignIn(this.email, this.password).then((result)=> {
             if (result) {
                 this.router.navigateByUrl(this.returnUrl);
             }

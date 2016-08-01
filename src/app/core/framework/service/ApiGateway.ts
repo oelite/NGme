@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Response, RequestOptions, RequestMethod, URLSearchParams, Headers, Http} from "@angular/http";
 import {Subject, Observable} from "rxjs/Rx";
+import {CookieService} from "angular2-cookie/core";
 /**
  * Created by mleader1 on 29/06/2016.
  * The code was adapted from
@@ -28,6 +29,32 @@ export enum ApiContentType{
 @Injectable()
 export class ApiGateway {
 
+    public CurrentUser_AuthToken:string = 'oe.users.currentUserAuthToken';
+    public CurrentUser_TimeStamp:string = 'oe.users.currentUserTimeStamp';
+
+    public get UserAuthToken():string {
+        if (this.UserTimeStamp)
+            return localStorage.getItem(this.CurrentUser_AuthToken);
+        else
+            return null;
+    }
+
+    public get UserTimeStamp():Date {
+        return <Date>this.cookies.getObject(this.CurrentUser_TimeStamp);
+    }
+
+    public set UserTimeStamp(value:Date) {
+        if (value)
+            this.cookies.putObject(this.CurrentUser_TimeStamp, value);
+        else
+            this.cookies.remove(this.CurrentUser_TimeStamp);
+    }
+
+
+    public set UserAuthToken(value:string) {
+        localStorage.setItem(this.CurrentUser_AuthToken, value);
+    }
+
     // Define the internal Subject we'll use to push errors
     private errorsSubject = new Subject<any>();
 
@@ -41,7 +68,7 @@ export class ApiGateway {
     // Provide the *public* Observable that clients can subscribe to
     pendingCommands$:Observable<number>;
 
-    constructor(protected http:Http) {
+    constructor(protected http:Http, protected  cookies:CookieService) {
         // Create our observables from the subjects
         this.errors$ = this.errorsSubject.asObservable();
         this.pendingCommands$ = this.pendingCommandsSubject.asObservable();
@@ -93,6 +120,7 @@ export class ApiGateway {
 
         this.interpolateUrl(options);
         this.addXsrfToken(options);
+        this.addBearJwtToken(options);
         this.addContentType(options);
 
         let requestOptions = new RequestOptions();
@@ -158,6 +186,14 @@ export class ApiGateway {
         }
         return options;
     }
+
+    private  addBearJwtToken(options:ApiGatewayOptions):ApiGatewayOptions {
+        var authToken = this.UserAuthToken;
+        if (authToken)
+            options.headers["Authorization"] = "Bearer " + authToken;
+        return options;
+    }
+
 
     private getXsrfCookie():string {
         var matches = document.cookie.match(/\bXSRF-TOKEN=([^\s;]+)/);

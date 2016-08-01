@@ -8,6 +8,7 @@
 /** Map relative paths to URLs. */
 const map:any = {
     '@angular2-material': 'vendor/@angular2-material',
+    'angular2-cookie': 'vendor/angular2-cookie'
 };
 
 /** User packages configuration. */
@@ -64,6 +65,8 @@ const cliSystemConfigPackages:any = {};
 barrels.forEach((barrelName:string) => {
     cliSystemConfigPackages[barrelName] = {main: 'index'};
 });
+
+cliSystemConfigPackages['angular2-cookie'] = {main: 'core'};
 
 
 /** Type declaration for ambient System. */

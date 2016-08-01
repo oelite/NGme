@@ -1,10 +1,1 @@
-{
-  "version": 3,
-  "file": "INGmeModule.js",
-  "sourceRoot": "",
-  "sources": [
-    "INGmeModule.ts"
-  ],
-  "names": [],
-  "mappings": ""
-}
+{"version":3,"file":"IOEModule.js","sourceRoot":"","sources":["IOEModule.ts"],"names":[],"mappings":""}

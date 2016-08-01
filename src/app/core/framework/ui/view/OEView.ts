@@ -1,9 +1,10 @@
-import {Component, Input, Output} from "@angular/core";
+import {Component, Output} from "@angular/core";
 import {OELayoutConfig, LayoutSection} from "../../layout/OELayoutConfig";
 import {Utils} from "../../../utils/funcs";
+import {OEAppState} from "../../OEAppState";
+import {Router} from "@angular/router";
 import {IOERoute} from "../../IOEModule";
 import {OEUIState} from "../../layout/OEUIState";
-import {OEAppState} from "../../OEAppState";
 
 /**
  * Created by mleader1 on 28/06/2016.
@@ -21,112 +22,24 @@ export interface IOEView {
 export class OEView implements IOEView {
     public static viewSelector:string = 'oeView-' + Utils.NewGuid().toString();
 
+    constructor(public appState:OEAppState, public router:Router, public viewId:string) {
 
-    @Input()
-    public parentView:OEView = null;
-    @Output()
-    public view:OEView = this;
-    @Input()
-    public viewId:string = Utils.NewGuid().toString();
-
-    constructor(public appState:OEAppState) {
-
-        if (!this.parentView)
-            this.viewId = '';
-        this.view = this;
-        if (this.viewId == '')
-            this.initMainView();
     }
 
     public isViewable(viewDefinition:OELayoutConfig):boolean {
         return viewDefinition && viewDefinition.isViewable();
     }
 
-    public getLayoutDefinition(layoutSection:LayoutSection):OELayoutConfig {
-        return this.appState.layoutState.getState(layoutSection, this.viewId);
+    ngOnInit() {
+        this.initMainView();
     }
 
-    public setLayoutDefinition(definition:OELayoutConfig):void {
-        this.appState.layoutState.setState(definition, this.viewId);
-    }
-
-    public get topOuterView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.TopOuter);
-    }
-
-    public set topOuterView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get mainView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.Main);
-    }
-
-    public set mainView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get bottomInnerView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.BottomInner);
-    }
-
-    public set bottomInnerView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get bottomOuterView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.BottomOuter);
-    }
-
-    public set bottomOuterView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get rightInnerView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.RightInner);
-    }
-
-    public set rightInnerView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get rightOuterView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.RightOuter);
-    }
-
-    public set rightOuterView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get leftInnerView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.LeftInner);
-    }
-
-    public set leftInnerView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get leftOuterView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.LeftOuter);
-    }
-
-    public set leftOuterView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
-
-    public get topInnerView():OELayoutConfig {
-        return this.getLayoutDefinition(LayoutSection.TopInner);
-    }
-
-    public set topInnerView(value:OELayoutConfig) {
-        this.setLayoutDefinition(value);
-    }
 
     /**
      * init a main view based on the route hitting the current page
      */
     private initMainView(triggeredByRoute?:IOERoute) {
-        var mainViewLocal = this.mainView;
+        var mainViewLocal = null;
         // if (mainViewLocal)
         //     return;
 
@@ -152,12 +65,14 @@ export class OEView implements IOEView {
                 }
 
             }
-            if (!mainViewLocal || (existingOERoute && existingOERoute.page && existingOERoute.viewSelector != mainViewLocal.viewSelector)) {
+            if (existingOERoute) {
                 mainViewLocal = new OELayoutConfig(existingOERoute.viewSelector, [existingOERoute.page], new OEUIState(true, false, false, null), LayoutSection.Main);
-                this.mainView = mainViewLocal;
             }
         }
+        if (mainViewLocal)
+            this.appState.layoutState.setState(mainViewLocal, this.viewId);
+        else
+            this.appState.layoutState.setState(new OELayoutConfig(null, [], new OEUIState(true, false, false, null), LayoutSection.Main), this.viewId);
 
     }
-
 }

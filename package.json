@@ -36,6 +36,7 @@
     "@angular2-material/slide-toggle": "^2.0.0-alpha.6",
     "@angular2-material/tabs": "^2.0.0-alpha.6",
     "@angular2-material/toolbar": "^2.0.0-alpha.6",
+    "angular2-cookie": "^1.2.2",
     "es6-shim": "0.35.1",
     "material-design-lite": "^1.1.3",
     "reflect-metadata": "0.1.3",

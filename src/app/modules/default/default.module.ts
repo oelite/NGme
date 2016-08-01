@@ -6,6 +6,7 @@ import {DashboardMasterPage} from "../../views/masterpages/dashboard/dashboard.m
 import {ErrorPage} from "../../views/pages/error/error.page";
 import {HomePage} from "../../views/pages/home/home.page";
 import {SimpleMasterPage} from "../../views/masterpages/simple/simple.masterpage";
+import {WebsitePage} from "../../views/pages/website/website.page";
 
 export const MODULES_DEFAULT = {
     oeId: "modules.default",
@@ -18,6 +19,13 @@ export const MODULES_DEFAULT = {
             page: HomePage,
             master: DashboardMasterPage,
             useAsDefault: true
+        },
+        {
+            path: 'abc',
+            name: 'oe.abc',
+            viewSelector: WebsitePage.viewSelector,
+            page: WebsitePage,
+            master: DashboardMasterPage,
         }
         ,
         {

@@ -37,15 +37,16 @@ export class OEPartialView implements OnChanges {
     constructor(private resolver:ComponentResolver) {
         this.layoutConfig = null;
     }
+
     ngOnChanges() {
 
         if (!this.layoutConfig) return;
 
-        this.viewContainerRef.clear();
 
         const metaData = new ComponentMetadata({
             selector: 'view',
             template: this.parseViewSelectorToTags(this.layoutConfig.viewSelector),
+            encapsulation: ViewEncapsulation.None,
             directives: this.layoutConfig.viewDirectives,
             providers: this.layoutConfig.viewProviders
         });
@@ -105,7 +106,7 @@ export class OEPartialView implements OnChanges {
         classes = (classes || "").replace('.', '').replace('[', '').replace(']', '').replace('"', "\'").replace("'", "\'");
         attributes = (attributes || "").replace('.', '').replace('[', '').replace(']', '').replace('"', "\'").replace("'", "\'");
 
-        result = `<${tag} [view]='this' class="${classes.trim().length > 0 ? classes : ''}" ${attributes} ><ng-content></ng-content></${tag}>`.trim();
+        result = `<${tag} class="${classes.trim().length > 0 ? classes : ''}" ${attributes} ><ng-content></ng-content></${tag}>`.trim();
         if (tag.trim() != 'unnamed view')
             return result;
         else

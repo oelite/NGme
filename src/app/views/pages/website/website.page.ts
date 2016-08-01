@@ -10,20 +10,20 @@ import {AuthorizedView} from "../../../core/framework/ui/view/AuthorizedView";
 import {OEAppState} from "../../../core/framework/OEAppState";
 @Component({
     moduleId: module.id,
-    selector: WebsitePageView.viewSelector,
-    encapsulation: ViewEncapsulation.None,
-    templateUrl: 'dashboard.masterpage.html',
-    styleUrls: ['dashboard.page.css'],
+    selector: WebsitePage.viewSelector,
+    //encapsulation: ViewEncapsulation.None,
+    templateUrl: 'website.page.html',
+    styleUrls: ['website.page.css'],
     directives: [OEPartialView],
     providers: []
 })
 
-export class WebsitePageView extends AuthorizedView {
-    public static viewSelector = "page[class='oe-pages-website']";
+export class WebsitePage {
+    public static viewSelector = "oe-page.oe-page-website";
 
     constructor(appState:OEAppState,
                 private signinManager:SignInService) {
-        super(appState, signinManager);
+        console.log('website page called');
     }
 
 }

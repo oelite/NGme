@@ -8,19 +8,20 @@ import {ApiGateway} from "../../framework";
 import {Observable, BehaviorSubject} from "rxjs/Rx";
 import {User} from "./user";
 import {Http} from "@angular/http";
+import {CookieService} from "angular2-cookie/services/cookies.service";
 
 
 @Injectable()
 export class UserService extends ApiGateway {
-    constructor(http:Http) {
-        super(http);
+    constructor(http: Http, cookies: CookieService) {
+        super(http, cookies);
     }
 
-    getUser(id:number):Observable<User> {
+    getUser(id: number): Observable<User> {
         return null;
     }
 
-    getCurrentUser():Observable<User> {
+    getCurrentUser(): Observable<User> {
         return new BehaviorSubject(<User>{
             userName: 'mleader1',
             firstName: 'Lida',

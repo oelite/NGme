@@ -5,6 +5,7 @@
 import {Component} from "@angular/core";
 import {OEView} from "../../../core/framework/ui/view/OEView";
 import {OEAppState} from "../../../core/framework";
+import {Router} from "@angular/router";
 
 @Component({
     selector: SimpleMasterPage.viewSelector,
@@ -15,7 +16,7 @@ import {OEAppState} from "../../../core/framework";
 export class SimpleMasterPage extends OEView {
     public static viewSelector:string = 'oe-masterpages.oe-pages-simple';
 
-    constructor(appState:OEAppState) {
-        super(appState);
+    constructor(appState:OEAppState, router:Router) {
+        super(appState, router, 'oe.master.simple');
     }
 }

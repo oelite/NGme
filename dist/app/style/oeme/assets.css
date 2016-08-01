@@ -1,0 +1,26 @@
+.oe-logo-circle {
+  background: url("../../../assets/img/logo_circle.png") no-repeat;
+  -webkit-background-size: cover;
+  background-size: 100%;
+  margin: 0;
+  display: inline-block;
+  width: 40px;
+  height: 40px; }
+  .oe-logo-circle.reversed {
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1); }
+
+.oe-logo-circle.active {
+  animation: rotate 0.8s infinite linear;
+  border: 6px solid #fff;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border-right-color: #acd036;
+  border-radius: 50%;
+  display: inline-block;
+  -webkit-filter: none;
+  filter: none; }
+
+.material-icons {
+  vertical-align: middle; }

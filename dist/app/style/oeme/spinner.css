@@ -1,0 +1,22 @@
+.oe-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 176px;
+  height: 65px;
+  margin: -88px 0 0 -88px;
+  display: inline-block;
+  text-align: center;
+  background: url("../../../assets/img/logo.png") no-repeat;
+  background-size: cover; }
+
+.oe-spinner .spinner-signal {
+  border: 8px solid #74787A;
+  border-right-color: transparent;
+  border-radius: 50%;
+  margin: 22.5px -1.5px;
+  width: 28px;
+  height: 28px;
+  float: left;
+  display: inline-block;
+  animation: rotate 0.8s infinite linear; }

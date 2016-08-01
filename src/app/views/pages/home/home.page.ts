@@ -15,12 +15,12 @@ import {SignInService} from "../../../core/abstractions/users/signin.service";
     styleUrls: ['home.page.css']
 })
 
-export class HomePage extends DashboardMasterPage {
+export class HomePage  {
     public static viewSelector:string = 'oe-page.oe-page-home';
 
     constructor(appState:OEAppState,
                 signinManager:SignInService) {
-        super(appState, signinManager);
+        //super(appState, signinManager);
         console.log('home page called');
     }
 

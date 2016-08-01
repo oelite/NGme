@@ -13,11 +13,11 @@ $oe-list-item-small-text-size: 14px;
     display: block;
     position: relative;
     width: 100%;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
   }
   .oe-nav-list-group {
     flex-grow: 0;
@@ -46,7 +46,7 @@ $oe-list-item-small-text-size: 14px;
       padding-left: $oe-list-side-padding;
       font-size: $oe-list-item-standard-text-size;
       line-height: $oe-list-item-standard-text-size;
-      height: $oe-list-item-standard-text-size;
+      height: calc(#{$oe-list-item-standard-text-size} + 2px);
     }
     md-icon:last-of-type:not(:first-of-type) {
       @include box($oe-indicator-icon-size, $oe-indicator-icon-size);
@@ -68,11 +68,11 @@ $oe-list-item-small-text-size: 14px;
     visibility: hidden;
     height: 0 !important;;
     display: flex;
-    -webkit-transition: visibility 0s ease-in-out, opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-    -moz-transition: visibility 0s ease-in-out, opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-    -ms-transition: visibility 0s ease-in-out, opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-    -o-transition: visibility 0s ease-in-out, opacity 0.3s ease-in-out, height 0.3s ease-in-out;
-    transition: visibility 0s ease-in-out, opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
   }
 
   oe-nav-list-item.active {
@@ -83,7 +83,7 @@ $oe-list-item-small-text-size: 14px;
       height: auto !important;
 
       .oe-nav-list-group {
-        background-color: md_color($md-light-theme-background, hover);
+        background-color: md_color($md-light-theme-background, background);
         flex-direction: column;
         flex: 0 0 100%;
         overflow: hidden;
@@ -114,7 +114,7 @@ $oe-list-item-small-text-size: 14px;
               padding-left: 0;
               font-size: $oe-list-item-small-text-size;
               line-height: $oe-list-item-small-text-size;
-              height: $oe-list-item-small-text-size;
+              height: calc(#{$oe-list-item-small-text-size} + 2px);
             }
           }
 
