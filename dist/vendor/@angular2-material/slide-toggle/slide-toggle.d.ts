@@ -14,7 +14,7 @@ export declare class MdSlideToggle implements AfterContentInit, ControlValueAcce
     private _uniqueId;
     private _checked;
     private _color;
-    private _hasFocus;
+    _hasFocus: boolean;
     private _isMousedown;
     private _slideRenderer;
     disabled: boolean;
@@ -68,4 +68,7 @@ export declare class MdSlideToggle implements AfterContentInit, ControlValueAcce
     /** TODO: internal */
     _onDragEnd(): void;
 }
+/** @deprecated */
 export declare const MD_SLIDE_TOGGLE_DIRECTIVES: typeof MdSlideToggle[];
+export declare class MdSlideToggleModule {
+}

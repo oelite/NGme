@@ -125,6 +125,9 @@ section {
   width: 64px !important;
   height: 64px !important; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 .oe-logo-circle {
   background: url("../../../assets/img/logo_circle.png") no-repeat;
   -webkit-background-size: cover;
@@ -140,8 +143,8 @@ section {
 .oe-logo-circle.active {
   animation: rotate 0.8s infinite linear;
   border: 6px solid #fff;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   background: none;
   border-right-color: #acd036;
   border-radius: 50%;
@@ -13580,7 +13583,7 @@ oe-layout .oe-layout-left-outer .fixed {
 oe-layout .oe-layout-left-inner .fixed {
   position: "fixed";
   left: 0;
-  width: 72px; }
+  width: 64px; }
 
 oe-layout .oe-layout-right-outer .fixed {
   position: "fixed";
@@ -13602,11 +13605,16 @@ oe-layout .oe-layout-bottom-inner .fixed {
   height: ""; }
 
 oe-layout .oe-screen {
-  width: calc(100% - 72px);
+  width: calc(100% - 64px);
   height: calc(100% - 68px);
-  margin: 68px 0 0 72px;
+  margin: 68px 0 0 64px;
   display: block;
   position: relative; }
+
+@media (max-width: 599px) {
+  oe-layout .oe-screen {
+    width: 100%;
+    margin: 68px 0 0 0; } }
 
 oe-layout .oe-main-screen {
   position: relative;
@@ -13639,3 +13647,6 @@ oe-layout view, oe-layout oe-page {
   height: 100%;
   display: block;
   position: absolute; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }

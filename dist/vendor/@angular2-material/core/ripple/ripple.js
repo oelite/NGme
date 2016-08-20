@@ -159,5 +159,19 @@ var MdRipple = (function () {
     return MdRipple;
 }());
 exports.MdRipple = MdRipple;
+/** @deprecated */
 exports.MD_RIPPLE_DIRECTIVES = [MdRipple];
+var MdRippleModule = (function () {
+    function MdRippleModule() {
+    }
+    MdRippleModule = __decorate([
+        core_1.NgModule({
+            exports: exports.MD_RIPPLE_DIRECTIVES,
+            declarations: exports.MD_RIPPLE_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdRippleModule);
+    return MdRippleModule;
+}());
+exports.MdRippleModule = MdRippleModule;
 //# sourceMappingURL=ripple.js.map

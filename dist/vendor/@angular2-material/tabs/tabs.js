@@ -230,12 +230,27 @@ var MdTabGroup = (function () {
             selector: 'md-tab-group',
             template: "<div class=\"md-tab-header\" role=\"tablist\" (keydown)=\"handleKeydown($event)\"> <div class=\"md-tab-label\" role=\"tab\" md-tab-label-wrapper *ngFor=\"let tab of _tabs; let i = index\" [id]=\"_getTabLabelId(i)\" [tabIndex]=\"selectedIndex == i ? 0 : -1\" [attr.aria-controls]=\"_getTabContentId(i)\" [attr.aria-selected]=\"selectedIndex == i\" [class.md-active]=\"selectedIndex == i\" (click)=\"focusIndex = selectedIndex = i\"> <template [portalHost]=\"tab.label\"></template> </div> <md-ink-bar></md-ink-bar> </div> <div class=\"md-tab-body-wrapper\"> <div class=\"md-tab-body\" role=\"tabpanel\" *ngFor=\"let tab of _tabs; let i = index\" [id]=\"_getTabContentId(i)\" [class.md-active]=\"selectedIndex == i\" [attr.aria-labelledby]=\"_getTabLabelId(i)\"> <template [ngIf]=\"selectedIndex == i\"> <template [portalHost]=\"tab.content\"></template> </template> </div> </div> ",
             styles: [":host { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; font-family: Roboto, \"Helvetica Neue\", sans-serif; } /** The top section of the view; contains the tab labels */ .md-tab-header { overflow: hidden; position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; border-bottom: 1px solid #e0e0e0; -ms-flex-negative: 0; flex-shrink: 0; } /** Wraps each tab label */ .md-tab-label { line-height: 48px; height: 48px; padding: 0 12px; font-size: 14px; font-family: Roboto, \"Helvetica Neue\", sans-serif; font-weight: 500; cursor: pointer; box-sizing: border-box; color: currentColor; opacity: 0.6; min-width: 160px; text-align: center; } .md-tab-label:focus { outline: none; opacity: 1; background-color: rgba(220, 237, 200, 0.3); } /** The bottom section of the view; contains the tab bodies */ .md-tab-body-wrapper { position: relative; overflow: hidden; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; display: -webkit-box; display: -ms-flexbox; display: flex; } /** Wraps each tab body */ .md-tab-body { display: none; overflow: auto; box-sizing: border-box; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; -ms-flex-negative: 1; flex-shrink: 1; } .md-tab-body.md-active { display: block; } /** The colored bar that underlines the active tab */ md-ink-bar { position: absolute; bottom: 0; height: 2px; background-color: #8bc34a; -webkit-transition: 350ms ease-out; transition: 350ms ease-out; } "],
-            directives: [portal_directives_1.PortalHostDirective, tab_label_wrapper_1.MdTabLabelWrapper, ink_bar_1.MdInkBar, common_1.NgIf, common_1.NgFor],
         }), 
         __metadata('design:paramtypes', [core_1.NgZone])
     ], MdTabGroup);
     return MdTabGroup;
 }());
 exports.MdTabGroup = MdTabGroup;
+/** @deprecated */
 exports.MD_TABS_DIRECTIVES = [MdTabGroup, tab_label_1.MdTabLabel, tab_content_1.MdTabContent, MdTab];
+exports.TABS_INTERNAL_DIRECTIVES = [ink_bar_1.MdInkBar, tab_label_wrapper_1.MdTabLabelWrapper];
+var MdTabsModule = (function () {
+    function MdTabsModule() {
+    }
+    MdTabsModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule, portal_directives_1.PortalModule],
+            exports: [exports.MD_TABS_DIRECTIVES],
+            declarations: [exports.MD_TABS_DIRECTIVES, exports.TABS_INTERNAL_DIRECTIVES],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdTabsModule);
+    return MdTabsModule;
+}());
+exports.MdTabsModule = MdTabsModule;
 //# sourceMappingURL=tabs.js.map

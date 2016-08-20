@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -7,14 +14,19 @@ var __extends = (this && this.__extends) || function (d, b) {
 var control_container_1 = require('./control_container');
 var shared_1 = require('./shared');
 /**
-  This is a base class for code shared between {@link NgModelGroup} and {@link FormGroupName}.
+ * This is a base class for code shared between {@link NgModelGroup} and {@link FormGroupName}.
+ *
+ * @experimental
  */
 var AbstractFormGroupDirective = (function (_super) {
     __extends(AbstractFormGroupDirective, _super);
     function AbstractFormGroupDirective() {
         _super.apply(this, arguments);
     }
-    AbstractFormGroupDirective.prototype.ngOnInit = function () { this.formDirective.addFormGroup(this); };
+    AbstractFormGroupDirective.prototype.ngOnInit = function () {
+        this._checkParentType();
+        this.formDirective.addFormGroup(this);
+    };
     AbstractFormGroupDirective.prototype.ngOnDestroy = function () { this.formDirective.removeFormGroup(this); };
     Object.defineProperty(AbstractFormGroupDirective.prototype, "control", {
         /**
@@ -50,6 +62,8 @@ var AbstractFormGroupDirective = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    /** @internal */
+    AbstractFormGroupDirective.prototype._checkParentType = function () { };
     return AbstractFormGroupDirective;
 }(control_container_1.ControlContainer));
 exports.AbstractFormGroupDirective = AbstractFormGroupDirective;

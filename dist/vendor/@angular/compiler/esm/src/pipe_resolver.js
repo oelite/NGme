@@ -1,7 +1,14 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 import { Injectable, PipeMetadata, resolveForwardRef } from '@angular/core';
 import { ReflectorReader, reflector } from '../core_private';
-import { BaseException } from '../src/facade/exceptions';
-import { isPresent, stringify } from '../src/facade/lang';
+import { BaseException } from './facade/exceptions';
+import { isPresent, stringify } from './facade/lang';
 function _isPipeMetadata(type) {
     return type instanceof PipeMetadata;
 }
@@ -12,7 +19,7 @@ export class PipeResolver {
     /**
      * Return {@link PipeMetadata} for a given `Type`.
      */
-    resolve(type) {
+    resolve(type, throwIfNotFound = true) {
         var metas = this._reflector.annotations(resolveForwardRef(type));
         if (isPresent(metas)) {
             var annotation = metas.find(_isPipeMetadata);
@@ -20,7 +27,10 @@ export class PipeResolver {
                 return annotation;
             }
         }
-        throw new BaseException(`No Pipe decorator found on ${stringify(type)}`);
+        if (throwIfNotFound) {
+            throw new BaseException(`No Pipe decorator found on ${stringify(type)}`);
+        }
+        return null;
     }
 }
 /** @nocollapse */

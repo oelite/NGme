@@ -14,7 +14,6 @@ __export(require('./framework/ui/view/OEPartialView'));
 /** service **/
 __export(require('./framework/service/ApiGateway'));
 __export(require('./framework/layout/OEUIState'));
-__export(require('./framework/service/OEModuleState'));
 __export(require('./framework/service/OERouteState'));
 __export(require('./framework/OEAppState'));
 /** utils **/

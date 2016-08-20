@@ -293,9 +293,6 @@ var MdButtonToggle = (function () {
                     // Notify all button toggles with the same name (in the same group) to un-check.
                     this.buttonToggleDispatcher.notify(this.id, this.name);
                 }
-                if (newCheckedState != this._checked) {
-                    this._emitChangeEvent();
-                }
             }
             this._checked = newCheckedState;
             if (newCheckedState && this._isSingleSelector && this.buttonToggleGroup.value != this.value) {
@@ -356,6 +353,19 @@ var MdButtonToggle = (function () {
         else {
             this._toggle();
         }
+        // Emit a change event when the native input does.
+        this._emitChangeEvent();
+    };
+    /** TODO: internal */
+    MdButtonToggle.prototype._onInputClick = function (event) {
+        // We have to stop propagation for click events on the visual hidden input element.
+        // By default, when a user clicks on a label element, a generated click event will be
+        // dispatched on the associated input element. Since we are using a label element as our
+        // root container, the click event on the `slide-toggle` will be executed twice.
+        // The real click event will bubble up, and the generated click event also tries to bubble up.
+        // This will lead to multiple click events.
+        // Preventing bubbling for the second event will solve that issue.
+        event.stopPropagation();
     };
     __decorate([
         core_1.HostBinding(),
@@ -388,7 +398,7 @@ var MdButtonToggle = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'md-button-toggle',
-            template: "<label [attr.for]=\"inputId\" class=\"md-button-toggle-label\"> <input #input class=\"md-button-toggle-input\" [type]=\"_type\" [id]=\"inputId\" [checked]=\"checked\" [disabled]=\"disabled\" [name]=\"name\" (change)=\"_onInputChange($event)\"> <div class=\"md-button-toggle-label-content\"> <ng-content></ng-content> </div> </label> ",
+            template: "<label [attr.for]=\"inputId\" class=\"md-button-toggle-label\"> <input #input class=\"md-button-toggle-input\" [type]=\"_type\" [id]=\"inputId\" [checked]=\"checked\" [disabled]=\"disabled\" [name]=\"name\" (change)=\"_onInputChange($event)\" (click)=\"_onInputClick($event)\"> <div class=\"md-button-toggle-label-content\"> <ng-content></ng-content> </div> </label> ",
             styles: ["/** * A collection of mixins and CSS classes that can be used to apply elevation to a material * element. * See: https://www.google.com/design/spec/what-is-material/elevation-shadows.html * Examples: * * * .md-foo { *   @include $md-elevation(2); * *   &:active { *     @include $md-elevation(8); *   } * } * * <div id=\"external-card\" class=\"md-elevation-z2\"><p>Some content</p></div> * * For an explanation of the design behind how elevation is implemented, see the design doc at * https://goo.gl/Kq0k9Z. */ /** * The css property used for elevation. In most cases this should not be changed. It is exposed * as a variable for abstraction / easy use when needing to reference the property directly, for * example in a will-change rule. */ /** The default duration value for elevation transitions. */ /** The default easing value for elevation transitions. */ /** * Applies the correct css rules to an element to give it the elevation specified by $zValue. * The $zValue must be between 0 and 24. */ /** * Returns a string that can be used as the value for a transition property for elevation. * Calling this function directly is useful in situations where a component needs to transition * more than one property. * * .foo { *   transition: md-elevation-transition-property-value(), opacity 100ms ease; *   will-change: $md-elevation-property, opacity; * } */ /** * Applies the correct css rules needed to have an element transition between elevations. * This mixin should be applied to elements whose elevation values will change depending on their * context (e.g. when active or disabled). */ /** * Mixin that creates a new stacking context. * see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context */ /** * This mixin hides an element visually. * That means it's still accessible for screen-readers but not visible in view. */ /** * Forces an element to grow to fit floated contents; used as as an alternative to * `overflow: hidden;` because it doesn't cut off contents. */ /** * A mixin, which generates temporary ink ripple on a given component. * When $bindToParent is set to true, it will check for the focused class on the same selector as you included * that mixin. * It is also possible to specify the color palette of the temporary ripple. By default it uses the * accent palette for its background. */ md-button-toggle-group { box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); position: relative; display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; border-radius: 3px; cursor: pointer; white-space: nowrap; } .md-button-toggle-checked .md-button-toggle-label-content { background-color: #e0e0e0; } .md-button-toggle-disabled .md-button-toggle-label-content { background-color: rgba(0, 0, 0, 0.38); cursor: not-allowed; } md-button-toggle { white-space: nowrap; } .md-button-toggle-input { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; text-transform: none; width: 1px; } .md-button-toggle-label-content { display: inline-block; line-height: 36px; padding: 0 16px; cursor: pointer; } .md-button-toggle-label-content > * { vertical-align: middle; } "],
             encapsulation: core_1.ViewEncapsulation.None,
         }),
@@ -399,9 +409,25 @@ var MdButtonToggle = (function () {
     return MdButtonToggle;
 }());
 exports.MdButtonToggle = MdButtonToggle;
+/** @deprecated */
 exports.MD_BUTTON_TOGGLE_DIRECTIVES = [
     MdButtonToggleGroup,
     MdButtonToggleGroupMultiple,
     MdButtonToggle
 ];
+var MdButtonToggleModule = (function () {
+    function MdButtonToggleModule() {
+    }
+    MdButtonToggleModule = __decorate([
+        core_1.NgModule({
+            imports: [forms_1.FormsModule],
+            exports: exports.MD_BUTTON_TOGGLE_DIRECTIVES,
+            declarations: exports.MD_BUTTON_TOGGLE_DIRECTIVES,
+            providers: [unique_selection_dispatcher_1.MdUniqueSelectionDispatcher],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdButtonToggleModule);
+    return MdButtonToggleModule;
+}());
+exports.MdButtonToggleModule = MdButtonToggleModule;
 //# sourceMappingURL=button-toggle.js.map

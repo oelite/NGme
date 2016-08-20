@@ -63,4 +63,17 @@ var Dir = (function () {
     return Dir;
 }());
 exports.Dir = Dir;
+var RtlModule = (function () {
+    function RtlModule() {
+    }
+    RtlModule = __decorate([
+        core_1.NgModule({
+            exports: [Dir],
+            declarations: [Dir]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], RtlModule);
+    return RtlModule;
+}());
+exports.RtlModule = RtlModule;
 //# sourceMappingURL=dir.js.map

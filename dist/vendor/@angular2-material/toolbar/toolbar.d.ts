@@ -9,4 +9,7 @@ export declare class MdToolbar {
     private _updateColor(newColor);
     private _setElementColor(color, isAdd);
 }
+/** @deprecated */
 export declare const MD_TOOLBAR_DIRECTIVES: typeof MdToolbar[];
+export declare class MdToolbarModule {
+}

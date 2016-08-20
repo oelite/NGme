@@ -9,11 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
 var platform_browser_1 = require("@angular/platform-browser");
-var modules_1 = require("../../../../../custom/modules");
 var OEAppState_1 = require("../../OEAppState");
-var funcs_1 = require("../../../utils/funcs");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 /**
  * Created by mleader1 on 27/06/2016.
  * CosmosComponent Concepts:
@@ -23,33 +21,22 @@ var funcs_1 = require("../../../utils/funcs");
  * 3. It should be considered to have a global setting section, working like a Commander panel.
  */
 var CosmosComponent = (function () {
-    function CosmosComponent(titleService, appState, router) {
+    function CosmosComponent(titleService, appState, cookies) {
         this.titleService = titleService;
         this.appState = appState;
-        this.router = router;
+        this.cookies = cookies;
         titleService.setTitle(appState.appName);
-        // appState.onMasterPageChange$.subscribe((result)=> {
-        //     this.reloadMasterPage(result);
-        // });
-        this.initModules();
+        console.log('even I can have it');
+        console.log(cookies);
     }
-    CosmosComponent.prototype.initModules = function () {
-        var modules = funcs_1.Utils.flatArrays(modules_1.OE_MODULES);
-        for (var _i = 0, modules_2 = modules; _i < modules_2.length; _i++) {
-            var module = modules_2[_i];
-            this.appState.moduleState.registereModule(module);
-        }
-    };
     CosmosComponent = __decorate([
         core_1.Component({
             selector: 'body',
             moduleId: module.id,
-            directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [],
             encapsulation: core_1.ViewEncapsulation.None,
             template: '<router-outlet></router-outlet>'
         }), 
-        __metadata('design:paramtypes', [platform_browser_1.Title, OEAppState_1.OEAppState, router_1.Router])
+        __metadata('design:paramtypes', [platform_browser_1.Title, OEAppState_1.OEAppState, cookies_service_1.CookieService])
     ], CosmosComponent);
     return CosmosComponent;
 }());

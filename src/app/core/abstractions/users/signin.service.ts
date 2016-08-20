@@ -3,10 +3,8 @@
  */
 
 
-import {Injectable} from "@angular/core";
+import {Injectable, EventEmitter, Inject} from "@angular/core";
 import {ApiGateway} from "../../framework";
-import {Observable, BehaviorSubject} from "rxjs/Rx";
-import {EventEmitter} from "@angular/platform-browser-dynamic/src/facade/async";
 import {User} from "./user";
 import {Http, Response} from "@angular/http";
 import {apiBaseUrl, apiClientId} from "../../../../custom/globals";
@@ -17,41 +15,46 @@ import {CookieService} from "angular2-cookie/core";
 @Injectable()
 export class SignInService extends ApiGateway {
 
-    CurrentUser_Info:string = 'oe.users.currentUserInfo';
-    CurrentUser_Roles:string = 'oe.roles.currentUserRoles';
+    CurrentUser_Info: string = 'oe.users.currentUserInfo';
+    CurrentUser_Roles: string = 'oe.roles.currentUserRoles';
 
-    url(relativePath:string):string {
+    url(relativePath: string): string {
         if (!relativePath.startsWith('/'))
             relativePath = '/' + relativePath;
         return apiBaseUrl + relativePath;
     }
 
-    public get loggedInUser():User {
+    public get loggedInUser(): User {
         if (this.UserTimeStamp) {
-            var user = JSON.parse(localStorage.getItem(this.CurrentUser_Info));
+            var userInfo = localStorage.getItem(this.CurrentUser_Info);
+            var user = JSON.parse(userInfo);
             if (user && user.id > 0)
                 return user;
         }
         return null;
     }
 
-    public set loggedInUser(value:User) {
+    public set loggedInUser(value: User) {
         localStorage.setItem(this.CurrentUser_Info, JSON.stringify(value));
     }
 
-    public get loggedInUserRoles():string[] {
+    public get loggedInUserRoles(): string[] {
         return JSON.parse(localStorage.getItem(this.CurrentUser_Roles));
     }
 
-    public set loggedInUserRoles(value:string[]) {
+    public set loggedInUserRoles(value: string[]) {
         localStorage.setItem(this.CurrentUser_Roles, JSON.stringify(value));
     }
 
-    public onUserAuthenticated$:EventEmitter<User>;
-    public onUserAuthorized$:EventEmitter<string>;
+    public onUserAuthenticated$: EventEmitter<User>;
+    public onUserAuthorized$: EventEmitter<string>;
 
-    constructor(http:Http, cookies:CookieService) {
+    constructor(http: Http, cookies: CookieService) {
         super(http, cookies);
+
+        console.log(this.cookies);
+        console.log('constructor of signin service');
+
 
         this.loggedInUser = null;
         this.loggedInUserRoles = [];
@@ -61,27 +64,30 @@ export class SignInService extends ApiGateway {
     }
 
 
-    Authenticate(emitEvent:boolean = false):Promise<boolean> {
-
-        return this.post(this.url('/users/myinfo'), {}, {}).toPromise().then((result)=> {
+    Authenticate(emitEvent: boolean = false): Promise<boolean> {
+        return this.post(this.url('/users/myinfo'), {}, {}).map(result=> {
             if (result && result.id > 0) {
                 this.loggedInUser = result;
             }
-            else
+            else {
+                console.log('user info not returned from server, local data will now be erased.');
                 this.loggedInUser = null;
+            }
 
             if (emitEvent)
                 this.onUserAuthenticated$.emit(result);
-            return (result && result.id > 0);
+            return result && result.id > 0;
+        }).toPromise().catch(ex=> {
+            console.log(ex);
+            return Promise.resolve(false);
         });
-
     }
 
-    Authorize(emailOrUsername:string, password:string, emitEvent:boolean = false):Promise<boolean> {
+    Authorize(emailOrUsername: string, password: string, emitEvent: boolean = false): Promise<boolean> {
         return this.SignIn(emailOrUsername, password, emitEvent);
     }
 
-    SignIn(emailOrUsername:string, password:string, emitEvent:boolean = true):Promise<boolean> {
+    SignIn(emailOrUsername: string, password: string, emitEvent: boolean = true): Promise<boolean> {
 
         return this.post(this.url('/token'), {
             'grant_type': 'password',
@@ -89,29 +95,25 @@ export class SignInService extends ApiGateway {
             'client_id': apiClientId,
             'username': emailOrUsername,
             'password': password
-        }, {}, {}, ApiContentType.WwwForm).toPromise().then((result)=> {
+        }, {}, {}, ApiContentType.WwwForm).map(result=> {
             if (result && result.access_token) {
                 this.UserAuthToken = result.access_token;
-                this.Authenticate(emitEvent);
-                if (emitEvent) {
-                    this.onUserAuthorized$.emit(result.access_token);
-                }
                 this.UserTimeStamp = new Date();
-                return true;
+                return this.Authenticate(emitEvent).then(authResult=> {
+                    if (emitEvent) {
+                        this.onUserAuthorized$.emit(result.access_token);
+                    }
+                    return authResult;
+                });
             }
             else {
                 this.UserTimeStamp = null;
                 return false;
             }
-        }).catch((ex)=> {
-            if (ex && ex.error) {
-                if (ex.error == "invalid_grant" ||
-                    ex.error.indexOf("invalid") >= 0) {
-                    this.UserTimeStamp = null;
-                    return false;
-                }
-            }
-            Observable.throw(ex);
+
+        }).toPromise().catch(ex=> {
+            console.log(ex);
+            return Promise.resolve(false);
         });
 
     }

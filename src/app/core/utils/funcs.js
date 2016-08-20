@@ -1,7 +1,7 @@
+"use strict";
 /**
  * Created by mleader1 on 28/06/2016.
  */
-"use strict";
 var Utils = (function () {
     function Utils() {
     }
@@ -64,6 +64,20 @@ var Utils = (function () {
     };
     Utils.isNumber = function (value) {
         return Object.prototype.toString.call(value) === '[object Number]';
+    };
+    Utils.ExtractOEViewDirectivesFromRoutes = function (routes) {
+        var directives = [];
+        for (var _i = 0, routes_1 = routes; _i < routes_1.length; _i++) {
+            var route = routes_1[_i];
+            if (route.component)
+                directives.push(route.component);
+            if (route.data) {
+                var page = route.data['page'];
+                if (page)
+                    directives.push(page);
+            }
+        }
+        return directives;
     };
     return Utils;
 }());

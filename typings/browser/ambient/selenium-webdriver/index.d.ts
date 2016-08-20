@@ -21,26 +21,26 @@ declare namespace chrome {
          *     {@code null} to use the currently active flow.
          * @constructor
          */
-        constructor(opt_config?:webdriver.Capabilities, opt_service?:any, opt_flow?:webdriver.promise.ControlFlow);
-        constructor(opt_config?:Options, opt_service?:any, opt_flow?:webdriver.promise.ControlFlow);
+        constructor(opt_config?: webdriver.Capabilities, opt_service?: any, opt_flow?: webdriver.promise.ControlFlow);
+        constructor(opt_config?: Options, opt_service?: any, opt_flow?: webdriver.promise.ControlFlow);
     }
 
     interface IOptionsValues {
-        args:string[];
-        binary?:string;
-        detach:boolean;
-        extensions:string[];
-        localState?:any;
-        logFile?:string;
-        prefs?:any;
+        args: string[];
+        binary?: string;
+        detach: boolean;
+        extensions: string[];
+        localState?: any;
+        logFile?: string;
+        prefs?: any;
     }
 
     interface IPerfLoggingPrefs {
-        enableNetwork:boolean;
-        enablePage:boolean;
-        enableTimeline:boolean;
-        tracingCategories:string;
-        bufferUsageReportingInterval:number;
+      enableNetwork: boolean;
+      enablePage: boolean;
+      enableTimeline: boolean;
+      tracingCategories: string;
+      bufferUsageReportingInterval: number;
     }
 
     /**
@@ -58,7 +58,7 @@ declare namespace chrome {
          * @param {!webdriver.Capabilities} capabilities The capabilities object.
          * @return {!Options} The ChromeDriver options.
          */
-        static fromCapabilities(capabilities:webdriver.Capabilities):Options;
+        static fromCapabilities(capabilities: webdriver.Capabilities): Options;
 
 
         /**
@@ -69,7 +69,7 @@ declare namespace chrome {
          * @param {...(string|!Array.<string>)} var_args The arguments to add.
          * @return {!Options} A self reference.
          */
-        addArguments(...var_args:string[]):Options;
+        addArguments(...var_args: string[]): Options;
 
 
         /**
@@ -79,7 +79,7 @@ declare namespace chrome {
          * @param {...(string|!Array<string>)} var_args The switches to exclude.
          * @return {!Options} A self reference.
          */
-        excludeSwitches(...var_args:string[]):Options;
+        excludeSwitches(...var_args: string[]): Options;
 
 
         /**
@@ -90,7 +90,7 @@ declare namespace chrome {
          *     extensions to add.
          * @return {!Options} A self reference.
          */
-        addExtensions(...var_args:any[]):Options;
+        addExtensions(...var_args: any[]): Options;
 
 
         /**
@@ -104,7 +104,7 @@ declare namespace chrome {
          * @param {string} path The path to the Chrome binary to use.
          * @return {!Options} A self reference.
          */
-        setChromeBinaryPath(path:string):Options;
+        setChromeBinaryPath(path: string): Options;
 
 
         /**
@@ -115,7 +115,7 @@ declare namespace chrome {
          *     chromedriver service is killed before the session.
          * @return {!Options} A self reference.
          */
-        detachDriver(detach:boolean):Options;
+        detachDriver(detach: boolean): Options;
 
 
         /**
@@ -124,7 +124,7 @@ declare namespace chrome {
          * @param {!Object} prefs Dictionary of user preferences to use.
          * @return {!Options} A self reference.
          */
-        setUserPreferences(prefs:any):Options;
+        setUserPreferences(prefs: any): Options;
 
 
         /**
@@ -132,7 +132,7 @@ declare namespace chrome {
          * @param {!webdriver.logging.Preferences} prefs The logging preferences.
          * @return {!Options} A self reference.
          */
-        setLoggingPrefs(prefs:webdriver.logging.Preferences):Options;
+        setLoggingPrefs(prefs: webdriver.logging.Preferences): Options;
 
         /**
          * Sets the performance logging preferences. Options include:
@@ -158,7 +158,7 @@ declare namespace chrome {
          *     logging preferences.
          * @return {!Options} A self reference.
          */
-        setPerfLoggingPrefs(prefs:IPerfLoggingPrefs):Options;
+        setPerfLoggingPrefs(prefs: IPerfLoggingPrefs): Options;
 
 
         /**
@@ -167,7 +167,7 @@ declare namespace chrome {
          * @param {!Object} state Dictionary of local state preferences.
          * @return {!Options} A self reference.
          */
-        setLocalState(state:any):Options;
+        setLocalState(state: any): Options;
 
 
         /**
@@ -178,7 +178,7 @@ declare namespace chrome {
          * @param {string} name The activity name.
          * @return {!Options} A self reference.
          */
-        androidActivity(name:string):Options;
+        androidActivity(name: string): Options;
 
 
         /**
@@ -189,7 +189,7 @@ declare namespace chrome {
          * @param {string} serial The device serial number to connect to.
          * @return {!Options} A self reference.
          */
-        androidDeviceSerial(serial:string):Options;
+        androidDeviceSerial(serial: string): Options;
 
 
         /**
@@ -198,7 +198,7 @@ declare namespace chrome {
          * {@link #androidPackage options.androidPackage('com.android.chrome')}.
          * @return {!Options} A self reference.
          */
-        androidChrome():Options;
+        androidChrome(): Options;
 
 
         /**
@@ -208,7 +208,7 @@ declare namespace chrome {
          *     and switch back to using desktop Chrome.
          * @return {!Options} A self reference.
          */
-        androidPackage(pkg:string):Options;
+        androidPackage(pkg: string): Options;
 
 
         /**
@@ -219,7 +219,7 @@ declare namespace chrome {
          * @param {string} processName The main activity name.
          * @return {!Options} A self reference.
          */
-        androidProcess(processName:string):Options;
+        androidProcess(processName: string): Options;
 
 
         /**
@@ -230,7 +230,7 @@ declare namespace chrome {
          * @param {boolean} useRunning Whether to connect to a running instance.
          * @return {!Options} A self reference.
          */
-        androidUseRunningApp(useRunning:boolean):Options;
+        androidUseRunningApp(useRunning: boolean): Options;
 
 
         /**
@@ -239,7 +239,7 @@ declare namespace chrome {
          * @param {string} path Path to the log file to use.
          * @return {!Options} A self reference.
          */
-        setChromeLogFile(path:string):Options;
+        setChromeLogFile(path: string): Options;
 
 
         /**
@@ -247,7 +247,7 @@ declare namespace chrome {
          * @param {webdriver.ProxyConfig} proxy The proxy configuration to use.
          * @return {!Options} A self reference.
          */
-        setProxy(proxy:webdriver.ProxyConfig):Options;
+        setProxy(proxy: webdriver.ProxyConfig): Options;
 
 
         /**
@@ -256,7 +256,7 @@ declare namespace chrome {
          *     these options into, if any.
          * @return {!webdriver.Capabilities} The capabilities.
          */
-        toCapabilities(opt_capabilities?:webdriver.Capabilities):webdriver.Capabilities;
+        toCapabilities(opt_capabilities?: webdriver.Capabilities): webdriver.Capabilities;
 
 
         /**
@@ -271,7 +271,7 @@ declare namespace chrome {
          *           prefs: (Object|undefined)}} The JSON wire protocol representation
          *     of this instance.
          */
-        toJSON():IOptionsValues;
+        toJSON(): IOptionsValues;
     }
 
     /**
@@ -287,7 +287,7 @@ declare namespace chrome {
          *     cannot be found on the PATH.
          * @constructor
          */
-        constructor(opt_exe?:string);
+        constructor(opt_exe?: string);
 
         /**
          * Sets the port to start the ChromeDriver on.
@@ -295,7 +295,7 @@ declare namespace chrome {
          * @return {!ServiceBuilder} A self reference.
          * @throws {Error} If the port is invalid.
          */
-        usingPort(port:number):ServiceBuilder;
+        usingPort(port: number): ServiceBuilder;
 
 
         /**
@@ -306,7 +306,7 @@ declare namespace chrome {
          * @param {number} port Which port adb is running on.
          * @return {!ServiceBuilder} A self reference.
          */
-        setAdbPort(port:number):ServiceBuilder;
+        setAdbPort(port: number): ServiceBuilder;
 
 
         /**
@@ -315,14 +315,14 @@ declare namespace chrome {
          * @param {string} path Path of the log file to use.
          * @return {!ServiceBuilder} A self reference.
          */
-        loggingTo(path:string):ServiceBuilder;
+        loggingTo(path: string): ServiceBuilder;
 
 
         /**
          * Enables verbose logging.
          * @return {!ServiceBuilder} A self reference.
          */
-        enableVerboseLogging():ServiceBuilder;
+        enableVerboseLogging(): ServiceBuilder;
 
 
         /**
@@ -331,7 +331,7 @@ declare namespace chrome {
          * @param {number} n The number of threads to use.
          * @return {!ServiceBuilder} A self reference.
          */
-        setNumHttpThreads(n:number):ServiceBuilder;
+        setNumHttpThreads(n: number): ServiceBuilder;
 
 
         /**
@@ -340,7 +340,7 @@ declare namespace chrome {
          * @param {string} path The base path to use.
          * @return {!ServiceBuilder} A self reference.
          */
-        setUrlBasePath(path:string):ServiceBuilder;
+        setUrlBasePath(path: string): ServiceBuilder;
 
 
         /**
@@ -350,8 +350,8 @@ declare namespace chrome {
          *     configuration to use.
          * @return {!ServiceBuilder} A self reference.
          */
-        setStdio(config:string):ServiceBuilder;
-        setStdio(config:any[]):ServiceBuilder;
+        setStdio(config: string): ServiceBuilder;
+        setStdio(config: any[]): ServiceBuilder;
 
 
         /**
@@ -360,7 +360,7 @@ declare namespace chrome {
          * @param {!Object.<string, string>} env The environment to use.
          * @return {!ServiceBuilder} A self reference.
          */
-        withEnvironment(env:{ [key:string]:string }):ServiceBuilder;
+        withEnvironment(env: { [key: string]: string }): ServiceBuilder;
 
 
         /**
@@ -370,7 +370,7 @@ declare namespace chrome {
          * @throws {Error} If the driver exectuable was not specified and a default
          *     could not be found on the current PATH.
          */
-        build():any;
+        build(): any;
     }
 
     /**
@@ -379,14 +379,14 @@ declare namespace chrome {
      * a ChromeDriver executable found on the system PATH.
      * @return {!remote.DriverService} The default ChromeDriver service.
      */
-    function getDefaultService():any;
+    function getDefaultService(): any;
 
     /**
      * Sets the default service to use for new ChromeDriver instances.
      * @param {!remote.DriverService} service The service to use.
      * @throws {Error} If the default service is currently running.
      */
-    function setDefaultService(service:any):void;
+    function setDefaultService(service: any): void;
 }
 
 declare namespace firefox {
@@ -399,14 +399,14 @@ declare namespace firefox {
          *     specified, will attempt to locate Firefox on the current system.
          * @constructor
          */
-        constructor(opt_exe?:string);
+        constructor(opt_exe?: string);
 
         /**
          * Add arguments to the command line used to start Firefox.
          * @param {...(string|!Array.<string>)} var_args Either the arguments to add as
          *     varargs, or the arguments as an array.
          */
-        addArguments(...var_args:string[]):void;
+        addArguments(...var_args: string[]): void;
 
 
         /**
@@ -416,14 +416,14 @@ declare namespace firefox {
          * @return {!promise.Promise.<!exec.Result>} A promise for the process result.
          * @throws {Error} If this instance has already been started.
          */
-        launch(profile:string):webdriver.promise.Promise<any>;
+        launch(profile: string): webdriver.promise.Promise<any>;
 
 
         /**
          * Kills the managed Firefox process.
          * @return {!promise.Promise} A promise for when the process has terminated.
          */
-        kill():webdriver.promise.Promise<void>;
+        kill(): webdriver.promise.Promise<void>;
     }
 
     /**
@@ -441,8 +441,8 @@ declare namespace firefox {
          *     schedule commands through. Defaults to the active flow object.
          * @constructor
          */
-        constructor(opt_config?:webdriver.Capabilities, opt_flow?:webdriver.promise.ControlFlow);
-        constructor(opt_config?:any, opt_flow?:webdriver.promise.ControlFlow);
+        constructor(opt_config?: webdriver.Capabilities, opt_flow?: webdriver.promise.ControlFlow);
+        constructor(opt_config?: any, opt_flow?: webdriver.promise.ControlFlow);
     }
 
     /**
@@ -462,8 +462,8 @@ declare namespace firefox {
          * @param {(string|!Profile)} profile The profile to use.
          * @return {!Options} A self reference.
          */
-        setProfile(profile:string):Options;
-        setProfile(profile:Profile):Options;
+        setProfile(profile: string): Options;
+        setProfile(profile: Profile): Options;
 
 
         /**
@@ -473,8 +473,8 @@ declare namespace firefox {
          * @param {(string|!Binary)} binary The binary to use.
          * @return {!Options} A self reference.
          */
-        setBinary(binary:string):Options;
-        setBinary(binary:Binary):Options;
+        setBinary(binary: string): Options;
+        setBinary(binary: Binary): Options;
 
 
         /**
@@ -482,7 +482,7 @@ declare namespace firefox {
          * @param {webdriver.logging.Preferences} prefs The logging preferences.
          * @return {!Options} A self reference.
          */
-        setLoggingPreferences(prefs:webdriver.logging.Preferences):Options;
+        setLoggingPreferences(prefs: webdriver.logging.Preferences): Options;
 
 
         /**
@@ -491,7 +491,7 @@ declare namespace firefox {
          * @param {webdriver.ProxyConfig} proxy The proxy configuration to use.
          * @return {!Options} A self reference.
          */
-        setProxy(proxy:webdriver.ProxyConfig):Options;
+        setProxy(proxy: webdriver.ProxyConfig): Options;
 
 
         /**
@@ -499,7 +499,7 @@ declare namespace firefox {
          *
          * @return {!webdriver.Capabilities} A new capabilities object.
          */
-        toCapabilities(opt_remote?:any):webdriver.Capabilities;
+        toCapabilities(opt_remote?: any): webdriver.Capabilities;
     }
 
     /**
@@ -514,14 +514,14 @@ declare namespace firefox {
          *     be used.
          * @constructor
          */
-        constructor(opt_dir?:string);
+        constructor(opt_dir?: string);
 
         /**
          * Registers an extension to be included with this profile.
          * @param {string} extension Path to the extension to include, as either an
          *     unpacked extension directory or the path to a xpi file.
          */
-        addExtension(extension:string):void;
+        addExtension(extension: string): void;
 
 
         /**
@@ -530,9 +530,9 @@ declare namespace firefox {
          * @param {(string|number|boolean)} value The preference value.
          * @throws {Error} If attempting to set a frozen preference.
          */
-        setPreference(key:string, value:string):void;
-        setPreference(key:string, value:number):void;
-        setPreference(key:string, value:boolean):void;
+        setPreference(key: string, value: string): void;
+        setPreference(key: string, value: number): void;
+        setPreference(key: string, value: boolean): void;
 
 
         /**
@@ -543,7 +543,7 @@ declare namespace firefox {
          * @return {(string|number|boolean|undefined)} The current value of the
          *     requested preference.
          */
-        getPreference(key:string):any;
+        getPreference(key: string): any;
 
 
         /**
@@ -551,21 +551,21 @@ declare namespace firefox {
          *     0 if the port will be selected at random when the profile is written
          *     to disk.
          */
-        getPort():number;
+        getPort(): number;
 
 
         /**
          * Sets the port to use for the WebDriver extension loaded by this profile.
          * @param {number} port The desired port, or 0 to use any free port.
          */
-        setPort(port:number):void;
+        setPort(port: number): void;
 
 
         /**
          * @return {boolean} Whether the FirefoxDriver is configured to automatically
          *     accept untrusted SSL certificates.
          */
-        acceptUntrustedCerts():boolean;
+        acceptUntrustedCerts(): boolean;
 
 
         /**
@@ -573,35 +573,35 @@ declare namespace firefox {
          * certificates.
          * @param {boolean} value .
          */
-        setAcceptUntrustedCerts(value:boolean):void;
+        setAcceptUntrustedCerts(value: boolean): void;
 
 
         /**
          * Sets whether to assume untrusted certificates come from untrusted issuers.
          * @param {boolean} value .
          */
-        setAssumeUntrustedCertIssuer(value:boolean):void;
+        setAssumeUntrustedCertIssuer(value: boolean): void;
 
 
         /**
          * @return {boolean} Whether to assume untrusted certs come from untrusted
          *     issuers.
          */
-        assumeUntrustedCertIssuer():boolean;
+        assumeUntrustedCertIssuer(): boolean;
 
 
         /**
          * Sets whether to use native events with this profile.
          * @param {boolean} enabled .
          */
-        setNativeEventsEnabled(enabled:boolean):void;
+        setNativeEventsEnabled(enabled: boolean): void;
 
 
         /**
          * Returns whether native events are enabled in this profile.
          * @return {boolean} .
          */
-        nativeEventsEnabled():boolean;
+        nativeEventsEnabled(): boolean;
 
 
         /**
@@ -613,14 +613,14 @@ declare namespace firefox {
          * @return {!promise.Promise.<string>} A promise for the path to the new
          *     profile directory.
          */
-        writeToDisk(opt_excludeWebDriverExt?:boolean):webdriver.promise.Promise<string>;
+        writeToDisk(opt_excludeWebDriverExt?: boolean): webdriver.promise.Promise<string>;
 
 
         /**
          * Encodes this profile as a zipped, base64 encoded directory.
          * @return {!promise.Promise.<string>} A promise for the encoded profile.
          */
-        encode():webdriver.promise.Promise<string>;
+        encode(): webdriver.promise.Promise<string>;
     }
 }
 
@@ -630,50 +630,50 @@ declare namespace executors {
      * @param url The server's URL, or a promise that will resolve to that URL.
      * @returns {!webdriver.CommandExecutor} The new command executor.
      */
-    function createExecutor(url:string):webdriver.CommandExecutor;
-    function createExecutor(url:webdriver.promise.Promise<string>):webdriver.CommandExecutor;
+    function createExecutor(url: string): webdriver.CommandExecutor;
+    function createExecutor(url: webdriver.promise.Promise<string>): webdriver.CommandExecutor;
 }
 
 declare namespace webdriver {
 
     namespace error {
         interface IErrorCode {
-            SUCCESS:number;
+            SUCCESS: number;
 
-            NO_SUCH_ELEMENT:number;
-            NO_SUCH_FRAME:number;
-            UNKNOWN_COMMAND:number;
-            UNSUPPORTED_OPERATION:number;  // Alias for UNKNOWN_COMMAND.
-            STALE_ELEMENT_REFERENCE:number;
-            ELEMENT_NOT_VISIBLE:number;
-            INVALID_ELEMENT_STATE:number;
-            UNKNOWN_ERROR:number;
-            ELEMENT_NOT_SELECTABLE:number;
-            JAVASCRIPT_ERROR:number;
-            XPATH_LOOKUP_ERROR:number;
-            TIMEOUT:number;
-            NO_SUCH_WINDOW:number;
-            INVALID_COOKIE_DOMAIN:number;
-            UNABLE_TO_SET_COOKIE:number;
-            MODAL_DIALOG_OPENED:number;
-            UNEXPECTED_ALERT_OPEN:number;
-            NO_SUCH_ALERT:number;
-            NO_MODAL_DIALOG_OPEN:number;
-            SCRIPT_TIMEOUT:number;
-            INVALID_ELEMENT_COORDINATES:number;
-            IME_NOT_AVAILABLE:number;
-            IME_ENGINE_ACTIVATION_FAILED:number;
-            INVALID_SELECTOR_ERROR:number;
-            SESSION_NOT_CREATED:number;
-            MOVE_TARGET_OUT_OF_BOUNDS:number;
-            SQL_DATABASE_ERROR:number;
-            INVALID_XPATH_SELECTOR:number;
-            INVALID_XPATH_SELECTOR_RETURN_TYPE:number;
+            NO_SUCH_ELEMENT: number;
+            NO_SUCH_FRAME: number;
+            UNKNOWN_COMMAND: number;
+            UNSUPPORTED_OPERATION: number;  // Alias for UNKNOWN_COMMAND.
+            STALE_ELEMENT_REFERENCE: number;
+            ELEMENT_NOT_VISIBLE: number;
+            INVALID_ELEMENT_STATE: number;
+            UNKNOWN_ERROR: number;
+            ELEMENT_NOT_SELECTABLE: number;
+            JAVASCRIPT_ERROR: number;
+            XPATH_LOOKUP_ERROR: number;
+            TIMEOUT: number;
+            NO_SUCH_WINDOW: number;
+            INVALID_COOKIE_DOMAIN: number;
+            UNABLE_TO_SET_COOKIE: number;
+            MODAL_DIALOG_OPENED: number;
+            UNEXPECTED_ALERT_OPEN: number;
+            NO_SUCH_ALERT: number;
+            NO_MODAL_DIALOG_OPEN: number;
+            SCRIPT_TIMEOUT: number;
+            INVALID_ELEMENT_COORDINATES: number;
+            IME_NOT_AVAILABLE: number;
+            IME_ENGINE_ACTIVATION_FAILED: number;
+            INVALID_SELECTOR_ERROR: number;
+            SESSION_NOT_CREATED: number;
+            MOVE_TARGET_OUT_OF_BOUNDS: number;
+            SQL_DATABASE_ERROR: number;
+            INVALID_XPATH_SELECTOR: number;
+            INVALID_XPATH_SELECTOR_RETURN_TYPE: number;
             // The following error codes are derived straight from HTTP return codes.
-            METHOD_NOT_ALLOWED:number;
+            METHOD_NOT_ALLOWED: number;
         }
 
-        var ErrorCode:IErrorCode;
+        var ErrorCode: IErrorCode;
 
         /**
          * Error extension that includes error status codes from the WebDriver wire
@@ -691,7 +691,7 @@ declare namespace webdriver {
              * @param {string=} opt_message Optional error message.
              * @constructor
              */
-            constructor(code:number, opt_message?:string);
+            constructor(code: number, opt_message?: string);
 
             //endregion
 
@@ -702,32 +702,32 @@ declare namespace webdriver {
              * @enum {string}
              * @see http://www.w3.org/TR/webdriver/#status-codes
              */
-            static State:{
-                ELEMENT_NOT_SELECTABLE:string;
-                ELEMENT_NOT_VISIBLE:string;
-                IME_ENGINE_ACTIVATION_FAILED:string;
-                IME_NOT_AVAILABLE:string;
-                INVALID_COOKIE_DOMAIN:string;
-                INVALID_ELEMENT_COORDINATES:string;
-                INVALID_ELEMENT_STATE:string;
-                INVALID_SELECTOR:string;
-                JAVASCRIPT_ERROR:string;
-                MOVE_TARGET_OUT_OF_BOUNDS:string;
-                NO_SUCH_ALERT:string;
-                NO_SUCH_DOM:string;
-                NO_SUCH_ELEMENT:string;
-                NO_SUCH_FRAME:string;
-                NO_SUCH_WINDOW:string;
-                SCRIPT_TIMEOUT:string;
-                SESSION_NOT_CREATED:string;
-                STALE_ELEMENT_REFERENCE:string;
-                SUCCESS:string;
-                TIMEOUT:string;
-                UNABLE_TO_SET_COOKIE:string;
-                UNEXPECTED_ALERT_OPEN:string;
-                UNKNOWN_COMMAND:string;
-                UNKNOWN_ERROR:string;
-                UNSUPPORTED_OPERATION:string;
+            static State: {
+                ELEMENT_NOT_SELECTABLE: string;
+                ELEMENT_NOT_VISIBLE: string;
+                IME_ENGINE_ACTIVATION_FAILED: string;
+                IME_NOT_AVAILABLE: string;
+                INVALID_COOKIE_DOMAIN: string;
+                INVALID_ELEMENT_COORDINATES: string;
+                INVALID_ELEMENT_STATE: string;
+                INVALID_SELECTOR: string;
+                JAVASCRIPT_ERROR: string;
+                MOVE_TARGET_OUT_OF_BOUNDS: string;
+                NO_SUCH_ALERT: string;
+                NO_SUCH_DOM: string;
+                NO_SUCH_ELEMENT: string;
+                NO_SUCH_FRAME: string;
+                NO_SUCH_WINDOW: string;
+                SCRIPT_TIMEOUT: string;
+                SESSION_NOT_CREATED: string;
+                STALE_ELEMENT_REFERENCE: string;
+                SUCCESS: string;
+                TIMEOUT: string;
+                UNABLE_TO_SET_COOKIE: string;
+                UNEXPECTED_ALERT_OPEN: string;
+                UNKNOWN_COMMAND: string;
+                UNKNOWN_ERROR: string;
+                UNSUPPORTED_OPERATION: string;
             };
 
             //endregion
@@ -738,19 +738,19 @@ declare namespace webdriver {
              * This error's status code.
              * @type {!bot.ErrorCode}
              */
-            code:number;
+            code: number;
 
             /** @type {string} */
-            state:string;
+            state: string;
 
             /** @override */
-            message:string;
+            message: string;
 
             /** @override */
-            name:string;
+            name: string;
 
             /** @override */
-            stack:string;
+            stack: string;
 
             /**
              * Flag used for duck-typing when this code is embedded in a Firefox extension.
@@ -758,14 +758,14 @@ declare namespace webdriver {
              * to another will fail instanceof checks in the second component.
              * @type {boolean}
              */
-            isAutomationError:boolean;
+            isAutomationError: boolean;
 
             //endregion
 
             //region Methods
 
             /** @return {string} The string representation of this error. */
-            toString():string;
+            toString(): string;
 
             //endregion
         }
@@ -778,49 +778,48 @@ declare namespace webdriver {
          * @typedef {Object.<webdriver.logging.Type, webdriver.logging.LevelName>}
          */
         class Preferences {
-            setLevel(type:string, level:ILevel):void;
-
-            toJSON():{ [key:string]:string };
+            setLevel(type: string, level: ILevel): void;
+            toJSON(): { [key: string]: string };
         }
 
         interface IType {
             /** Logs originating from the browser. */
-            BROWSER:string;
+            BROWSER: string;
             /** Logs from a WebDriver client. */
-            CLIENT:string;
+            CLIENT: string;
             /** Logs from a WebDriver implementation. */
-            DRIVER:string;
+            DRIVER: string;
             /** Logs related to performance. */
-            PERFORMANCE:string;
+            PERFORMANCE: string;
             /** Logs from the remote server. */
-            SERVER:string;
+            SERVER: string;
         }
 
         /**
          * Common log types.
          * @enum {string}
          */
-        var Type:IType;
+        var Type: IType;
 
         /**
          * Logging levels.
          * @enum {{value: number, name: webdriver.logging.LevelName}}
          */
         interface ILevel {
-            value:number;
-            name:string;
+            value: number;
+            name: string;
         }
 
         interface ILevelValues {
-            ALL:ILevel;
-            DEBUG:ILevel;
-            INFO:ILevel;
-            WARNING:ILevel;
-            SEVERE:ILevel;
-            OFF:ILevel;
+            ALL: ILevel;
+            DEBUG: ILevel;
+            INFO: ILevel;
+            WARNING: ILevel;
+            SEVERE: ILevel;
+            OFF: ILevel;
         }
 
-        var Level:ILevelValues;
+        var Level: ILevelValues;
 
         /**
          * Converts a level name or value to a {@link webdriver.logging.Level} value.
@@ -830,14 +829,14 @@ declare namespace webdriver {
          *     convert .
          * @return {!webdriver.logging.Level} The converted level.
          */
-        function getLevel(nameOrValue:string):ILevel;
-        function getLevel(nameOrValue:number):ILevel;
+        function getLevel(nameOrValue: string): ILevel;
+        function getLevel(nameOrValue: number): ILevel;
 
         interface IEntryJSON {
-            level:string;
-            message:string;
-            timestamp:number;
-            type:string;
+            level: string;
+            message: string;
+            timestamp: number;
+            type: string;
         }
 
         /**
@@ -856,24 +855,24 @@ declare namespace webdriver {
              * @param {string=} opt_type The log type, if known.
              * @constructor
              */
-            constructor(level:ILevel, message:string, opt_timestamp?:number, opt_type?:string);
-            constructor(level:string, message:string, opt_timestamp?:number, opt_type?:string);
+            constructor(level: ILevel, message: string, opt_timestamp?:number, opt_type?:string);
+            constructor(level: string, message: string, opt_timestamp?:number, opt_type?:string);
 
             //endregion
 
             //region Public Properties
 
             /** @type {!webdriver.logging.Level} */
-            level:ILevel;
+            level: ILevel;
 
             /** @type {string} */
-            message:string;
+            message: string;
 
             /** @type {number} */
-            timestamp:number;
+            timestamp: number;
 
             /** @type {string} */
-            type:string;
+            type: string;
 
             //endregion
 
@@ -886,7 +885,7 @@ declare namespace webdriver {
              * @param {string=} opt_type The log type.
              * @return {!webdriver.logging.Entry} The converted entry.
              */
-            static fromClosureLogRecord(logRecord:any, opt_type?:string):Entry;
+            static fromClosureLogRecord(logRecord: any, opt_type?:string): Entry;
 
             //endregion
 
@@ -896,7 +895,7 @@ declare namespace webdriver {
              * @return {{level: string, message: string, timestamp: number,
              *           type: string}} The JSON representation of this entry.
              */
-            toJSON():IEntryJSON;
+            toJSON(): IEntryJSON;
 
             //endregion
         }
@@ -919,7 +918,7 @@ declare namespace webdriver {
          *     rejected value.
          * @template T
          */
-        function all(arr:Promise<any>[]):Promise<any[]>;
+        function all(arr: Promise<any>[]): Promise<any[]>;
 
         /**
          * Invokes the appropriate callback function as soon as a promised
@@ -931,12 +930,12 @@ declare namespace webdriver {
          * @param {Function=} opt_errback The function to call when the value is
          *     rejected.
          */
-        function asap(value:any, callback:Function, opt_errback?:Function):void;
+        function asap(value: any, callback: Function, opt_errback?: Function): void;
 
         /**
          * @return {!webdriver.promise.ControlFlow} The currently active control flow.
          */
-        function controlFlow():ControlFlow;
+        function controlFlow(): ControlFlow;
 
         /**
          * Creates a new control flow. The provided callback will be invoked as the
@@ -947,7 +946,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that resolves to the callback
          *     result.
          */
-        function createFlow<R>(callback:(flow:ControlFlow) => R):Promise<R>;
+        function createFlow<R>(callback: (flow: ControlFlow) => R): Promise<R>;
 
         /**
          * Determines whether a {@code value} should be treated as a promise.
@@ -956,14 +955,14 @@ declare namespace webdriver {
          * @param {*} value The value to test.
          * @return {boolean} Whether the value is a promise.
          */
-        function isPromise(value:any):boolean;
+        function isPromise(value: any): boolean;
 
         /**
          * Tests is a function is a generator.
          * @param {!Function} fn The function to test.
          * @return {boolean} Whether the function is a generator.
          */
-        function isGenerator(fn:Function):boolean;
+        function isGenerator(fn: Function): boolean;
 
         /**
          * Creates a promise that will be resolved at a set time in the future.
@@ -971,7 +970,7 @@ declare namespace webdriver {
          *     resolving the promise.
          * @return {!webdriver.promise.Promise} The promise.
          */
-        function delayed(ms:number):Promise<void>;
+        function delayed(ms: number): Promise<void>;
 
         /**
          * Calls a function for each element in an array, and if the function returns
@@ -995,21 +994,21 @@ declare namespace webdriver {
          *     {@code fn}.
          * @template TYPE, SELF
          */
-        function filter<T>(arr:T[], fn:(element:T, index:number, array:T[]) => any, opt_self?:any):Promise<T[]>;
-        function filter<T>(arr:Promise<T[]>, fn:(element:T, index:number, array:T[]) => any, opt_self?:any):Promise<T[]>
+        function filter<T>(arr: T[], fn: (element: T, index: number, array: T[]) => any, opt_self?: any): Promise<T[]>;
+        function filter<T>(arr: Promise<T[]>, fn: (element: T, index: number, array: T[]) => any, opt_self?: any): Promise<T[]>
 
         /**
          * Creates a new deferred object.
          * @return {!webdriver.promise.Deferred} The new deferred object.
          */
-        function defer<T>():Deferred<T>;
+        function defer<T>(): Deferred<T>;
 
         /**
          * Creates a promise that has been resolved with the given value.
          * @param {*=} opt_value The resolved value.
          * @return {!webdriver.promise.Promise} The resolved promise.
          */
-        function fulfilled<T>(opt_value?:T):Promise<T>;
+        function fulfilled<T>(opt_value?: T): Promise<T>;
 
         /**
          * Calls a function for each element in an array and inserts the result into a
@@ -1033,8 +1032,8 @@ declare namespace webdriver {
          *     {@code fn}.
          * @template TYPE, SELF
          */
-        function map<T>(arr:T[], fn:(element:T, index:number, array:T[]) => any, opt_self?:any):Promise<T[]>
-        function map<T>(arr:Promise<T[]>, fn:(element:T, index:number, array:T[]) => any, opt_self?:any):Promise<T[]>
+        function map<T>(arr: T[], fn: (element: T, index: number, array: T[]) => any, opt_self?: any): Promise<T[]>
+        function map<T>(arr: Promise<T[]>, fn: (element: T, index: number, array: T[]) => any, opt_self?: any): Promise<T[]>
 
         /**
          * Creates a promise that has been rejected with the given reason.
@@ -1042,7 +1041,7 @@ declare namespace webdriver {
          *     usually an Error or a string.
          * @return {!webdriver.promise.Promise} The rejected promise.
          */
-        function rejected(opt_reason?:any):Promise<void>;
+        function rejected(opt_reason?: any): Promise<void>;
 
         /**
          * Wraps a function that is assumed to be a node-style callback as its final
@@ -1054,7 +1053,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     result of the provided function's callback.
          */
-        function checkedNodeCall<T>(fn:Function, ...var_args:any[]):Promise<T>;
+        function checkedNodeCall<T>(fn: Function, ...var_args: any[]): Promise<T>;
 
         /**
          * Consumes a {@code GeneratorFunction}. Each time the generator yields a
@@ -1096,7 +1095,7 @@ declare namespace webdriver {
          *     generator's final result.
          * @throws {TypeError} If the given function is not a generator.
          */
-        function consume<T>(generatorFn:Function, opt_self?:any, ...var_args:any[]):Promise<T>;
+        function consume<T>(generatorFn: Function, opt_self?: any, ...var_args: any[]): Promise<T>;
 
         /**
          * Registers an observer on a promised {@code value}, returning a new promise
@@ -1109,8 +1108,8 @@ declare namespace webdriver {
          *     rejected.
          * @return {!webdriver.promise.Promise} A new promise.
          */
-        function when<T,R>(value:T, opt_callback?:(value:T) => any, opt_errback?:(error:any) => any):Promise<R>;
-        function when<T,R>(value:Promise<T>, opt_callback?:(value:T) => any, opt_errback?:(error:any) => any):Promise<R>;
+        function when<T,R>(value: T, opt_callback?: (value: T) => any, opt_errback?: (error: any) => any): Promise<R>;
+        function when<T,R>(value: Promise<T>, opt_callback?: (value: T) => any, opt_errback?: (error: any) => any): Promise<R>;
 
         /**
          * Returns a promise that will be resolved with the input value in a
@@ -1131,14 +1130,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise for a fully resolved version
          *     of the input value.
          */
-        function fullyResolved<T>(value:any):Promise<T>;
+        function fullyResolved<T>(value: any): Promise<T>;
 
         /**
          * Changes the default flow to use when no others are active.
          * @param {!webdriver.promise.ControlFlow} flow The new default flow.
          * @throws {Error} If the default flow is not currently active.
          */
-        function setDefaultFlow(flow:ControlFlow):void;
+        function setDefaultFlow(flow: ControlFlow): void;
 
         //endregion
 
@@ -1153,10 +1152,10 @@ declare namespace webdriver {
              * @param {string=} opt_msg The cancellation message.
              * @constructor
              */
-            constructor(opt_msg?:string);
+            constructor(opt_msg?: string);
 
-            name:string;
-            message:string;
+            name: string;
+            message: string;
         }
 
         interface IThenable<T> {
@@ -1166,11 +1165,11 @@ declare namespace webdriver {
              *
              * @param {string=} opt_reason The reason this promise is being cancelled.
              */
-            cancel(opt_reason?:string):void;
+            cancel(opt_reason?: string): void;
 
 
             /** @return {boolean} Whether this promise's value is still being computed. */
-            isPending():boolean;
+            isPending(): boolean;
 
 
             /**
@@ -1185,7 +1184,7 @@ declare namespace webdriver {
              * @return A new promise which will be
              *     resolved with the result of the invoked callback.
              */
-            then<R>(opt_callback?:(value:T) => Promise<R>, opt_errback?:(error:any) => any):Promise<R>;
+            then<R>(opt_callback?: (value: T) => Promise<R>, opt_errback?: (error: any) => any): Promise<R>;
 
             /**
              * Registers listeners for when this instance is resolved.
@@ -1199,7 +1198,7 @@ declare namespace webdriver {
              * @return A new promise which will be
              *     resolved with the result of the invoked callback.
              */
-            then<R>(opt_callback?:(value:T) => R, opt_errback?:(error:any) => any):Promise<R>;
+            then<R>(opt_callback?: (value: T) => R, opt_errback?: (error: any) => any): Promise<R>;
 
 
             /**
@@ -1226,7 +1225,7 @@ declare namespace webdriver {
              *     resolved with the result of the invoked callback.
              * @template R
              */
-            thenCatch<R>(errback:(error:any) => any):Promise<R>;
+            thenCatch<R>(errback: (error: any) => any): Promise<R>;
 
 
             /**
@@ -1268,16 +1267,16 @@ declare namespace webdriver {
              *     with the callback result.
              * @template R
              */
-            thenFinally<R>(callback:() => any):Promise<R>;
+            thenFinally<R>(callback: () => any): Promise<R>;
         }
 
         /**
-         * Thenable is a promise-like object with a {@code then} method which may be
-         * used to schedule callbacks on a promised value.
-         *
-         * @interface
-         * @template T
-         */
+        * Thenable is a promise-like object with a {@code then} method which may be
+        * used to schedule callbacks on a promised value.
+        *
+        * @interface
+        * @template T
+        */
         class Thenable<T> implements IThenable<T> {
             /**
              * Cancels the computation of this promise's value, rejecting the promise in the
@@ -1285,11 +1284,11 @@ declare namespace webdriver {
              *
              * @param {string=} opt_reason The reason this promise is being cancelled.
              */
-            cancel(opt_reason?:string):void;
+            cancel(opt_reason?: string): void;
 
 
             /** @return {boolean} Whether this promise's value is still being computed. */
-            isPending():boolean;
+            isPending(): boolean;
 
 
             /**
@@ -1304,7 +1303,7 @@ declare namespace webdriver {
              * @return A new promise which will be
              *     resolved with the result of the invoked callback.
              */
-            then<R>(opt_callback?:(value:T) => Promise<R>, opt_errback?:(error:any) => any):Promise<R>;
+            then<R>(opt_callback?: (value: T) => Promise<R>, opt_errback?: (error: any) => any): Promise<R>;
 
             /**
              * Registers listeners for when this instance is resolved.
@@ -1318,7 +1317,7 @@ declare namespace webdriver {
              * @return A new promise which will be
              *     resolved with the result of the invoked callback.
              */
-            then<R>(opt_callback?:(value:T) => R, opt_errback?:(error:any) => any):Promise<R>;
+            then<R>(opt_callback?: (value: T) => R, opt_errback?: (error: any) => any): Promise<R>;
 
 
             /**
@@ -1345,7 +1344,7 @@ declare namespace webdriver {
              *     resolved with the result of the invoked callback.
              * @template R
              */
-            thenCatch<R>(errback:(error:any) => any):Promise<R>;
+            thenCatch<R>(errback: (error: any) => any): Promise<R>;
 
 
             /**
@@ -1387,7 +1386,7 @@ declare namespace webdriver {
              *     with the callback result.
              * @template R
              */
-            thenFinally<R>(callback:() => any):Promise<R>;
+            thenFinally<R>(callback: () => any): Promise<R>;
 
             /**
              * Adds a property to a class prototype to allow runtime checks of whether
@@ -1397,7 +1396,7 @@ declare namespace webdriver {
              * @param {function(new: webdriver.promise.Thenable, ...[?])} ctor The
              *     constructor whose prototype to modify.
              */
-            static addImplementation(ctor:Function):void;
+            static addImplementation(ctor: Function): void;
 
 
             /**
@@ -1407,15 +1406,15 @@ declare namespace webdriver {
              * @return {boolean} Whether the object is an implementation of the Thenable
              *     interface.
              */
-            static isImplementation(object:any):boolean;
+            static isImplementation(object: any): boolean;
         }
 
         interface IFulfilledCallback<T> {
-            (value:T|IThenable<T>|Thenable<T>|void):void;
+          (value: T|IThenable<T>|Thenable<T>|void): void;
         }
 
         interface IRejectedCallback {
-            (reason:any):void;
+          (reason: any): void;
         }
 
         /**
@@ -1440,8 +1439,8 @@ declare namespace webdriver {
              * @param {promise.ControlFlow=} opt_flow The control flow
              *     this instance was created under. Defaults to the currently active flow.
              * @constructor
-             */
-            constructor(resolver:(onFulfilled:IFulfilledCallback<T>, onRejected:IRejectedCallback)=>void, opt_flow?:ControlFlow);
+            */
+            constructor(resolver: (onFulfilled: IFulfilledCallback<T>, onRejected: IRejectedCallback)=>void, opt_flow?: ControlFlow);
             constructor(); // For angular-protractor/angular-protractor-tests.ts
 
             //region Methods
@@ -1453,10 +1452,10 @@ declare namespace webdriver {
              *     {@code Error}, one will be created using the value's string
              *     representation.
              */
-            cancel(reason:any):void;
+            cancel(reason: any): void;
 
             /** @return {boolean} Whether this promise's value is still being computed. */
-            isPending():boolean;
+            isPending(): boolean;
 
             /**
              * Registers listeners for when this instance is resolved. This function most
@@ -1471,7 +1470,7 @@ declare namespace webdriver {
              * @return A new promise which will be resolved
              *     with the result of the invoked callback.
              */
-            then<R>(opt_callback?:(value:T) => Promise<R>, opt_errback?:(error:any) => any):Promise<R>;
+            then<R>(opt_callback?: (value: T) => Promise<R>, opt_errback?: (error: any) => any): Promise<R>;
 
             /**
              * Registers listeners for when this instance is resolved. This function most
@@ -1486,7 +1485,7 @@ declare namespace webdriver {
              * @return A new promise which will be resolved
              *     with the result of the invoked callback.
              */
-            then<R>(opt_callback?:(value:T) => R, opt_errback?:(error:any) => any):Promise<R>;
+            then<R>(opt_callback?: (value: T) => R, opt_errback?: (error: any) => any): Promise<R>;
 
 
             /**
@@ -1513,7 +1512,7 @@ declare namespace webdriver {
              *     resolved with the result of the invoked callback.
              * @template R
              */
-            thenCatch<R>(errback:(error:any) => any):Promise<R>;
+            thenCatch<R>(errback: (error: any) => any): Promise<R>;
 
 
             /**
@@ -1555,7 +1554,7 @@ declare namespace webdriver {
              *     with the callback result.
              * @template R
              */
-            thenFinally<R>(callback:() => any):Promise<R>;
+            thenFinally<R>(callback: () => any): Promise<R>;
 
             //endregion
         }
@@ -1587,15 +1586,15 @@ declare namespace webdriver {
              *     unit tests.
              * @constructor
              */
-            constructor(opt_flow?:ControlFlow);
+            constructor(opt_flow?: ControlFlow);
 
             //endregion
 
-            static State_:{
-                BLOCKED:number;
-                PENDING:number;
-                REJECTED:number;
-                RESOLVED:number;
+            static State_: {
+                BLOCKED: number;
+                PENDING: number;
+                REJECTED: number;
+                RESOLVED: number;
             };
 
             //region Properties
@@ -1605,7 +1604,7 @@ declare namespace webdriver {
              * callback registering functions.
              * @type {!webdriver.promise.Promise}
              */
-            promise:Promise<T>;
+            promise: Promise<T>;
 
             //endregion
 
@@ -1617,9 +1616,8 @@ declare namespace webdriver {
              * @param {*=} opt_error The rejection reason, typically either a
              *     {@code Error} or a {@code string}.
              */
-            reject(opt_error?:any):void;
-
-            errback(opt_error?:any):void;
+            reject(opt_error?: any): void;
+            errback(opt_error?: any): void;
 
             /**
              * Resolves this promise with the given value. If the value is itself a
@@ -1627,22 +1625,22 @@ declare namespace webdriver {
              * it before resolving.
              * @param {*=} opt_value The resolved value.
              */
-            fulfill(opt_value?:T):void;
+            fulfill(opt_value?: T): void;
 
             /**
              * Removes all of the listeners previously registered on this deferred.
              * @throws {Error} If this deferred has already been resolved.
              */
-            removeAll():void;
+            removeAll(): void;
 
             //endregion
         }
 
         interface IControlFlowTimer {
-            clearInterval:(ms:number) => void;
-            clearTimeout:(ms:number) => void;
-            setInterval:(fn:Function, ms:number) => number;
-            setTimeout:(fn:Function, ms:number) => number;
+            clearInterval: (ms: number) => void;
+            clearTimeout: (ms: number) => void;
+            setInterval: (fn: Function, ms: number) => number;
+            setTimeout: (fn: Function, ms: number) => number;
         }
 
         /**
@@ -1684,15 +1682,15 @@ declare namespace webdriver {
              * Events that may be emitted by an {@link webdriver.promise.ControlFlow}.
              * @enum {string}
              */
-            static EventType:{
+            static EventType: {
                 /** Emitted when all tasks have been successfully executed. */
-                IDLE:string;
+                    IDLE: string;
 
                 /** Emitted when a ControlFlow has been reset. */
-                RESET:string;
+                    RESET: string;
 
                 /** Emitted whenever a new task has been scheduled. */
-                SCHEDULE_TASK:string;
+                    SCHEDULE_TASK: string;
 
                 /**
                  * Emitted whenever a control flow aborts due to an unhandled promise
@@ -1700,7 +1698,7 @@ declare namespace webdriver {
                  * reason. Upon emitting this event, the control flow will empty its task
                  * queue and revert to its initial state.
                  */
-                UNCAUGHT_EXCEPTION:string;
+                    UNCAUGHT_EXCEPTION: string;
             };
 
             /**
@@ -1709,12 +1707,12 @@ declare namespace webdriver {
              * @return {string} The string representation of this contorl flow.
              * @override
              */
-            toString():string;
+            toString(): string;
 
             /**
              * Resets this instance, clearing its queue and removing all event listeners.
              */
-            reset():void;
+            reset(): void;
 
             /**
              * Generates an annotated string describing the internal state of this control
@@ -1725,7 +1723,7 @@ declare namespace webdriver {
              *     from when each task was scheduled. Defaults to false.
              * @return {string} String representation of this flow's internal state.
              */
-            getSchedule(opt_includeStackTraces?:boolean):string;
+            getSchedule(opt_includeStackTraces?: boolean): string;
 
             /**
              * Schedules a task for execution. If there is nothing currently in the
@@ -1742,7 +1740,7 @@ declare namespace webdriver {
              *     with the result of the action.
              * @template T
              */
-            execute<T>(fn:()=>(T|Promise<T>), opt_description?:string):Promise<T>;
+            execute<T>(fn: ()=>(T|Promise<T>), opt_description?: string): Promise<T>;
 
             /**
              * Inserts a {@code setTimeout} into the command queue. This is equivalent to
@@ -1753,7 +1751,7 @@ declare namespace webdriver {
              * @return {!webdriver.promise.Promise} A promise that will be resolved with
              *     the result of the action.
              */
-            timeout(ms:number, opt_description?:string):Promise<void>;
+            timeout(ms: number, opt_description?: string): Promise<void>;
 
             /**
              * Schedules a task that shall wait for a condition to hold. Each condition
@@ -1791,7 +1789,7 @@ declare namespace webdriver {
              *     is not a number >= 0.
              * @template T
              */
-            wait<T>(condition:Promise<T>|Function, opt_timeout?:number, opt_message?:string):Promise<T>;
+            wait<T>(condition: Promise<T>|Function, opt_timeout?: number, opt_message?: string): Promise<T>;
         }
     }
 
@@ -1812,37 +1810,37 @@ declare namespace webdriver {
              *     optionally column number separated by colons.
              * @constructor
              */
-            constructor(context?:string, name?:string, alias?:string, path?:string);
+            constructor(context?: string, name?: string, alias?: string, path?: string);
 
             /**
              * @return {string} The function name or empty string if the function is
              *     anonymous and the object field which it's assigned to is unknown.
              */
-            getName():string;
+            getName(): string;
 
 
             /**
              * @return {string} The url or empty string if it is unknown.
              */
-            getUrl():string;
+            getUrl(): string;
 
 
             /**
              * @return {number} The line number if known or -1 if it is unknown.
              */
-            getLine():number;
+            getLine(): number;
 
 
             /**
              * @return {number} The column number if known and -1 if it is unknown.
              */
-            getColumn():number;
+            getColumn(): number;
 
 
             /**
              * @return {boolean} Whether the stack frame contains an anonymous function.
              */
-            isAnonymous():boolean;
+            isAnonymous(): boolean;
 
 
             /**
@@ -1851,7 +1849,7 @@ declare namespace webdriver {
              * @return {string} The string representation of this frame.
              * @override
              */
-            toString():string;
+            toString(): string;
         }
 
         /**
@@ -1864,12 +1862,12 @@ declare namespace webdriver {
              *     the generated stack trace.
              * @constructor
              */
-            constructor(opt_slice?:number);
+            constructor(opt_slice?: number);
 
             /**
              * @return {!Array.<!webdriver.stacktrace.Frame>} The parsed stack trace.
              */
-            getStacktrace():Frame[];
+            getStacktrace(): Frame[];
         }
 
         /**
@@ -1877,7 +1875,7 @@ declare namespace webdriver {
          * @param {!(Error|goog.testing.JsUnitException)} error The error to format.
          * @return {!(Error|goog.testing.JsUnitException)} The formatted error.
          */
-        function format(error:any):any;
+        function format(error: any): any;
 
         /**
          * Gets the native stack trace if available otherwise follows the call chain.
@@ -1885,7 +1883,7 @@ declare namespace webdriver {
          * this function.
          * @return {!Array.<!webdriver.stacktrace.Frame>} The frames of the stack trace.
          */
-        function get():Frame[];
+        function get(): Frame[];
 
         /**
          * Whether the current browser supports stack traces.
@@ -1893,7 +1891,7 @@ declare namespace webdriver {
          * @type {boolean}
          * @const
          */
-        var BROWSER_SUPPORTED:boolean;
+        var BROWSER_SUPPORTED: boolean;
     }
 
     namespace until {
@@ -1908,13 +1906,13 @@ declare namespace webdriver {
              *     evaluate on each iteration of the wait loop.
              * @constructor
              */
-            constructor(message:string, fn:(webdriver:WebDriver) => any);
+            constructor(message: string, fn: (webdriver: WebDriver) => any);
 
             /** @return {string} A description of this condition. */
-            description():string;
+            description(): string;
 
             /** @type {function(!webdriver.WebDriver): OUT} */
-            fn(webdriver:WebDriver):any;
+            fn(webdriver: WebDriver): any;
         }
 
         /**
@@ -1938,7 +1936,7 @@ declare namespace webdriver {
          *     The frame identifier.
          * @return {!until.Condition.<boolean>} A new condition.
          */
-        function ableToSwitchToFrame(frame:number|WebElement|Locator|By.Hash|((webdriver:WebDriver)=>WebElement)):Condition<boolean>;
+        function ableToSwitchToFrame(frame: number|WebElement|Locator|By.Hash|((webdriver: WebDriver)=>WebElement)): Condition<boolean>;
 
         /**
          * Creates a condition that waits for an alert to be opened. Upon success, the
@@ -1946,7 +1944,7 @@ declare namespace webdriver {
          *
          * @return {!until.Condition.<!webdriver.Alert>} The new condition.
          */
-        function alertIsPresent():Condition<Alert>;
+        function alertIsPresent(): Condition<Alert>;
 
         /**
          * Creates a condition that will wait for the given element to be disabled.
@@ -1955,7 +1953,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#isEnabled
          */
-        function elementIsDisabled(element:WebElement):Condition<boolean>;
+        function elementIsDisabled(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element to be enabled.
@@ -1964,7 +1962,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#isEnabled
          */
-        function elementIsEnabled(element:WebElement):Condition<boolean>;
+        function elementIsEnabled(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element to be deselected.
@@ -1973,7 +1971,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#isSelected
          */
-        function elementIsNotSelected(element:WebElement):Condition<boolean>;
+        function elementIsNotSelected(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element to be in the DOM,
@@ -1983,7 +1981,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#isDisplayed
          */
-        function elementIsNotVisible(element:WebElement):Condition<boolean>;
+        function elementIsNotVisible(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element to be selected.
@@ -1991,7 +1989,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#isSelected
          */
-        function elementIsSelected(element:WebElement):Condition<boolean>;
+        function elementIsSelected(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element to become visible.
@@ -2000,7 +1998,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#isDisplayed
          */
-        function elementIsVisible(element:WebElement):Condition<boolean>;
+        function elementIsVisible(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will loop until an element is
@@ -2010,7 +2008,7 @@ declare namespace webdriver {
          *     to use.
          * @return {!until.Condition.<!webdriver.WebElement>} The new condition.
          */
-        function elementLocated(locator:Locator|By.Hash|Function):Condition<WebElement>;
+        function elementLocated(locator: Locator|By.Hash|Function): Condition<WebElement>;
 
         /**
          * Creates a condition that will wait for the given element's
@@ -2022,7 +2020,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#getText
          */
-        function elementTextContains(element:WebElement, substr:string):Condition<boolean>;
+        function elementTextContains(element: WebElement, substr: string): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element's
@@ -2034,7 +2032,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#getText
          */
-        function elementTextIs(element:WebElement, text:string):Condition<boolean>;
+        function elementTextIs(element: WebElement, text: string): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the given element's
@@ -2046,7 +2044,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<boolean>} The new condition.
          * @see webdriver.WebDriver#getText
          */
-        function elementTextMatches(element:WebElement, regex:RegExp):Condition<boolean>;
+        function elementTextMatches(element: WebElement, regex: RegExp): Condition<boolean>;
 
         /**
          * Creates a condition that will loop until at least one element is
@@ -2057,7 +2055,7 @@ declare namespace webdriver {
          * @return {!until.Condition.<!Array.<!webdriver.WebElement>>} The new
          *     condition.
          */
-        function elementsLocated(locator:Locator|By.Hash|Function):Condition<WebElement[]>;
+        function elementsLocated(locator: Locator|By.Hash|Function): Condition<WebElement[]>;
 
         /**
          * Creates a condition that will wait for the given element to become stale. An
@@ -2067,7 +2065,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebElement} element The element that should become stale.
          * @return {!until.Condition.<boolean>} The new condition.
          */
-        function stalenessOf(element:WebElement):Condition<boolean>;
+        function stalenessOf(element: WebElement): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the current page's title to contain
@@ -2077,7 +2075,7 @@ declare namespace webdriver {
          *     title.
          * @return {!until.Condition.<boolean>} The new condition.
          */
-        function titleContains(substr:string):Condition<boolean>;
+        function titleContains(substr: string): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the current page's title to match the
@@ -2086,7 +2084,7 @@ declare namespace webdriver {
          * @param {string} title The expected page title.
          * @return {!until.Condition.<boolean>} The new condition.
          */
-        function titleIs(title:string):Condition<boolean>;
+        function titleIs(title: string): Condition<boolean>;
 
         /**
          * Creates a condition that will wait for the current page's title to match the
@@ -2095,17 +2093,17 @@ declare namespace webdriver {
          * @param {!RegExp} regex The regular expression to test against.
          * @return {!until.Condition.<boolean>} The new condition.
          */
-        function titleMatches(regex:RegExp):Condition<boolean>;
+        function titleMatches(regex: RegExp): Condition<boolean>;
     }
 
     interface ILocation {
-        x:number;
-        y:number;
+        x: number;
+        y: number;
     }
 
     interface ISize {
-        width:number;
-        height:number;
+        width: number;
+        height: number;
     }
 
     /**
@@ -2114,12 +2112,12 @@ declare namespace webdriver {
      * @enum {number}
      */
     interface IButton {
-        LEFT:number;
-        MIDDLE:number;
-        RIGHT:number;
+        LEFT: number;
+        MIDDLE: number;
+        RIGHT: number;
     }
 
-    var Button:IButton;
+    var Button: IButton;
 
     /**
      * Representations of pressable keys that aren't text.  These are stored in
@@ -2129,69 +2127,69 @@ declare namespace webdriver {
      * @enum {string}
      */
     interface IKey {
-        NULL:string;
-        CANCEL:string;  // ^break
-        HELP:string;
-        BACK_SPACE:string;
-        TAB:string;
-        CLEAR:string;
-        RETURN:string;
-        ENTER:string;
-        SHIFT:string;
-        CONTROL:string;
-        ALT:string;
-        PAUSE:string;
-        ESCAPE:string;
-        SPACE:string;
-        PAGE_UP:string;
-        PAGE_DOWN:string;
-        END:string;
-        HOME:string;
-        ARROW_LEFT:string;
-        LEFT:string;
-        ARROW_UP:string;
-        UP:string;
-        ARROW_RIGHT:string;
-        RIGHT:string;
-        ARROW_DOWN:string;
-        DOWN:string;
-        INSERT:string;
-        DELETE:string;
-        SEMICOLON:string;
-        EQUALS:string;
+        NULL: string;
+        CANCEL: string;  // ^break
+        HELP: string;
+        BACK_SPACE: string;
+        TAB: string;
+        CLEAR: string;
+        RETURN: string;
+        ENTER: string;
+        SHIFT: string;
+        CONTROL: string;
+        ALT: string;
+        PAUSE: string;
+        ESCAPE: string;
+        SPACE: string;
+        PAGE_UP: string;
+        PAGE_DOWN: string;
+        END: string;
+        HOME: string;
+        ARROW_LEFT: string;
+        LEFT: string;
+        ARROW_UP: string;
+        UP: string;
+        ARROW_RIGHT: string;
+        RIGHT: string;
+        ARROW_DOWN: string;
+        DOWN: string;
+        INSERT: string;
+        DELETE: string;
+        SEMICOLON: string;
+        EQUALS: string;
 
-        NUMPAD0:string;  // number pad keys
-        NUMPAD1:string;
-        NUMPAD2:string;
-        NUMPAD3:string;
-        NUMPAD4:string;
-        NUMPAD5:string;
-        NUMPAD6:string;
-        NUMPAD7:string;
-        NUMPAD8:string;
-        NUMPAD9:string;
-        MULTIPLY:string;
-        ADD:string;
-        SEPARATOR:string;
-        SUBTRACT:string;
-        DECIMAL:string;
-        DIVIDE:string;
+        NUMPAD0: string;  // number pad keys
+        NUMPAD1: string;
+        NUMPAD2: string;
+        NUMPAD3: string;
+        NUMPAD4: string;
+        NUMPAD5: string;
+        NUMPAD6: string;
+        NUMPAD7: string;
+        NUMPAD8: string;
+        NUMPAD9: string;
+        MULTIPLY: string;
+        ADD: string;
+        SEPARATOR: string;
+        SUBTRACT: string;
+        DECIMAL: string;
+        DIVIDE: string;
 
-        F1:string;  // function keys
-        F2:string;
-        F3:string;
-        F4:string;
-        F5:string;
-        F6:string;
-        F7:string;
-        F8:string;
-        F9:string;
-        F10:string;
-        F11:string;
-        F12:string;
+        F1: string;  // function keys
+        F2: string;
+        F3: string;
+        F4: string;
+        F5: string;
+        F6: string;
+        F7: string;
+        F8: string;
+        F9: string;
+        F10: string;
+        F11: string;
+        F12: string;
 
-        COMMAND:string;  // Apple command key
-        META:string;   // alias for Windows key
+        COMMAND: string;  // Apple command key
+        META: string;   // alias for Windows key
 
         /**
          * Simulate pressing many keys at once in a "chord". Takes a sequence of
@@ -2206,10 +2204,10 @@ declare namespace webdriver {
          * @return {string} The null-terminated key sequence.
          * @see http://code.google.com/p/webdriver/issues/detail?id=79
          */
-        chord:(...var_args:string[]) => string;
+        chord: (...var_args: string[]) => string;
     }
 
-    var Key:IKey;
+    var Key: IKey;
 
     /**
      * Class for defining sequences of complex user interactions. Each sequence
@@ -2234,7 +2232,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The driver instance to use.
          * @constructor
          */
-        constructor(driver:WebDriver);
+        constructor(driver: WebDriver);
 
         //endregion
 
@@ -2245,7 +2243,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved once
          *     this sequence has completed.
          */
-        perform():webdriver.promise.Promise<void>;
+        perform(): webdriver.promise.Promise<void>;
 
         /**
          * Moves the mouse.  The location to move to may be specified in terms of the
@@ -2257,8 +2255,8 @@ declare namespace webdriver {
          *     Defaults to (0, 0).
          * @return {!webdriver.ActionSequence} A self reference.
          */
-        mouseMove(location:WebElement, opt_offset?:ILocation):ActionSequence;
-        mouseMove(location:ILocation):ActionSequence;
+        mouseMove(location: WebElement, opt_offset?: ILocation): ActionSequence;
+        mouseMove(location: ILocation): ActionSequence;
 
         /**
          * Presses a mouse button. The mouse button will not be released until
@@ -2282,8 +2280,8 @@ declare namespace webdriver {
          *     first argument.
          * @return {!webdriver.ActionSequence} A self reference.
          */
-        mouseDown(opt_elementOrButton?:WebElement, opt_button?:number):ActionSequence;
-        mouseDown(opt_elementOrButton?:number):ActionSequence;
+        mouseDown(opt_elementOrButton?: WebElement, opt_button?: number): ActionSequence;
+        mouseDown(opt_elementOrButton?: number): ActionSequence;
 
         /**
          * Releases a mouse button. Behavior is undefined for calling this function
@@ -2305,8 +2303,8 @@ declare namespace webdriver {
          *     first argument.
          * @return {!webdriver.ActionSequence} A self reference.
          */
-        mouseUp(opt_elementOrButton?:WebElement, opt_button?:number):ActionSequence;
-        mouseUp(opt_elementOrButton?:number):ActionSequence;
+        mouseUp(opt_elementOrButton?: WebElement, opt_button?: number): ActionSequence;
+        mouseUp(opt_elementOrButton?: number): ActionSequence;
 
         /**
          * Convenience function for performing a "drag and drop" manuever. The target
@@ -2317,8 +2315,8 @@ declare namespace webdriver {
          *     location to drag to, either as another WebElement or an offset in pixels.
          * @return {!webdriver.ActionSequence} A self reference.
          */
-        dragAndDrop(element:WebElement, location:WebElement):ActionSequence;
-        dragAndDrop(element:WebElement, location:ILocation):ActionSequence;
+        dragAndDrop(element: WebElement, location: WebElement): ActionSequence;
+        dragAndDrop(element: WebElement, location: ILocation): ActionSequence;
 
         /**
          * Clicks a mouse button.
@@ -2336,8 +2334,8 @@ declare namespace webdriver {
          *     first argument.
          * @return {!webdriver.ActionSequence} A self reference.
          */
-        click(opt_elementOrButton?:WebElement, opt_button?:number):ActionSequence;
-        click(opt_elementOrButton?:number):ActionSequence;
+        click(opt_elementOrButton?: WebElement, opt_button?: number): ActionSequence;
+        click(opt_elementOrButton?: number): ActionSequence;
 
         /**
          * Double-clicks a mouse button.
@@ -2358,8 +2356,8 @@ declare namespace webdriver {
          *     first argument.
          * @return {!webdriver.ActionSequence} A self reference.
          */
-        doubleClick(opt_elementOrButton?:WebElement, opt_button?:number):ActionSequence;
-        doubleClick(opt_elementOrButton?:number):ActionSequence;
+        doubleClick(opt_elementOrButton?: WebElement, opt_button?: number): ActionSequence;
+        doubleClick(opt_elementOrButton?: number): ActionSequence;
 
         /**
          * Performs a modifier key press. The modifier key is <em>not released</em>
@@ -2370,7 +2368,7 @@ declare namespace webdriver {
          * @return {!webdriver.ActionSequence} A self reference.
          * @throws {Error} If the key is not a valid modifier key.
          */
-        keyDown(key:string):ActionSequence;
+        keyDown(key: string): ActionSequence;
 
         /**
          * Performs a modifier key release. The release is targetted at the currently
@@ -2380,7 +2378,7 @@ declare namespace webdriver {
          * @return {!webdriver.ActionSequence} A self reference.
          * @throws {Error} If the key is not a valid modifier key.
          */
-        keyUp(key:string):ActionSequence;
+        keyUp(key: string): ActionSequence;
 
         /**
          * Simulates typing multiple keys. Each modifier key encountered in the
@@ -2391,7 +2389,7 @@ declare namespace webdriver {
          * @return {!webdriver.ActionSequence} A self reference.
          * @throws {Error} If the key is not a valid modifier key.
          */
-        sendKeys(...var_args:any[]):ActionSequence;
+        sendKeys(...var_args: any[]): ActionSequence;
 
         //endregion
     }
@@ -2410,126 +2408,126 @@ declare namespace webdriver {
      *         perform();
      */
     class TouchSequence {
-        /*
-         * @param {!webdriver.WebDriver} driver The driver instance to use.
-         * @constructor
-         */
-        constructor(driver:WebDriver);
+      /*
+       * @param {!webdriver.WebDriver} driver The driver instance to use.
+       * @constructor
+       */
+      constructor(driver: WebDriver);
 
 
-        /**
-         * Executes this action sequence.
-         * @return {!webdriver.promise.Promise} A promise that will be resolved once
-         *     this sequence has completed.
-         */
-        perform():webdriver.promise.Promise<void>;
+      /**
+       * Executes this action sequence.
+       * @return {!webdriver.promise.Promise} A promise that will be resolved once
+       *     this sequence has completed.
+       */
+      perform(): webdriver.promise.Promise<void>;
 
 
-        /**
-         * Taps an element.
-         *
-         * @param {!webdriver.WebElement} elem The element to tap.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        tap(elem:WebElement):TouchSequence;
+      /**
+       * Taps an element.
+       *
+       * @param {!webdriver.WebElement} elem The element to tap.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      tap(elem: WebElement): TouchSequence;
 
 
-        /**
-         * Double taps an element.
-         *
-         * @param {!webdriver.WebElement} elem The element to double tap.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        doubleTap(elem:WebElement):TouchSequence;
+      /**
+       * Double taps an element.
+       *
+       * @param {!webdriver.WebElement} elem The element to double tap.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      doubleTap(elem: WebElement): TouchSequence;
 
 
-        /**
-         * Long press on an element.
-         *
-         * @param {!webdriver.WebElement} elem The element to long press.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        longPress(elem:WebElement):TouchSequence;
+      /**
+       * Long press on an element.
+       *
+       * @param {!webdriver.WebElement} elem The element to long press.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      longPress(elem: WebElement): TouchSequence;
 
 
-        /**
-         * Touch down at the given location.
-         *
-         * @param {{ x: number, y: number }} location The location to touch down at.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        tapAndHold(location:ILocation):TouchSequence;
+      /**
+       * Touch down at the given location.
+       *
+       * @param {{ x: number, y: number }} location The location to touch down at.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      tapAndHold(location: ILocation): TouchSequence;
 
 
-        /**
-         * Move a held {@linkplain #tapAndHold touch} to the specified location.
-         *
-         * @param {{x: number, y: number}} location The location to move to.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        move(location:ILocation):TouchSequence;
+      /**
+       * Move a held {@linkplain #tapAndHold touch} to the specified location.
+       *
+       * @param {{x: number, y: number}} location The location to move to.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      move(location: ILocation): TouchSequence;
 
 
-        /**
-         * Release a held {@linkplain #tapAndHold touch} at the specified location.
-         *
-         * @param {{x: number, y: number}} location The location to release at.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        release(location:ILocation):TouchSequence;
+      /**
+       * Release a held {@linkplain #tapAndHold touch} at the specified location.
+       *
+       * @param {{x: number, y: number}} location The location to release at.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      release(location: ILocation): TouchSequence;
 
 
-        /**
-         * Scrolls the touch screen by the given offset.
-         *
-         * @param {{x: number, y: number}} offset The offset to scroll to.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        scroll(offset:IOffset):TouchSequence;
+      /**
+       * Scrolls the touch screen by the given offset.
+       *
+       * @param {{x: number, y: number}} offset The offset to scroll to.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      scroll(offset: IOffset): TouchSequence;
 
 
-        /**
-         * Scrolls the touch screen, starting on `elem` and moving by the specified
-         * offset.
-         *
-         * @param {!webdriver.WebElement} elem The element where scroll starts.
-         * @param {{x: number, y: number}} offset The offset to scroll to.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        scrollFromElement(elem:WebElement, offset:IOffset):TouchSequence;
+      /**
+       * Scrolls the touch screen, starting on `elem` and moving by the specified
+       * offset.
+       *
+       * @param {!webdriver.WebElement} elem The element where scroll starts.
+       * @param {{x: number, y: number}} offset The offset to scroll to.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      scrollFromElement(elem: WebElement, offset: IOffset): TouchSequence;
 
 
-        /**
-         * Flick, starting anywhere on the screen, at speed xspeed and yspeed.
-         *
-         * @param {{xspeed: number, yspeed: number}} speed The speed to flick in each
-         direction, in pixels per second.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        flick(speed:ISpeed):TouchSequence;
+      /**
+       * Flick, starting anywhere on the screen, at speed xspeed and yspeed.
+       *
+       * @param {{xspeed: number, yspeed: number}} speed The speed to flick in each
+       direction, in pixels per second.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      flick(speed: ISpeed): TouchSequence;
 
 
-        /**
-         * Flick starting at elem and moving by x and y at specified speed.
-         *
-         * @param {!webdriver.WebElement} elem The element where flick starts.
-         * @param {{x: number, y: number}} offset The offset to flick to.
-         * @param {number} speed The speed to flick at in pixels per second.
-         * @return {!webdriver.TouchSequence} A self reference.
-         */
-        flickElement(elem:WebElement, offset:IOffset, speed:number):TouchSequence;
+      /**
+       * Flick starting at elem and moving by x and y at specified speed.
+       *
+       * @param {!webdriver.WebElement} elem The element where flick starts.
+       * @param {{x: number, y: number}} offset The offset to flick to.
+       * @param {number} speed The speed to flick at in pixels per second.
+       * @return {!webdriver.TouchSequence} A self reference.
+       */
+      flickElement(elem: WebElement, offset: IOffset, speed: number): TouchSequence;
     }
 
 
     interface IOffset {
-        x:number;
-        y:number;
+      x: number;
+      y: number;
     }
 
 
     interface ISpeed {
-        xspeed:number;
-        yspeed:number;
+      xspeed: number;
+      yspeed: number;
     }
 
 
@@ -2549,21 +2547,21 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved to the
          *     text displayed with this alert.
          */
-        getText():webdriver.promise.Promise<string>;
+        getText(): webdriver.promise.Promise<string>;
 
         /**
          * Accepts this alert.
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     this command has completed.
          */
-        accept():webdriver.promise.Promise<void>;
+        accept(): webdriver.promise.Promise<void>;
 
         /**
          * Dismisses this alert.
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     this command has completed.
          */
-        dismiss():webdriver.promise.Promise<void>;
+        dismiss(): webdriver.promise.Promise<void>;
 
         /**
          * Sets the response text on this alert. This command will return an error if
@@ -2573,7 +2571,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     this command has completed.
          */
-        sendKeys(text:string):webdriver.promise.Promise<void>;
+        sendKeys(text: string): webdriver.promise.Promise<void>;
 
         //endregion
 
@@ -2614,14 +2612,14 @@ declare namespace webdriver {
         /**
          * @return {string} The text displayed with the unhandled alert.
          */
-        getAlertText():string;
+        getAlertText(): string;
 
         /**
          * @return {!webdriver.Alert} The open alert.
          * @deprecated Use {@link #getAlertText}. This method will be removed in
          *     2.45.0.
          */
-        getAlert():Alert;
+        getAlert(): Alert;
 
 
         //endregion
@@ -2632,27 +2630,27 @@ declare namespace webdriver {
      * @enum {string}
      */
     interface IBrowser {
-        ANDROID:string;
-        CHROME:string;
-        FIREFOX:string;
-        INTERNET_EXPLORER:string;
-        IPAD:string;
-        IPHONE:string;
-        OPERA:string;
-        PHANTOM_JS:string;
-        SAFARI:string;
-        HTMLUNIT:string;
+        ANDROID: string;
+        CHROME: string;
+        FIREFOX: string;
+        INTERNET_EXPLORER: string;
+        IPAD: string;
+        IPHONE: string;
+        OPERA: string;
+        PHANTOM_JS: string;
+        SAFARI: string;
+        HTMLUNIT: string;
     }
 
-    var Browser:IBrowser;
+    var Browser: IBrowser;
 
     interface ProxyConfig {
-        proxyType:string;
-        proxyAutoconfigUrl?:string;
-        ftpProxy?:string;
-        httpProxy?:string;
-        sslProxy?:string;
-        noProxy?:string;
+        proxyType: string;
+        proxyAutoconfigUrl?: string;
+        ftpProxy?: string;
+        httpProxy?: string;
+        sslProxy?: string;
+        noProxy?: string;
     }
 
     class Builder {
@@ -2675,7 +2673,7 @@ declare namespace webdriver {
          * @return {!webdriver.WebDriver} A new WebDriver instance.
          * @throws {Error} If the current configuration is invalid.
          */
-        build():WebDriver;
+        build(): WebDriver;
 
         /**
          * Configures the target browser for clients created by this instance.
@@ -2694,20 +2692,20 @@ declare namespace webdriver {
          *     version may be used.
          * @return {!Builder} A self reference.
          */
-        forBrowser(name:string, opt_version?:string, opt_platform?:string):Builder;
+        forBrowser(name: string, opt_version?: string, opt_platform?: string): Builder;
 
         /**
          * Returns the base set of capabilities this instance is currently configured
          * to use.
          * @return {!webdriver.Capabilities} The current capabilities for this builder.
          */
-        getCapabilities():Capabilities;
+        getCapabilities(): Capabilities;
 
         /**
          * @return {string} The URL of the WebDriver server this instance is configured
          *     to use.
          */
-        getServerUrl():string;
+        getServerUrl(): string;
 
         /**
          * Sets the default action to take with an unexpected alert before returning
@@ -2716,7 +2714,7 @@ declare namespace webdriver {
          *     or "ignore". Defaults to "dismiss".
          * @return {!Builder} A self reference.
          */
-        setAlertBehavior(behavior:string):Builder;
+        setAlertBehavior(behavior: string): Builder;
 
         /**
          * Sets Chrome-specific options for drivers created by this builder. Any
@@ -2727,7 +2725,7 @@ declare namespace webdriver {
          * @param {!chrome.Options} options The ChromeDriver options to use.
          * @return {!Builder} A self reference.
          */
-        setChromeOptions(options:chrome.Options):Builder;
+        setChromeOptions(options: chrome.Options): Builder;
 
         /**
          * Sets the control flow that created drivers should execute actions in. If
@@ -2737,14 +2735,14 @@ declare namespace webdriver {
          *     {@code null} to
          * @return {!Builder} A self reference.
          */
-        setControlFlow(flow:webdriver.promise.ControlFlow):Builder;
+        setControlFlow(flow: webdriver.promise.ControlFlow): Builder;
 
         /**
          * Sets whether native events should be used.
          * @param {boolean} enabled Whether to enable native events.
          * @return {!Builder} A self reference.
          */
-        setEnableNativeEvents(enabled:boolean):Builder;
+        setEnableNativeEvents(enabled: boolean): Builder;
 
         /**
          * Sets Firefox-specific options for drivers created by this builder. Any
@@ -2755,7 +2753,7 @@ declare namespace webdriver {
          * @param {!firefox.Options} options The FirefoxDriver options to use.
          * @return {!Builder} A self reference.
          */
-        setFirefoxOptions(options:firefox.Options):Builder;
+        setFirefoxOptions(options: firefox.Options): Builder;
 
         /**
          * Sets the logging preferences for the created session. Preferences may be
@@ -2764,8 +2762,8 @@ declare namespace webdriver {
          *     desired logging preferences.
          * @return {!Builder} A self reference.
          */
-        setLoggingPrefs(prefs:webdriver.logging.Preferences):Builder;
-        setLoggingPrefs(prefs:{ [key:string]:string }):Builder;
+        setLoggingPrefs(prefs: webdriver.logging.Preferences): Builder;
+        setLoggingPrefs(prefs: { [key: string]: string }): Builder;
 
         /**
          * Sets the proxy configuration to use for WebDriver clients created by this
@@ -2774,7 +2772,7 @@ declare namespace webdriver {
          * @param {!webdriver.ProxyConfig} config The configuration to use.
          * @return {!Builder} A self reference.
          */
-        setProxy(config:ProxyConfig):Builder;
+        setProxy(config: ProxyConfig): Builder;
 
         /**
          * Sets how elements should be scrolled into view for interaction.
@@ -2782,7 +2780,7 @@ declare namespace webdriver {
          *     the top of the viewport or 1 to align with the bottom.
          * @return {!Builder} A self reference.
          */
-        setScrollBehavior(behavior:number):Builder;
+        setScrollBehavior(behavior: number): Builder;
 
         /**
          * Sets the URL of a remote WebDriver server to use. Once a remote URL has been
@@ -2795,7 +2793,7 @@ declare namespace webdriver {
          * @param {string} url The URL of a remote server to use.
          * @return {!Builder} A self reference.
          */
-        usingServer(url:string):Builder;
+        usingServer(url: string): Builder;
 
         /**
          * Sets the desired capabilities when requesting a new session. This will
@@ -2804,8 +2802,8 @@ declare namespace webdriver {
          *     capabilities for a new session.
          * @return {!Builder} A self reference.
          */
-        withCapabilities(capabilities:Capabilities):Builder;
-        withCapabilities(capabilities:any):Builder;
+        withCapabilities(capabilities: Capabilities): Builder;
+        withCapabilities(capabilities: any): Builder;
 
         //endregion
     }
@@ -2822,14 +2820,14 @@ declare namespace webdriver {
          * a driver can handle insecure SSL certs, see
          * {@link webdriver.Capability.SECURE_SSL}.
          */
-        ACCEPT_SSL_CERTS:string;
+        ACCEPT_SSL_CERTS: string;
 
 
         /**
          * The browser name. Common browser names are defined in the
          * {@link webdriver.Browser} enum.
          */
-        BROWSER_NAME:string;
+        BROWSER_NAME: string;
 
         /**
          * Defines how elements should be scrolled into the viewport for interaction.
@@ -2837,24 +2835,24 @@ declare namespace webdriver {
          * top of the viewport, or one (1) if aligned with the bottom. The default
          * behavior is to align with the top of the viewport.
          */
-        ELEMENT_SCROLL_BEHAVIOR:string;
+        ELEMENT_SCROLL_BEHAVIOR: string;
 
         /**
          * Whether the driver is capable of handling modal alerts (e.g. alert,
          * confirm, prompt). To define how a driver <i>should</i> handle alerts,
          * use {@link webdriver.Capability.UNEXPECTED_ALERT_BEHAVIOR}.
          */
-        HANDLES_ALERTS:string;
+        HANDLES_ALERTS: string;
 
         /**
          * Key for the logging driver logging preferences.
          */
-        LOGGING_PREFS:string;
+        LOGGING_PREFS: string;
 
         /**
-         * Whether this session generates native events when simulating user input.
+	     * Whether this session generates native events when simulating user input.
          */
-        NATIVE_EVENTS:string;
+        NATIVE_EVENTS: string;
 
         /**
          * Describes the platform the browser is running on. Will be one of
@@ -2862,49 +2860,49 @@ declare namespace webdriver {
          * session, ANY may be used to indicate no platform preference (this is
          * semantically equivalent to omitting the platform capability).
          */
-        PLATFORM:string;
+        PLATFORM: string;
 
         /**
          * Describes the proxy configuration to use for a new WebDriver session.
          */
-        PROXY:string;
+        PROXY: string;
 
         /** Whether the driver supports changing the brower's orientation. */
-        ROTATABLE:string;
+        ROTATABLE: string;
 
         /**
          * Whether a driver is only capable of handling secure SSL certs. To request
          * that a driver accept insecure SSL certs by default, use
          * {@link webdriver.Capability.ACCEPT_SSL_CERTS}.
          */
-        SECURE_SSL:string;
+        SECURE_SSL: string;
 
         /** Whether the driver supports manipulating the app cache. */
-        SUPPORTS_APPLICATION_CACHE:string;
+       SUPPORTS_APPLICATION_CACHE: string;
 
         /** Whether the driver supports locating elements with CSS selectors. */
-        SUPPORTS_CSS_SELECTORS:string;
+        SUPPORTS_CSS_SELECTORS: string;
 
         /** Whether the browser supports JavaScript. */
-        SUPPORTS_JAVASCRIPT:string;
+        SUPPORTS_JAVASCRIPT: string;
 
         /** Whether the driver supports controlling the browser's location info. */
-        SUPPORTS_LOCATION_CONTEXT:string;
+        SUPPORTS_LOCATION_CONTEXT: string;
 
         /** Whether the driver supports taking screenshots. */
-        TAKES_SCREENSHOT:string;
+        TAKES_SCREENSHOT: string;
 
         /**
          * Defines how the driver should handle unexpected alerts. The value should
          * be one of "accept", "dismiss", or "ignore.
          */
-        UNEXPECTED_ALERT_BEHAVIOR:string;
+        UNEXPECTED_ALERT_BEHAVIOR: string;
 
         /** Defines the browser version. */
-        VERSION:string;
+        VERSION: string;
     }
 
-    var Capability:ICapability;
+    var Capability: ICapability;
 
     class Capabilities {
         //region Constructors
@@ -2914,15 +2912,15 @@ declare namespace webdriver {
          *     capabilities to merge into this instance.
          * @constructor
          */
-        constructor(opt_other?:Capabilities);
-        constructor(opt_other?:any);
+        constructor(opt_other?: Capabilities);
+        constructor(opt_other?: any);
 
         //endregion
 
         //region Methods
 
         /** @return {!Object} The JSON representation of this instance. */
-        toJSON():any;
+        toJSON(): any;
 
         /**
          * Merges another set of capabilities into this instance. Any duplicates in
@@ -2931,8 +2929,8 @@ declare namespace webdriver {
          *     merge into this instance.
          * @return {!webdriver.Capabilities} A self reference.
          */
-        merge(other:Capabilities):Capabilities;
-        merge(other:any):Capabilities;
+        merge(other: Capabilities): Capabilities;
+        merge(other: any): Capabilities;
 
         /**
          * @param {string} key The capability to set.
@@ -2940,7 +2938,7 @@ declare namespace webdriver {
          *     serializable. Pass {@code null} to unset the capability.
          * @return {!webdriver.Capabilities} A self reference.
          */
-        set(key:string, value:any):Capabilities;
+        set(key: string, value: any): Capabilities;
 
         /**
          * Sets the logging preferences. Preferences may be specified as a
@@ -2950,8 +2948,8 @@ declare namespace webdriver {
          *     logging preferences.
          * @return {!webdriver.Capabilities} A self reference.
          */
-        setLoggingPrefs(prefs:webdriver.logging.Preferences):Capabilities;
-        setLoggingPrefs(prefs:{ [key:string]:string }):Capabilities;
+        setLoggingPrefs(prefs: webdriver.logging.Preferences): Capabilities;
+        setLoggingPrefs(prefs: { [key: string]: string }): Capabilities;
 
 
         /**
@@ -2959,7 +2957,7 @@ declare namespace webdriver {
          * @param {webdriver.ProxyConfig} proxy The desired proxy configuration.
          * @return {!webdriver.Capabilities} A self reference.
          */
-        setProxy(proxy:ProxyConfig):Capabilities;
+        setProxy(proxy: ProxyConfig): Capabilities;
 
 
         /**
@@ -2967,7 +2965,7 @@ declare namespace webdriver {
          * @param {boolean} enabled Whether to enable native events.
          * @return {!webdriver.Capabilities} A self reference.
          */
-        setEnableNativeEvents(enabled:boolean):Capabilities;
+        setEnableNativeEvents(enabled: boolean): Capabilities;
 
 
         /**
@@ -2976,7 +2974,7 @@ declare namespace webdriver {
          *     the top of the viewport or 1 to align with the bottom.
          * @return {!webdriver.Capabilities} A self reference.
          */
-        setScrollBehavior(behavior:number):Capabilities;
+        setScrollBehavior(behavior: number): Capabilities;
 
         /**
          * Sets the default action to take with an unexpected alert before returning
@@ -2985,20 +2983,20 @@ declare namespace webdriver {
          *     or "ignore". Defaults to "dismiss".
          * @return {!webdriver.Capabilities} A self reference.
          */
-        setAlertBehavior(behavior:string):Capabilities;
+        setAlertBehavior(behavior: string): Capabilities;
 
         /**
          * @param {string} key The capability to return.
          * @return {*} The capability with the given key, or {@code null} if it has
          *     not been set.
          */
-        get(key:string):any;
+        get(key: string): any;
 
         /**
          * @param {string} key The capability to check.
          * @return {boolean} Whether the specified capability is set.
          */
-        has(key:string):boolean;
+        has(key: string): boolean;
 
         //endregion
 
@@ -3007,60 +3005,60 @@ declare namespace webdriver {
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for Android.
          */
-        static android():Capabilities;
+        static android(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for Chrome.
          */
-        static chrome():Capabilities;
+        static chrome(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for Firefox.
          */
-        static firefox():Capabilities;
+        static firefox(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for
          *     Internet Explorer.
          */
-        static ie():Capabilities;
+        static ie(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for iPad.
          */
-        static ipad():Capabilities;
+        static ipad(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for iPhone.
          */
-        static iphone():Capabilities;
+        static iphone(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for Opera.
          */
-        static opera():Capabilities;
+        static opera(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for
          *     PhantomJS.
          */
-        static phantomjs():Capabilities;
+        static phantomjs(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for Safari.
          */
-        static safari():Capabilities;
+        static safari(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for HTMLUnit.
          */
-        static htmlunit():Capabilities;
+        static htmlunit(): Capabilities;
 
         /**
          * @return {!webdriver.Capabilities} A basic set of capabilities for HTMLUnit
          *                                   with enabled Javascript.
          */
-        static htmlunitwithjs():Capabilities;
+        static htmlunitwithjs(): Capabilities;
 
         //endregion
     }
@@ -3069,127 +3067,127 @@ declare namespace webdriver {
      * An enumeration of valid command string.
      */
     interface ICommandName {
-        GET_SERVER_STATUS:string;
+        GET_SERVER_STATUS: string;
 
-        NEW_SESSION:string;
-        GET_SESSIONS:string;
-        DESCRIBE_SESSION:string;
+        NEW_SESSION: string;
+        GET_SESSIONS: string;
+        DESCRIBE_SESSION: string;
 
-        CLOSE:string;
-        QUIT:string;
+        CLOSE: string;
+        QUIT: string;
 
-        GET_CURRENT_URL:string;
-        GET:string;
-        GO_BACK:string;
-        GO_FORWARD:string;
-        REFRESH:string;
+        GET_CURRENT_URL: string;
+        GET: string;
+        GO_BACK: string;
+        GO_FORWARD: string;
+        REFRESH: string;
 
-        ADD_COOKIE:string;
-        GET_COOKIE:string;
-        GET_ALL_COOKIES:string;
-        DELETE_COOKIE:string;
-        DELETE_ALL_COOKIES:string;
+        ADD_COOKIE: string;
+        GET_COOKIE: string;
+        GET_ALL_COOKIES: string;
+        DELETE_COOKIE: string;
+        DELETE_ALL_COOKIES: string;
 
-        GET_ACTIVE_ELEMENT:string;
-        FIND_ELEMENT:string;
-        FIND_ELEMENTS:string;
-        FIND_CHILD_ELEMENT:string;
-        FIND_CHILD_ELEMENTS:string;
+        GET_ACTIVE_ELEMENT: string;
+        FIND_ELEMENT: string;
+        FIND_ELEMENTS: string;
+        FIND_CHILD_ELEMENT: string;
+        FIND_CHILD_ELEMENTS: string;
 
-        CLEAR_ELEMENT:string;
-        CLICK_ELEMENT:string;
-        SEND_KEYS_TO_ELEMENT:string;
-        SUBMIT_ELEMENT:string;
+        CLEAR_ELEMENT: string;
+        CLICK_ELEMENT: string;
+        SEND_KEYS_TO_ELEMENT: string;
+        SUBMIT_ELEMENT: string;
 
-        GET_CURRENT_WINDOW_HANDLE:string;
-        GET_WINDOW_HANDLES:string;
-        GET_WINDOW_POSITION:string;
-        SET_WINDOW_POSITION:string;
-        GET_WINDOW_SIZE:string;
-        SET_WINDOW_SIZE:string;
-        MAXIMIZE_WINDOW:string;
+        GET_CURRENT_WINDOW_HANDLE: string;
+        GET_WINDOW_HANDLES: string;
+        GET_WINDOW_POSITION: string;
+        SET_WINDOW_POSITION: string;
+        GET_WINDOW_SIZE: string;
+        SET_WINDOW_SIZE: string;
+        MAXIMIZE_WINDOW: string;
 
-        SWITCH_TO_WINDOW:string;
-        SWITCH_TO_FRAME:string;
-        GET_PAGE_SOURCE:string;
-        GET_TITLE:string;
+        SWITCH_TO_WINDOW: string;
+        SWITCH_TO_FRAME: string;
+        GET_PAGE_SOURCE: string;
+        GET_TITLE: string;
 
-        EXECUTE_SCRIPT:string;
-        EXECUTE_ASYNC_SCRIPT:string;
+        EXECUTE_SCRIPT: string;
+        EXECUTE_ASYNC_SCRIPT: string;
 
-        GET_ELEMENT_TEXT:string;
-        GET_ELEMENT_TAG_NAME:string;
-        IS_ELEMENT_SELECTED:string;
-        IS_ELEMENT_ENABLED:string;
-        IS_ELEMENT_DISPLAYED:string;
-        GET_ELEMENT_LOCATION:string;
-        GET_ELEMENT_LOCATION_IN_VIEW:string;
-        GET_ELEMENT_SIZE:string;
-        GET_ELEMENT_ATTRIBUTE:string;
-        GET_ELEMENT_VALUE_OF_CSS_PROPERTY:string;
-        ELEMENT_EQUALS:string;
+        GET_ELEMENT_TEXT: string;
+        GET_ELEMENT_TAG_NAME: string;
+        IS_ELEMENT_SELECTED: string;
+        IS_ELEMENT_ENABLED: string;
+        IS_ELEMENT_DISPLAYED: string;
+        GET_ELEMENT_LOCATION: string;
+        GET_ELEMENT_LOCATION_IN_VIEW: string;
+        GET_ELEMENT_SIZE: string;
+        GET_ELEMENT_ATTRIBUTE: string;
+        GET_ELEMENT_VALUE_OF_CSS_PROPERTY: string;
+        ELEMENT_EQUALS: string;
 
-        SCREENSHOT:string;
-        IMPLICITLY_WAIT:string;
-        SET_SCRIPT_TIMEOUT:string;
-        SET_TIMEOUT:string;
+        SCREENSHOT: string;
+        IMPLICITLY_WAIT: string;
+        SET_SCRIPT_TIMEOUT: string;
+        SET_TIMEOUT: string;
 
-        ACCEPT_ALERT:string;
-        DISMISS_ALERT:string;
-        GET_ALERT_TEXT:string;
-        SET_ALERT_TEXT:string;
+        ACCEPT_ALERT: string;
+        DISMISS_ALERT: string;
+        GET_ALERT_TEXT: string;
+        SET_ALERT_TEXT: string;
 
-        EXECUTE_SQL:string;
-        GET_LOCATION:string;
-        SET_LOCATION:string;
-        GET_APP_CACHE:string;
-        GET_APP_CACHE_STATUS:string;
-        CLEAR_APP_CACHE:string;
-        IS_BROWSER_ONLINE:string;
-        SET_BROWSER_ONLINE:string;
+        EXECUTE_SQL: string;
+        GET_LOCATION: string;
+        SET_LOCATION: string;
+        GET_APP_CACHE: string;
+        GET_APP_CACHE_STATUS: string;
+        CLEAR_APP_CACHE: string;
+        IS_BROWSER_ONLINE: string;
+        SET_BROWSER_ONLINE: string;
 
-        GET_LOCAL_STORAGE_ITEM:string;
-        GET_LOCAL_STORAGE_KEYS:string;
-        SET_LOCAL_STORAGE_ITEM:string;
-        REMOVE_LOCAL_STORAGE_ITEM:string;
-        CLEAR_LOCAL_STORAGE:string;
-        GET_LOCAL_STORAGE_SIZE:string;
+        GET_LOCAL_STORAGE_ITEM: string;
+        GET_LOCAL_STORAGE_KEYS: string;
+        SET_LOCAL_STORAGE_ITEM: string;
+        REMOVE_LOCAL_STORAGE_ITEM: string;
+        CLEAR_LOCAL_STORAGE: string;
+        GET_LOCAL_STORAGE_SIZE: string;
 
-        GET_SESSION_STORAGE_ITEM:string;
-        GET_SESSION_STORAGE_KEYS:string;
-        SET_SESSION_STORAGE_ITEM:string;
-        REMOVE_SESSION_STORAGE_ITEM:string;
-        CLEAR_SESSION_STORAGE:string;
-        GET_SESSION_STORAGE_SIZE:string;
+        GET_SESSION_STORAGE_ITEM: string;
+        GET_SESSION_STORAGE_KEYS: string;
+        SET_SESSION_STORAGE_ITEM: string;
+        REMOVE_SESSION_STORAGE_ITEM: string;
+        CLEAR_SESSION_STORAGE: string;
+        GET_SESSION_STORAGE_SIZE: string;
 
-        SET_SCREEN_ORIENTATION:string;
-        GET_SCREEN_ORIENTATION:string;
+        SET_SCREEN_ORIENTATION: string;
+        GET_SCREEN_ORIENTATION: string;
 
         // These belong to the Advanced user interactions - an element is
         // optional for these commands.
-        CLICK:string;
-        DOUBLE_CLICK:string;
-        MOUSE_DOWN:string;
-        MOUSE_UP:string;
-        MOVE_TO:string;
-        SEND_KEYS_TO_ACTIVE_ELEMENT:string;
+        CLICK: string;
+        DOUBLE_CLICK: string;
+        MOUSE_DOWN: string;
+        MOUSE_UP: string;
+        MOVE_TO: string;
+        SEND_KEYS_TO_ACTIVE_ELEMENT: string;
 
         // These belong to the Advanced Touch API
-        TOUCH_SINGLE_TAP:string;
-        TOUCH_DOWN:string;
-        TOUCH_UP:string;
-        TOUCH_MOVE:string;
-        TOUCH_SCROLL:string;
-        TOUCH_DOUBLE_TAP:string;
-        TOUCH_LONG_PRESS:string;
-        TOUCH_FLICK:string;
+        TOUCH_SINGLE_TAP: string;
+        TOUCH_DOWN: string;
+        TOUCH_UP: string;
+        TOUCH_MOVE: string;
+        TOUCH_SCROLL: string;
+        TOUCH_DOUBLE_TAP: string;
+        TOUCH_LONG_PRESS: string;
+        TOUCH_FLICK: string;
 
-        GET_AVAILABLE_LOG_TYPES:string;
-        GET_LOG:string;
-        GET_SESSION_LOGS:string;
+        GET_AVAILABLE_LOG_TYPES: string;
+        GET_LOG: string;
+        GET_SESSION_LOGS: string;
     }
 
-    var CommandName:ICommandName;
+    var CommandName: ICommandName;
 
     /**
      * Describes a command to be executed by the WebDriverJS framework.
@@ -3203,7 +3201,7 @@ declare namespace webdriver {
          * @param {!webdriver.CommandName} name The name of this command.
          * @constructor
          */
-        constructor(name:string);
+        constructor(name: string);
 
         //endregion
 
@@ -3212,7 +3210,7 @@ declare namespace webdriver {
         /**
          * @return {!webdriver.CommandName} This command's name.
          */
-        getName():string;
+        getName(): string;
 
         /**
          * Sets a parameter to send with this command.
@@ -3220,26 +3218,26 @@ declare namespace webdriver {
          * @param {*} value The parameter value.
          * @return {!webdriver.Command} A self reference.
          */
-        setParameter(name:string, value:any):Command;
+        setParameter(name: string, value: any): Command;
 
         /**
          * Sets the parameters for this command.
          * @param {!Object.<*>} parameters The command parameters.
          * @return {!webdriver.Command} A self reference.
          */
-        setParameters(parameters:any):Command;
+        setParameters(parameters: any): Command;
 
         /**
          * Returns a named command parameter.
          * @param {string} key The parameter key to look up.
          * @return {*} The parameter value, or undefined if it has not been set.
          */
-        getParameter(key:string):any;
+        getParameter(key: string): any;
 
         /**
          * @return {!Object.<*>} The parameters to send with this command.
          */
-        getParameters():any;
+        getParameters(): any;
 
         //endregion
     }
@@ -3257,7 +3255,7 @@ declare namespace webdriver {
          * @param {function(Error, !bot.response.ResponseObject=)} callback the function
          *     to invoke when the command response is ready.
          */
-        execute(command:Command, callback:(error:Error, responseObject:any) => any):void;
+        execute(command: Command, callback: (error: Error, responseObject: any) => any ): void;
     }
 
     /**
@@ -3282,7 +3280,7 @@ declare namespace webdriver {
          * @param {string} type The type of event to emit.
          * @param {...*} var_args Any arguments to pass to each listener.
          */
-        emit(type:string, ...var_args:any[]):void;
+        emit(type: string, ...var_args: any[]): void;
 
         /**
          * Returns a mutable list of listeners for a specific type of event.
@@ -3291,7 +3289,7 @@ declare namespace webdriver {
          *                   scope: (Object|undefined)}>} The registered listeners for
          *     the given event type.
          */
-        listeners(type:string):Array<{fn:Function; oneshot:boolean; scope:any;}>;
+        listeners(type: string): Array<{fn: Function; oneshot: boolean; scope: any;}>;
 
         /**
          * Registers a listener.
@@ -3300,7 +3298,7 @@ declare namespace webdriver {
          * @param {Object=} opt_scope The object in whose scope to invoke the listener.
          * @return {!webdriver.EventEmitter} A self reference.
          */
-        addListener(type:string, listenerFn:Function, opt_scope?:any):EventEmitter;
+        addListener(type: string, listenerFn: Function, opt_scope?:any): EventEmitter;
 
         /**
          * Registers a one-time listener which will be called only the first time an
@@ -3310,7 +3308,7 @@ declare namespace webdriver {
          * @param {Object=} opt_scope The object in whose scope to invoke the listener.
          * @return {!webdriver.EventEmitter} A self reference.
          */
-        once(type:string, listenerFn:any, opt_scope?:any):EventEmitter;
+        once(type: string, listenerFn: any, opt_scope?: any): EventEmitter;
 
         /**
          * An alias for {@code #addListener()}.
@@ -3319,7 +3317,7 @@ declare namespace webdriver {
          * @param {Object=} opt_scope The object in whose scope to invoke the listener.
          * @return {!webdriver.EventEmitter} A self reference.
          */
-        on(type:string, listenerFn:Function, opt_scope?:any):EventEmitter;
+        on(type: string, listenerFn: Function, opt_scope?:any): EventEmitter;
 
         /**
          * Removes a previously registered event listener.
@@ -3327,7 +3325,7 @@ declare namespace webdriver {
          * @param {!Function} listenerFn The handler function to remove.
          * @return {!webdriver.EventEmitter} A self reference.
          */
-        removeListener(type:string, listenerFn:Function):EventEmitter;
+        removeListener(type: string, listenerFn: Function): EventEmitter;
 
         /**
          * Removes all listeners for a specific type of event. If no event is
@@ -3335,7 +3333,7 @@ declare namespace webdriver {
          * @param {string=} opt_type The type of event to remove listeners from.
          * @return {!webdriver.EventEmitter} A self reference.
          */
-        removeAllListeners(opt_type?:string):EventEmitter;
+        removeAllListeners(opt_type?: string): EventEmitter;
 
         //endregion
     }
@@ -3351,7 +3349,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The parent driver.
          * @constructor
          */
-        new (driver:WebDriver):WebDriverNavigation;
+        new (driver: WebDriver): WebDriverNavigation;
 
         //endregion
 
@@ -3363,39 +3361,39 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the URL has been loaded.
          */
-        to(url:string):webdriver.promise.Promise<void>;
+        to(url: string): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to move backwards in the browser history.
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the navigation event has completed.
          */
-        back():webdriver.promise.Promise<void>;
+        back(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to move forwards in the browser history.
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the navigation event has completed.
          */
-        forward():webdriver.promise.Promise<void>;
+        forward(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to refresh the current page.
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the navigation event has completed.
          */
-        refresh():webdriver.promise.Promise<void>;
+        refresh(): webdriver.promise.Promise<void>;
 
         //endregion
     }
 
     interface IWebDriverOptionsCookie {
-        name:string;
-        value:string;
-        path?:string;
-        domain?:string;
-        secure?:boolean;
-        expiry?:number;
+        name: string;
+        value: string;
+        path?: string;
+        domain?: string;
+        secure?: boolean;
+        expiry?: number;
     }
 
     /**
@@ -3408,7 +3406,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The parent driver.
          * @constructor
          */
-        new (driver:webdriver.WebDriver):WebDriverOptions;
+        new (driver: webdriver.WebDriver): WebDriverOptions;
 
         //endregion
 
@@ -3426,15 +3424,15 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     cookie has been added to the page.
          */
-        addCookie(name:string, value:string, opt_path?:string, opt_domain?:string, opt_isSecure?:boolean, opt_expiry?:number):webdriver.promise.Promise<void>;
-        addCookie(name:string, value:string, opt_path?:string, opt_domain?:string, opt_isSecure?:boolean, opt_expiry?:Date):webdriver.promise.Promise<void>;
+        addCookie(name: string, value: string, opt_path?: string, opt_domain?: string, opt_isSecure?: boolean, opt_expiry?: number): webdriver.promise.Promise<void>;
+        addCookie(name: string, value: string, opt_path?: string, opt_domain?: string, opt_isSecure?: boolean, opt_expiry?: Date): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to delete all cookies visible to the current page.
          * @return {!webdriver.promise.Promise} A promise that will be resolved when all
          *     cookies have been deleted.
          */
-        deleteAllCookies():webdriver.promise.Promise<void>;
+        deleteAllCookies(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to delete the cookie with the given name. This command is
@@ -3444,7 +3442,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     cookie has been deleted.
          */
-        deleteCookie(name:string):webdriver.promise.Promise<void>;
+        deleteCookie(name: string): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to retrieve all cookies visible to the current page.
@@ -3454,7 +3452,7 @@ declare namespace webdriver {
          *     cookies visible to the current page.
          * @see http://code.google.com/p/selenium/wiki/JsonWireProtocol#Cookie_JSON_Object
          */
-        getCookies():webdriver.promise.Promise<IWebDriverOptionsCookie[]>;
+        getCookies(): webdriver.promise.Promise<IWebDriverOptionsCookie[]>;
 
         /**
          * Schedules a command to retrieve the cookie with the given name. Returns null
@@ -3465,25 +3463,25 @@ declare namespace webdriver {
          *     named cookie, or {@code null} if there is no such cookie.
          * @see http://code.google.com/p/selenium/wiki/JsonWireProtocol#Cookie_JSON_Object
          */
-        getCookie(name:string):webdriver.promise.Promise<IWebDriverOptionsCookie>;
+        getCookie(name: string): webdriver.promise.Promise<IWebDriverOptionsCookie>;
 
         /**
          * @return {!webdriver.WebDriver.Logs} The interface for managing driver
          *     logs.
          */
-        logs():WebDriverLogs;
+        logs(): WebDriverLogs;
 
         /**
          * @return {!webdriver.WebDriver.Timeouts} The interface for managing driver
          *     timeouts.
          */
-        timeouts():WebDriverTimeouts;
+        timeouts(): WebDriverTimeouts;
 
         /**
          * @return {!webdriver.WebDriver.Window} The interface for managing the
          *     current window.
          */
-        window():WebDriverWindow;
+        window(): WebDriverWindow;
 
         //endregion
     }
@@ -3498,7 +3496,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The parent driver.
          * @constructor
          */
-        new (driver:WebDriver):WebDriverTimeouts;
+        new (driver: WebDriver): WebDriverTimeouts;
 
         //endregion
 
@@ -3525,7 +3523,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     implicit wait timeout has been set.
          */
-        implicitlyWait(ms:number):webdriver.promise.Promise<void>;
+        implicitlyWait(ms: number): webdriver.promise.Promise<void>;
 
         /**
          * Sets the amount of time to wait, in milliseconds, for an asynchronous script
@@ -3536,7 +3534,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     script timeout has been set.
          */
-        setScriptTimeout(ms:number):webdriver.promise.Promise<void>;
+        setScriptTimeout(ms: number): webdriver.promise.Promise<void>;
 
         /**
          * Sets the amount of time to wait for a page load to complete before returning
@@ -3545,7 +3543,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     the timeout has been set.
          */
-        pageLoadTimeout(ms:number):webdriver.promise.Promise<void>;
+        pageLoadTimeout(ms: number): webdriver.promise.Promise<void>;
 
         //endregion
     }
@@ -3561,7 +3559,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The parent driver.
          * @constructor
          */
-        new (driver:WebDriver):WebDriverWindow;
+        new (driver: WebDriver): WebDriverWindow;
 
         //endregion
 
@@ -3573,7 +3571,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     window's position in the form of a {x:number, y:number} object literal.
          */
-        getPosition():webdriver.promise.Promise<ILocation>;
+        getPosition(): webdriver.promise.Promise<ILocation>;
 
         /**
          * Repositions the current window.
@@ -3584,7 +3582,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     command has completed.
          */
-        setPosition(x:number, y:number):webdriver.promise.Promise<void>;
+        setPosition(x: number, y: number): webdriver.promise.Promise<void>;
 
         /**
          * Retrieves the window's current size.
@@ -3592,7 +3590,7 @@ declare namespace webdriver {
          *     window's size in the form of a {width:number, height:number} object
          *     literal.
          */
-        getSize():webdriver.promise.Promise<ISize>;
+        getSize(): webdriver.promise.Promise<ISize>;
 
         /**
          * Resizes the current window.
@@ -3601,14 +3599,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     command has completed.
          */
-        setSize(width:number, height:number):webdriver.promise.Promise<void>;
+        setSize(width: number, height: number): webdriver.promise.Promise<void>;
 
         /**
          * Maximizes the current window.
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     command has completed.
          */
-        maximize():webdriver.promise.Promise<void>;
+        maximize(): webdriver.promise.Promise<void>;
 
         //endregion
     }
@@ -3624,7 +3622,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The parent driver.
          * @constructor
          */
-        new (driver:WebDriver):WebDriverLogs;
+        new (driver: WebDriver): WebDriverLogs;
 
         //endregion
 
@@ -3644,14 +3642,14 @@ declare namespace webdriver {
          *   promise that will resolve to a list of log entries for the specified
          *   type.
          */
-        get(type:string):webdriver.promise.Promise<webdriver.logging.Entry[]>;
+        get(type: string): webdriver.promise.Promise<webdriver.logging.Entry[]>;
 
         /**
          * Retrieves the log types available to this driver.
          * @return {!webdriver.promise.Promise.<!Array.<!webdriver.logging.Type>>} A
          *     promise that will resolve to a list of available log types.
          */
-        getAvailableLogTypes():webdriver.promise.Promise<string[]>;
+        getAvailableLogTypes(): webdriver.promise.Promise<string[]>;
 
         //endregion
     }
@@ -3667,7 +3665,7 @@ declare namespace webdriver {
          * @param {!webdriver.WebDriver} driver The parent driver.
          * @constructor
          */
-        new (driver:WebDriver):WebDriverTargetLocator;
+        new (driver: WebDriver): WebDriverTargetLocator;
 
         //endregion
 
@@ -3679,7 +3677,7 @@ declare namespace webdriver {
          * available.
          * @return {!webdriver.WebElement} The active element.
          */
-        activeElement():WebElementPromise;
+        activeElement(): WebElementPromise;
 
         /**
          * Schedules a command to switch focus of all future commands to the first frame
@@ -3687,7 +3685,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     driver has changed focus to the default content.
          */
-        defaultContent():webdriver.promise.Promise<void>;
+        defaultContent(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to switch the focus of all future commands to another
@@ -3707,8 +3705,8 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     driver has changed focus to the specified frame.
          */
-        frame(nameOrIndex:string):webdriver.promise.Promise<void>;
-        frame(nameOrIndex:number):webdriver.promise.Promise<void>;
+        frame(nameOrIndex: string): webdriver.promise.Promise<void>;
+        frame(nameOrIndex: number): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to switch the focus of all future commands to another
@@ -3722,7 +3720,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when the
          *     driver has changed focus to the specified window.
          */
-        window(nameOrHandle:string):webdriver.promise.Promise<void>;
+        window(nameOrHandle: string): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to change focus to the active alert dialog. This command
@@ -3730,7 +3728,7 @@ declare namespace webdriver {
          * dialog is not currently open.
          * @return {!webdriver.Alert} The open alert.
          */
-        alert():AlertPromise;
+        alert(): AlertPromise;
 
         //endregion
     }
@@ -3749,25 +3747,25 @@ declare namespace webdriver {
      * [Selenium Server](http://docs.seleniumhq.org/download/).
      */
     class FileDetector {
-        /** @constructor */
-        constructor();
+      /** @constructor */
+      constructor();
 
-        /**
-         * Handles the file specified by the given path, preparing it for use with
-         * the current browser. If the path does not refer to a valid file, it will
-         * be returned unchanged, otherwisee a path suitable for use with the current
-         * browser will be returned.
-         *
-         * This default implementation is a no-op. Subtypes may override this
-         * function for custom tailored file handling.
-         *
-         * @param {!webdriver.WebDriver} driver The driver for the current browser.
-         * @param {string} path The path to process.
-         * @return {!webdriver.promise.Promise<string>} A promise for the processed
-         *     file path.
-         * @package
-         */
-        handleFile(driver:webdriver.WebDriver, path:string):webdriver.promise.Promise<string>;
+      /**
+       * Handles the file specified by the given path, preparing it for use with
+       * the current browser. If the path does not refer to a valid file, it will
+       * be returned unchanged, otherwisee a path suitable for use with the current
+       * browser will be returned.
+       *
+       * This default implementation is a no-op. Subtypes may override this
+       * function for custom tailored file handling.
+       *
+       * @param {!webdriver.WebDriver} driver The driver for the current browser.
+       * @param {string} path The path to process.
+       * @return {!webdriver.promise.Promise<string>} A promise for the processed
+       *     file path.
+       * @package
+       */
+      handleFile(driver: webdriver.WebDriver, path: string): webdriver.promise.Promise<string>;
     }
 
     /**
@@ -3801,19 +3799,19 @@ declare namespace webdriver {
          *     schedule commands through. Defaults to the active flow object.
          * @constructor
          */
-        constructor(session:Session, executor:CommandExecutor, opt_flow?:webdriver.promise.ControlFlow);
-        constructor(session:webdriver.promise.Promise<Session>, executor:CommandExecutor, opt_flow?:webdriver.promise.ControlFlow);
+         constructor(session: Session, executor: CommandExecutor, opt_flow?: webdriver.promise.ControlFlow);
+         constructor(session: webdriver.promise.Promise<Session>, executor: CommandExecutor, opt_flow?: webdriver.promise.ControlFlow);
 
         //endregion
 
         //region Static Properties
 
-        static Navigation:WebDriverNavigation;
-        static Options:WebDriverOptions;
-        static Timeouts:WebDriverTimeouts;
-        static Window:WebDriverWindow;
-        static Logs:WebDriverLogs;
-        static TargetLocator:WebDriverTargetLocator;
+        static Navigation: WebDriverNavigation;
+        static Options: WebDriverOptions;
+        static Timeouts: WebDriverTimeouts;
+        static Window: WebDriverWindow;
+        static Logs: WebDriverLogs;
+        static TargetLocator: WebDriverTargetLocator;
 
         //endregion
 
@@ -3829,7 +3827,7 @@ declare namespace webdriver {
          *     {@link webdriver.promise.controlFlow() currently active}  control flow.
          * @return {!webdriver.WebDriver} A new client for the specified session.
          */
-        static attachToSession(executor:CommandExecutor, sessionId:string, opt_flow?:webdriver.promise.ControlFlow):WebDriver;
+        static attachToSession(executor: CommandExecutor, sessionId: string, opt_flow?: webdriver.promise.ControlFlow): WebDriver;
 
         /**
          * Creates a new WebDriver session.
@@ -3843,7 +3841,7 @@ declare namespace webdriver {
          *     control flow.
          * @return {!webdriver.WebDriver} The driver for the newly created session.
          */
-        static createSession(executor:CommandExecutor, desiredCapabilities:Capabilities, opt_flow?:webdriver.promise.ControlFlow):WebDriver;
+        static createSession(executor: CommandExecutor, desiredCapabilities: Capabilities, opt_flow?: webdriver.promise.ControlFlow): WebDriver;
 
         //endregion
 
@@ -3853,7 +3851,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.ControlFlow} The control flow used by this
          *     instance.
          */
-        controlFlow():webdriver.promise.ControlFlow;
+        controlFlow(): webdriver.promise.ControlFlow;
 
         /**
          * Schedules a {@code webdriver.Command} to be executed by this driver's
@@ -3863,7 +3861,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with
          *     the command result.
          */
-        schedule<T>(command:Command, description:string):webdriver.promise.Promise<T>;
+        schedule<T>(command: Command, description: string): webdriver.promise.Promise<T>;
 
 
         /**
@@ -3871,21 +3869,21 @@ declare namespace webdriver {
          * used with this instance.
          * @param {webdriver.FileDetector} detector The detector to use or {@code null}.
          */
-        setFileDetector(detector:FileDetector):void;
+        setFileDetector(detector: FileDetector): void;
 
 
         /**
          * @return {!webdriver.promise.Promise.<!webdriver.Session>} A promise for this
          *     client's session.
          */
-        getSession():webdriver.promise.Promise<Session>;
+        getSession(): webdriver.promise.Promise<Session>;
 
 
         /**
          * @return {!webdriver.promise.Promise.<!webdriver.Capabilities>} A promise
          *     that will resolve with the this instance's capabilities.
          */
-        getCapabilities():webdriver.promise.Promise<Capabilities>;
+        getCapabilities(): webdriver.promise.Promise<Capabilities>;
 
 
         /**
@@ -3895,7 +3893,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the command has completed.
          */
-        quit():webdriver.promise.Promise<void>;
+        quit(): webdriver.promise.Promise<void>;
 
         /**
          * Creates a new action sequence using this driver. The sequence will not be
@@ -3910,7 +3908,7 @@ declare namespace webdriver {
          * </code></pre>
          * @return {!webdriver.ActionSequence} A new action sequence for this instance.
          */
-        actions():ActionSequence;
+        actions(): ActionSequence;
 
 
         /**
@@ -3925,7 +3923,7 @@ declare namespace webdriver {
          *
          * @return {!webdriver.TouchSequence} A new touch sequence for this instance.
          */
-        touchActions():TouchSequence;
+        touchActions(): TouchSequence;
 
 
         /**
@@ -3965,8 +3963,8 @@ declare namespace webdriver {
          *    scripts return value.
          * @template T
          */
-        executeScript<T>(script:string, ...var_args:any[]):webdriver.promise.Promise<T>;
-        executeScript<T>(script:Function, ...var_args:any[]):webdriver.promise.Promise<T>;
+        executeScript<T>(script: string, ...var_args: any[]): webdriver.promise.Promise<T>;
+        executeScript<T>(script: Function, ...var_args: any[]): webdriver.promise.Promise<T>;
 
         /**
          * Schedules a command to execute asynchronous JavaScript in the context of the
@@ -4044,7 +4042,7 @@ declare namespace webdriver {
          *    scripts return value.
          * @template T
          */
-        executeAsyncScript<T>(script:string|Function, ...var_args:any[]):webdriver.promise.Promise<T>;
+        executeAsyncScript<T>(script: string|Function, ...var_args: any[]): webdriver.promise.Promise<T>;
 
         /**
          * Schedules a command to execute a custom function.
@@ -4056,7 +4054,7 @@ declare namespace webdriver {
          *     with the function's result.
          * @template T
          */
-        call<T>(fn:(...var_args:any[])=>(T|webdriver.promise.Promise<T>), opt_scope?:any, ...var_args:any[]):webdriver.promise.Promise<T>;
+        call<T>(fn: (...var_args: any[])=>(T|webdriver.promise.Promise<T>), opt_scope?: any, ...var_args: any[]): webdriver.promise.Promise<T>;
 
         /**
          * Schedules a command to wait for a condition to hold. The condition may be
@@ -4104,7 +4102,7 @@ declare namespace webdriver {
          *     rejected if the condition times out.
          * @template T
          */
-        wait<T>(condition:webdriver.promise.Promise<T>|webdriver.until.Condition<T>|((driver:WebDriver)=>T), timeout?:number, opt_message?:string):webdriver.promise.Promise<T>;
+        wait<T>(condition: webdriver.promise.Promise<T>|webdriver.until.Condition<T>|((driver: WebDriver)=>T), timeout?: number, opt_message?: string): webdriver.promise.Promise<T>;
 
         /**
          * Schedules a command to make the driver sleep for the given amount of time.
@@ -4112,21 +4110,21 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the sleep has finished.
          */
-        sleep(ms:number):webdriver.promise.Promise<void>;
+        sleep(ms: number): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to retrieve they current window handle.
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the current window handle.
          */
-        getWindowHandle():webdriver.promise.Promise<string>;
+        getWindowHandle(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to retrieve the current list of available window handles.
          * @return {!webdriver.promise.Promise.<!Array.<string>>} A promise that will
          *     be resolved with an array of window handles.
          */
-        getAllWindowHandles():webdriver.promise.Promise<string[]>;
+        getAllWindowHandles(): webdriver.promise.Promise<string[]>;
 
         /**
          * Schedules a command to retrieve the current page's source. The page source
@@ -4136,14 +4134,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the current page source.
          */
-        getPageSource():webdriver.promise.Promise<string>;
+        getPageSource(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to close the current window.
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when this command has completed.
          */
-        close():webdriver.promise.Promise<void>;
+        close(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to navigate to the given URL.
@@ -4151,21 +4149,21 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the document has finished loading.
          */
-        get(url:string):webdriver.promise.Promise<void>;
+        get(url: string): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to retrieve the URL of the current page.
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the current URL.
          */
-        getCurrentUrl():webdriver.promise.Promise<string>;
+        getCurrentUrl(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to retrieve the current page's title.
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the current page's title.
          */
-        getTitle():webdriver.promise.Promise<string>;
+        getTitle(): webdriver.promise.Promise<string>;
 
         /**
          * Schedule a command to find an element on the page. If the element cannot be
@@ -4214,7 +4212,7 @@ declare namespace webdriver {
          *     commands against the located element. If the element is not found, the
          *     element will be invalidated and all scheduled commands aborted.
          */
-        findElement(locatorOrElement:Locator|By.Hash|WebElement|Function):WebElementPromise;
+        findElement(locatorOrElement: Locator|By.Hash|WebElement|Function): WebElementPromise;
 
         /**
          * Schedules a command to test if an element is present on the page.
@@ -4229,7 +4227,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<boolean>} A promise that will resolve
          *     with whether the element is present on the page.
          */
-        isElementPresent(locatorOrElement:Locator|By.Hash|WebElement|Function):webdriver.promise.Promise<boolean>;
+        isElementPresent(locatorOrElement: Locator|By.Hash|WebElement|Function): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedule a command to search for multiple elements on the page.
@@ -4239,7 +4237,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<!Array.<!webdriver.WebElement>>} A
          *     promise that will resolve to an array of WebElements.
          */
-        findElements(locator:Locator|By.Hash|Function):webdriver.promise.Promise<WebElement[]>;
+        findElements(locator: Locator|By.Hash|Function): webdriver.promise.Promise<WebElement[]>;
 
         /**
          * Schedule a command to take a screenshot. The driver makes a best effort to
@@ -4254,31 +4252,31 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved to the screenshot as a base-64 encoded PNG.
          */
-        takeScreenshot():webdriver.promise.Promise<string>;
+        takeScreenshot(): webdriver.promise.Promise<string>;
 
         /**
          * @return {!webdriver.WebDriver.Options} The options interface for this
          *     instance.
          */
-        manage():WebDriverOptions;
+        manage(): WebDriverOptions;
 
         /**
          * @return {!webdriver.WebDriver.Navigation} The navigation interface for this
          *     instance.
          */
-        navigate():WebDriverNavigation;
+        navigate(): WebDriverNavigation;
 
         /**
          * @return {!webdriver.WebDriver.TargetLocator} The target locator interface for
          *     this instance.
          */
-        switchTo():WebDriverTargetLocator;
+        switchTo(): WebDriverTargetLocator;
 
         //endregion
     }
 
     interface IWebElementId {
-        ELEMENT:string;
+        ELEMENT: string;
     }
 
     /**
@@ -4298,7 +4296,7 @@ declare namespace webdriver {
          *
          * @return {!(T|IThenable.<!T>)} This instance's serialized wire format.
          */
-        serialize():T|webdriver.promise.IThenable<T>;
+        serialize(): T|webdriver.promise.IThenable<T>;
     }
 
     /**
@@ -4332,7 +4330,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     the click command has completed.
          */
-        click():webdriver.promise.Promise<void>;
+        click(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to type a sequence on the DOM element represented by this
@@ -4374,14 +4372,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when all
          *     keys have been typed.
          */
-        sendKeys(...var_args:string[]):webdriver.promise.Promise<void>;
+        sendKeys(...var_args: string[]): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to query for the tag/node name of this element.
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     element's tag name.
          */
-        getTagName():webdriver.promise.Promise<string>;
+        getTagName(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to query for the computed style of the element
@@ -4398,7 +4396,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     requested CSS value.
          */
-        getCssValue(cssStyleProperty:string):webdriver.promise.Promise<string>;
+        getCssValue(cssStyleProperty: string): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to query for the value of the given attribute of the
@@ -4427,7 +4425,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     attribute's value.
          */
-        getAttribute(attributeName:string):webdriver.promise.Promise<string>;
+        getAttribute(attributeName: string): webdriver.promise.Promise<string>;
 
         /**
          * Get the visible (i.e. not hidden by CSS) innerText of this element, including
@@ -4435,7 +4433,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     element's visible text.
          */
-        getText():webdriver.promise.Promise<string>;
+        getText(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to compute the size of this element's bounding box, in
@@ -4443,14 +4441,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     element's size as a {@code {width:number, height:number}} object.
          */
-        getSize():webdriver.promise.Promise<ISize>;
+        getSize(): webdriver.promise.Promise<ISize>;
 
         /**
          * Schedules a command to compute the location of this element in page space.
          * @return {!webdriver.promise.Promise} A promise that will be resolved to the
          *     element's location as a {@code {x:number, y:number}} object.
          */
-        getLocation():webdriver.promise.Promise<ILocation>;
+        getLocation(): webdriver.promise.Promise<ILocation>;
 
         /**
          * Schedules a command to query whether the DOM element represented by this
@@ -4458,14 +4456,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved with
          *     whether this element is currently enabled.
          */
-        isEnabled():webdriver.promise.Promise<boolean>;
+        isEnabled(): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to query whether this element is selected.
          * @return {!webdriver.promise.Promise} A promise that will be resolved with
          *     whether this element is currently selected.
          */
-        isSelected():webdriver.promise.Promise<boolean>;
+        isSelected(): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to submit the form containing this element (or this
@@ -4474,7 +4472,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     the form has been submitted.
          */
-        submit():webdriver.promise.Promise<void>;
+        submit(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to clear the {@code value} of this element. This command
@@ -4483,21 +4481,21 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved when
          *     the element has been cleared.
          */
-        clear():webdriver.promise.Promise<void>;
+        clear(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to test whether this element is currently displayed.
          * @return {!webdriver.promise.Promise} A promise that will be resolved with
          *     whether this element is currently visible on the page.
          */
-        isDisplayed():webdriver.promise.Promise<boolean>;
+        isDisplayed(): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to retrieve the outer HTML of this element.
          * @return {!webdriver.promise.Promise} A promise that will be resolved with
          *     the element's outer HTML.
          */
-        getOuterHtml():webdriver.promise.Promise<string>;
+        getOuterHtml(): webdriver.promise.Promise<string>;
 
         /**
          * @return {!webdriver.promise.Promise.<webdriver.WebElement.Id>} A promise
@@ -4505,14 +4503,14 @@ declare namespace webdriver {
          *     WebDriver wire protocol.
          * @see http://code.google.com/p/selenium/wiki/JsonWireProtocol
          */
-        getId():webdriver.promise.Promise<IWebElementId>;
+        getId(): webdriver.promise.Promise<IWebElementId>;
 
         /**
          * Schedules a command to retrieve the inner HTML of this element.
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     element's inner HTML.
          */
-        getInnerHtml():webdriver.promise.Promise<string>;
+        getInnerHtml(): webdriver.promise.Promise<string>;
 
         //endregion
     }
@@ -4558,7 +4556,7 @@ declare namespace webdriver {
          *     commands against the located element. If the element is not found, the
          *     element will be invalidated and all scheduled commands aborted.
          */
-        findElement(locator:Locator|By.Hash|Function):WebElementPromise;
+        findElement(locator: Locator|By.Hash|Function): WebElementPromise;
 
         /**
          * Schedules a command to test if there is at least one descendant of this
@@ -4569,7 +4567,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<boolean>} A promise that will be
          *     resolved with whether an element could be located on the page.
          */
-        isElementPresent(locator:Locator|By.Hash|Function):webdriver.promise.Promise<boolean>;
+        isElementPresent(locator: Locator|By.Hash|Function): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to find all of the descendants of this element that
@@ -4580,7 +4578,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<!Array.<!webdriver.WebElement>>} A
          *     promise that will resolve to an array of WebElements.
          */
-        findElements(locator:Locator|By.Hash|Function):webdriver.promise.Promise<WebElement[]>;
+        findElements(locator: Locator|By.Hash|Function): webdriver.promise.Promise<WebElement[]>;
     }
 
 
@@ -4601,7 +4599,7 @@ declare namespace webdriver {
          *
          * @return {!(T|IThenable.<!T>)} This instance's serialized wire format.
          */
-        serialize():T|webdriver.promise.IThenable<T>;
+        serialize(): T|webdriver.promise.IThenable<T>;
     }
 
 
@@ -4637,14 +4635,14 @@ declare namespace webdriver {
          *     underlying DOM element.
          * @constructor
          */
-        constructor(driver:WebDriver, id:webdriver.promise.Promise<IWebElementId>|IWebElementId);
+        constructor(driver: WebDriver, id: webdriver.promise.Promise<IWebElementId>|IWebElementId);
 
         /**
          * Wire protocol definition of a WebElement ID.
          * @typedef {{ELEMENT: string}}
          * @see https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol
          */
-        static Id:IWebElementId;
+        static Id: IWebElementId;
 
         /**
          * The property key used in the wire protocol to indicate that a JSON object
@@ -4652,13 +4650,13 @@ declare namespace webdriver {
          * @type {string}
          * @const
          */
-        static ELEMENT_KEY:string;
+        static ELEMENT_KEY: string;
 
 
         /**
          * @return {!webdriver.WebDriver} The parent driver for this instance.
          */
-        getDriver():WebDriver;
+        getDriver(): WebDriver;
 
         /**
          * Schedule a command to find a descendant of this element. If the element
@@ -4698,7 +4696,7 @@ declare namespace webdriver {
          *     commands against the located element. If the element is not found, the
          *     element will be invalidated and all scheduled commands aborted.
          */
-        findElement(locator:Locator|By.Hash|Function):WebElementPromise;
+        findElement(locator: Locator|By.Hash|Function): WebElementPromise;
 
         /**
          * Schedules a command to test if there is at least one descendant of this
@@ -4709,7 +4707,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<boolean>} A promise that will be
          *     resolved with whether an element could be located on the page.
          */
-        isElementPresent(locator:Locator|By.Hash|Function):webdriver.promise.Promise<boolean>;
+        isElementPresent(locator: Locator|By.Hash|Function): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to find all of the descendants of this element that
@@ -4720,14 +4718,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<!Array.<!webdriver.WebElement>>} A
          *     promise that will resolve to an array of WebElements.
          */
-        findElements(locator:Locator|By.Hash|Function):webdriver.promise.Promise<WebElement[]>;
+        findElements(locator: Locator|By.Hash|Function): webdriver.promise.Promise<WebElement[]>;
 
         /**
          * Schedules a command to click on this element.
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the click command has completed.
          */
-        click():webdriver.promise.Promise<void>;
+        click(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to type a sequence on the DOM element represented by this
@@ -4782,14 +4780,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when all keys have been typed.
          */
-        sendKeys(...var_args:Array<string|webdriver.promise.Promise<string>>):webdriver.promise.Promise<void>;
+        sendKeys(...var_args: Array<string|webdriver.promise.Promise<string>>): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to query for the tag/node name of this element.
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the element's tag name.
          */
-        getTagName():webdriver.promise.Promise<string>;
+        getTagName(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to query for the computed style of the element
@@ -4806,7 +4804,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the requested CSS value.
          */
-        getCssValue(cssStyleProperty:string):webdriver.promise.Promise<string>;
+        getCssValue(cssStyleProperty: string): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to query for the value of the given attribute of the
@@ -4837,7 +4835,7 @@ declare namespace webdriver {
          *     resolved with the attribute's value. The returned value will always be
          *     either a string or null.
          */
-        getAttribute(attributeName:string):webdriver.promise.Promise<string>;
+        getAttribute(attributeName: string): webdriver.promise.Promise<string>;
 
         /**
          * Get the visible (i.e. not hidden by CSS) innerText of this element, including
@@ -4845,7 +4843,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the element's visible text.
          */
-        getText():webdriver.promise.Promise<string>;
+        getText(): webdriver.promise.Promise<string>;
 
         /**
          * Schedules a command to compute the size of this element's bounding box, in
@@ -4854,7 +4852,7 @@ declare namespace webdriver {
          *     promise that will be resolved with the element's size as a
          *     {@code {width:number, height:number}} object.
          */
-        getSize():webdriver.promise.Promise<ISize>;
+        getSize(): webdriver.promise.Promise<ISize>;
 
         /**
          * Schedules a command to compute the location of this element in page space.
@@ -4862,7 +4860,7 @@ declare namespace webdriver {
          *     will be resolved to the element's location as a
          *     {@code {x:number, y:number}} object.
          */
-        getLocation():webdriver.promise.Promise<ILocation>;
+        getLocation(): webdriver.promise.Promise<ILocation>;
 
         /**
          * Schedules a command to query whether the DOM element represented by this
@@ -4870,14 +4868,14 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<boolean>} A promise that will be
          *     resolved with whether this element is currently enabled.
          */
-        isEnabled():webdriver.promise.Promise<boolean>;
+        isEnabled(): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to query whether this element is selected.
          * @return {!webdriver.promise.Promise.<boolean>} A promise that will be
          *     resolved with whether this element is currently selected.
          */
-        isSelected():webdriver.promise.Promise<boolean>;
+        isSelected(): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to submit the form containing this element (or this
@@ -4886,7 +4884,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the form has been submitted.
          */
-        submit():webdriver.promise.Promise<void>;
+        submit(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to clear the {@code value} of this element. This command
@@ -4895,21 +4893,21 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise.<void>} A promise that will be resolved
          *     when the element has been cleared.
          */
-        clear():webdriver.promise.Promise<void>;
+        clear(): webdriver.promise.Promise<void>;
 
         /**
          * Schedules a command to test whether this element is currently displayed.
          * @return {!webdriver.promise.Promise.<boolean>} A promise that will be
          *     resolved with whether this element is currently visible on the page.
          */
-        isDisplayed():webdriver.promise.Promise<boolean>;
+        isDisplayed(): webdriver.promise.Promise<boolean>;
 
         /**
          * Schedules a command to retrieve the outer HTML of this element.
          * @return {!webdriver.promise.Promise.<string>} A promise that will be
          *     resolved with the element's outer HTML.
          */
-        getOuterHtml():webdriver.promise.Promise<string>;
+        getOuterHtml(): webdriver.promise.Promise<string>;
 
         /**
          * @return {!webdriver.promise.Promise.<webdriver.WebElement.Id>} A promise
@@ -4917,7 +4915,7 @@ declare namespace webdriver {
          *     WebDriver wire protocol.
          * @see http://code.google.com/p/selenium/wiki/JsonWireProtocol
          */
-        getId():webdriver.promise.Promise<IWebElementId>;
+        getId(): webdriver.promise.Promise<IWebElementId>;
 
         /**
          * Returns the raw ID string ID for this element.
@@ -4925,17 +4923,17 @@ declare namespace webdriver {
          *     element's raw ID as a string value.
          * @package
          */
-        getRawId():webdriver.promise.Promise<string>;
+        getRawId(): webdriver.promise.Promise<string>;
 
         /** @override */
-        serialize():webdriver.promise.Promise<IWebElementId>;
+        serialize(): webdriver.promise.Promise<IWebElementId>;
 
         /**
          * Schedules a command to retrieve the inner HTML of this element.
          * @return {!webdriver.promise.Promise} A promise that will be resolved with the
          *     element's inner HTML.
          */
-        getInnerHtml():webdriver.promise.Promise<string>;
+        getInnerHtml(): webdriver.promise.Promise<string>;
 
         /**
          * Compares to WebElements for equality.
@@ -4944,7 +4942,7 @@ declare namespace webdriver {
          * @return {!webdriver.promise.Promise} A promise that will be resolved to
          *     whether the two WebElements are equal.
          */
-        static equals(a:WebElement, b:WebElement):webdriver.promise.Promise<boolean>;
+        static equals(a: WebElement, b: WebElement): webdriver.promise.Promise<boolean>;
     }
 
     /**
@@ -4976,11 +4974,11 @@ declare namespace webdriver {
          *
          * @param {string=} opt_reason The reason this promise is being cancelled.
          */
-        cancel(opt_reason?:string):void;
+        cancel(opt_reason?: string): void;
 
 
         /** @return {boolean} Whether this promise's value is still being computed. */
-        isPending():boolean;
+        isPending(): boolean;
 
 
         /**
@@ -4995,7 +4993,7 @@ declare namespace webdriver {
          * @return A new promise which will be
          *     resolved with the result of the invoked callback.
          */
-        then<R>(opt_callback?:(value:WebElement) => webdriver.promise.Promise<R>, opt_errback?:(error:any) => any):webdriver.promise.Promise<R>;
+        then<R>(opt_callback?: (value: WebElement) => webdriver.promise.Promise<R>, opt_errback?: (error: any) => any): webdriver.promise.Promise<R>;
 
         /**
          * Registers listeners for when this instance is resolved.
@@ -5009,7 +5007,7 @@ declare namespace webdriver {
          * @return A new promise which will be
          *     resolved with the result of the invoked callback.
          */
-        then<R>(opt_callback?:(value:WebElement) => R, opt_errback?:(error:any) => any):webdriver.promise.Promise<R>;
+        then<R>(opt_callback?: (value: WebElement) => R, opt_errback?: (error: any) => any): webdriver.promise.Promise<R>;
 
 
         /**
@@ -5036,7 +5034,7 @@ declare namespace webdriver {
          *     resolved with the result of the invoked callback.
          * @template R
          */
-        thenCatch<R>(errback:(error:any) => any):webdriver.promise.Promise<R>;
+        thenCatch<R>(errback: (error: any) => any): webdriver.promise.Promise<R>;
 
 
         /**
@@ -5078,7 +5076,7 @@ declare namespace webdriver {
          *     with the callback result.
          * @template R
          */
-        thenFinally<R>(callback:() => any):webdriver.promise.Promise<R>;
+        thenFinally<R>(callback: () => any): webdriver.promise.Promise<R>;
     }
 
     namespace By {
@@ -5091,7 +5089,7 @@ declare namespace webdriver {
          * @see http://www.w3.org/TR/2011/WD-html5-20110525/elements.html#classes
          * @see http://www.w3.org/TR/CSS2/selector.html#class-html
          */
-        function className(value:string):Locator;
+        function className(value: string): Locator;
 
         /**
          * Locates elements using a CSS selector. For browsers that do not support
@@ -5103,7 +5101,7 @@ declare namespace webdriver {
          * @return {!webdriver.Locator} The new locator.
          * @see http://www.w3.org/TR/CSS2/selector.html
          */
-        function css(value:string):Locator;
+        function css(value: string): Locator;
 
         /**
          * Locates an element by its ID.
@@ -5111,7 +5109,7 @@ declare namespace webdriver {
          * @param {string} id The ID to search for.
          * @return {!webdriver.Locator} The new locator.
          */
-        function id(value:string):Locator;
+        function id(value: string): Locator;
 
         /**
          * Locates link elements whose {@linkplain webdriver.WebElement#getText visible
@@ -5120,7 +5118,7 @@ declare namespace webdriver {
          * @param {string} text The link text to search for.
          * @return {!webdriver.Locator} The new locator.
          */
-        function linkText(value:string):Locator;
+        function linkText(value: string): Locator;
 
         /**
          * Locates an elements by evaluating a
@@ -5132,7 +5130,7 @@ declare namespace webdriver {
          * @return {function(!webdriver.WebDriver): !webdriver.promise.Promise} A new,
          *     JavaScript-based locator function.
          */
-        function js(script:any, ...var_args:any[]):(WebDriver:webdriver.WebDriver) => webdriver.promise.Promise<any>;
+        function js(script: any, ...var_args: any[]): (WebDriver: webdriver.WebDriver) => webdriver.promise.Promise<any>;
 
         /**
          * Locates elements whose {@code name} attribute has the given value.
@@ -5140,7 +5138,7 @@ declare namespace webdriver {
          * @param {string} name The name attribute to search for.
          * @return {!webdriver.Locator} The new locator.
          */
-        function name(value:string):Locator;
+        function name(value: string): Locator;
 
         /**
          * Locates link elements whose {@linkplain webdriver.WebElement#getText visible
@@ -5149,7 +5147,7 @@ declare namespace webdriver {
          * @param {string} text The substring to check for in a link's visible text.
          * @return {!webdriver.Locator} The new locator.
          */
-        function partialLinkText(value:string):Locator;
+        function partialLinkText(value: string): Locator;
 
         /**
          * Locates elements with a given tag name. The returned locator is
@@ -5161,7 +5159,7 @@ declare namespace webdriver {
          * @return {!webdriver.Locator} The new locator.
          * @see http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html
          */
-        function tagName(value:string):Locator;
+        function tagName(value: string): Locator;
 
         /**
          * Locates elements matching a XPath selector. Care should be taken when
@@ -5175,7 +5173,7 @@ declare namespace webdriver {
          * @return {!webdriver.Locator} The new locator.
          * @see http://www.w3.org/TR/xpath/
          */
-        function xpath(value:string):Locator;
+        function xpath(value: string): Locator;
 
         /**
          * Short-hand expressions for the primary element locator strategies.
@@ -5199,15 +5197,15 @@ declare namespace webdriver {
          *     {tagName: string}|
          *     {xpath: string})}
          */
-        type Hash = {className:string}|
-            {css:string}|
-            {id:string}|
-            {js:string}|
-            {linkText:string}|
-            {name:string}|
-            {partialLinkText:string}|
-            {tagName:string}|
-            {xpath:string};
+        type Hash = {className: string}|
+            {css: string}|
+            {id: string}|
+            {js: string}|
+            {linkText: string}|
+            {name: string}|
+            {partialLinkText: string}|
+            {tagName: string}|
+            {xpath: string};
     }
 
     /**
@@ -5220,7 +5218,7 @@ declare namespace webdriver {
          * @param {string} value The search target of this locator.
          * @constructor
          */
-        constructor(using:string, value:string);
+        constructor(using: string, value: string);
 
 
         /**
@@ -5228,16 +5226,16 @@ declare namespace webdriver {
          * @type {!Object.<string, function(string): !(Function|webdriver.Locator)>}
          * @const
          */
-        static Strategy:{
-            className:typeof webdriver.By.className;
-            css:typeof webdriver.By.css;
-            id:typeof webdriver.By.id;
-            js:typeof webdriver.By.js;
-            linkText:typeof webdriver.By.linkText;
-            name:typeof webdriver.By.name;
-            partialLinkText:typeof webdriver.By.partialLinkText;
-            tagName:typeof webdriver.By.tagName;
-            xpath:typeof webdriver.By.xpath;
+        static Strategy: {
+            className: typeof webdriver.By.className;
+            css: typeof webdriver.By.css;
+            id: typeof webdriver.By.id;
+            js: typeof webdriver.By.js;
+            linkText: typeof webdriver.By.linkText;
+            name: typeof webdriver.By.name;
+            partialLinkText: typeof webdriver.By.partialLinkText;
+            tagName: typeof webdriver.By.tagName;
+            xpath: typeof webdriver.By.xpath;
         };
 
         /**
@@ -5248,22 +5246,22 @@ declare namespace webdriver {
          * @return {!(webdriver.Locator|Function)} A valid locator object or function.
          * @throws {TypeError} If the given value is an invalid locator.
          */
-        static checkLocator(value:any):Locator | Function;
+        static checkLocator(value: any): Locator | Function;
 
         /**
          * The search strategy to use when searching for an element.
          * @type {string}
          */
-        using:string;
+        using: string;
 
         /**
          * The search target for this locator.
          * @type {string}
          */
-        value:string;
+        value: string;
 
         /** @return {string} String representation of this locator. */
-        toString():string;
+        toString(): string;
     }
 
     /**
@@ -5279,8 +5277,8 @@ declare namespace webdriver {
          *     capabilities.
          * @constructor
          */
-        constructor(id:string, capabilities:Capabilities);
-        constructor(id:string, capabilities:any);
+        constructor(id: string, capabilities: Capabilities);
+        constructor(id: string, capabilities: any);
 
         //endregion
 
@@ -5289,26 +5287,26 @@ declare namespace webdriver {
         /**
          * @return {string} This session's ID.
          */
-        getId():string;
+        getId(): string;
 
         /**
          * @return {!webdriver.Capabilities} This session's capabilities.
          */
-        getCapabilities():Capabilities;
+        getCapabilities(): Capabilities;
 
         /**
          * Retrieves the value of a specific capability.
          * @param {string} key The capability to retrieve.
          * @return {*} The capability value.
          */
-        getCapability(key:string):any;
+        getCapability(key: string): any;
 
         /**
          * Returns the JSON representation of this object, which is just the string
          * session ID.
          * @return {string} The JSON representation of this Session.
          */
-        toJSON():string;
+        toJSON(): string;
 
         //endregion
     }
@@ -5316,49 +5314,49 @@ declare namespace webdriver {
 
 declare namespace testing {
     /**
-     * Registers a new test suite.
-     * @param name The suite name.
-     * @param fn The suite function, or {@code undefined} to define a pending test suite.
-     */
-    function describe(name:string, fn:Function):void;
+    * Registers a new test suite.
+    * @param name The suite name.
+    * @param fn The suite function, or {@code undefined} to define a pending test suite.
+    */
+    function describe(name: string, fn: Function): void;
 
     /**
      * Defines a suppressed test suite.
      * @param name The suite name.
      * @param fn The suite function, or {@code undefined} to define a pending test suite.
      */
-    function xdescribe(name:string, fn:Function):void;
+    function xdescribe(name: string, fn: Function): void;
 
     /**
      * Register a function to call after the current suite finishes.
      * @param fn
      */
-    function after(fn:Function):void;
+    function after(fn: Function): void;
 
     /**
      * Register a function to call after each test in a suite.
      * @param fn
      */
-    function afterEach(fn:Function):void;
+    function afterEach(fn: Function): void;
 
     /**
      * Register a function to call before the current suite starts.
      * @param fn
      */
-    function before(fn:Function):void;
+    function before(fn: Function): void;
 
     /**
      * Register a function to call before each test in a suite.
      * @param fn
      */
-    function beforeEach(fn:Function):void;
+    function beforeEach(fn: Function): void;
 
     /**
      * Add a test to the current suite.
      * @param name The test name.
      * @param fn The test function, or {@code undefined} to define a pending test case.
      */
-    function it(name:string, fn:Function):void;
+    function it(name: string, fn: Function): void;
 
     /**
      * An alias for {@link #it()} that flags the test as the only one that should
@@ -5366,14 +5364,14 @@ declare namespace testing {
      * @param name The test name.
      * @param fn The test function, or {@code undefined} to define a pending test case.
      */
-    function iit(name:string, fn:Function):void;
+    function iit(name: string, fn: Function): void;
 
     /**
      * Adds a test to the current suite while suppressing it so it is not run.
      * @param name The test name.
      * @param fn The test function, or {@code undefined} to define a pending test case.
      */
-    function xit(name:string, fn:Function):void;
+    function xit(name: string, fn: Function): void;
 }
 
 declare module 'selenium-webdriver/chrome' {

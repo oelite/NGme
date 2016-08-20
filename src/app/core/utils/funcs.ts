@@ -1,3 +1,5 @@
+import {Routes} from "@angular/router";
+
 /**
  * Created by mleader1 on 28/06/2016.
  */
@@ -6,8 +8,8 @@ export class Utils {
     /*
      * Marge 2 arrays of objects based on comparison of a property (such as primary key/id for the entity)
      * */
-    public static mergeArray(arr1:any[], arr2:any[], prop?:string):any[] {
-        var result:any[] = [];
+    public static mergeArray(arr1: any[], arr2: any[], prop?: string): any[] {
+        var result: any[] = [];
         if (prop != undefined && prop.length > 0) {
             var value1 = arr1.filter(function (item) {
                 return item.hasOwnProperty(prop);
@@ -33,7 +35,7 @@ export class Utils {
     /*
      * Flat objects array into 1 dimension array based on comparison of a property (such as primary key/id for the entity)
      * */
-    public static flatArrays(arr:any, prop?:string):any[] {
+    public static flatArrays(arr: any, prop?: string): any[] {
         var result = [];
         for (var item of arr) {
             if (item) {
@@ -53,7 +55,7 @@ export class Utils {
     }
 
 
-    public static NewGuid():string {
+    public static NewGuid(): string {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
                 .toString(16)
@@ -64,8 +66,23 @@ export class Utils {
             s4() + '-' + s4() + s4() + s4();
     }
 
-    public static isNumber(value:any):boolean {
+    public static isNumber(value: any): boolean {
         return Object.prototype.toString.call(value) === '[object Number]';
     }
 
+
+    public static ExtractOEViewDirectivesFromRoutes(routes: Routes): any[] {
+        var directives: any[] = [];
+        for (var route of routes) {
+
+            if (route.component)
+                directives.push(route.component);
+            if (route.data) {
+                var page = route.data['page'];
+                if (page)
+                    directives.push(page);
+            }
+        }
+        return directives;
+    }
 }

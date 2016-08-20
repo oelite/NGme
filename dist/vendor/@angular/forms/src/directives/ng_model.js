@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -6,18 +13,21 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var core_1 = require('@angular/core');
 var async_1 = require('../facade/async');
-var exceptions_1 = require('../facade/exceptions');
 var model_1 = require('../model');
 var validators_1 = require('../validators');
+var abstract_form_group_directive_1 = require('./abstract_form_group_directive');
 var control_container_1 = require('./control_container');
 var control_value_accessor_1 = require('./control_value_accessor');
 var ng_control_1 = require('./ng_control');
+var ng_form_1 = require('./ng_form');
+var ng_model_group_1 = require('./ng_model_group');
 var shared_1 = require('./shared');
-exports.formControlBinding = 
-/*@ts2dart_const*/ /* @ts2dart_Provider */ {
+var template_driven_errors_1 = require('./template_driven_errors');
+exports.formControlBinding = {
     provide: ng_control_1.NgControl,
     useExisting: core_1.forwardRef(function () { return NgModel; })
 };
+var resolvedPromise = Promise.resolve(null);
 var NgModel = (function (_super) {
     __extends(NgModel, _super);
     function NgModel(_parent, _validators, _asyncValidators, valueAccessors) {
@@ -26,18 +36,18 @@ var NgModel = (function (_super) {
         this._validators = _validators;
         this._asyncValidators = _asyncValidators;
         /** @internal */
-        this._added = false;
+        this._control = new model_1.FormControl();
+        /** @internal */
+        this._registered = false;
         this.update = new async_1.EventEmitter();
         this.valueAccessor = shared_1.selectValueAccessor(this, valueAccessors);
-        if (!this._parent)
-            this._control = new model_1.FormControl();
     }
     NgModel.prototype.ngOnChanges = function (changes) {
-        this._checkName();
-        if (!this._added)
-            this._addControl();
+        this._checkForErrors();
+        if (!this._registered)
+            this._setUpControl();
         if (shared_1.isPropertyUpdated(changes, this.viewModel)) {
-            this._control.updateValue(this.model);
+            this._updateValue(this.model);
             this.viewModel = this.model;
         }
     };
@@ -49,7 +59,7 @@ var NgModel = (function (_super) {
     });
     Object.defineProperty(NgModel.prototype, "path", {
         get: function () {
-            return this._parent ? shared_1.controlPath(this.name, this._parent) : [];
+            return this._parent ? shared_1.controlPath(this.name, this._parent) : [this.name];
         },
         enumerable: true,
         configurable: true
@@ -73,24 +83,45 @@ var NgModel = (function (_super) {
     });
     NgModel.prototype.viewToModelUpdate = function (newValue) {
         this.viewModel = newValue;
-        async_1.ObservableWrapper.callEmit(this.update, newValue);
+        this.update.emit(newValue);
     };
-    NgModel.prototype._addControl = function () {
-        this._control = this.formDirective ? this.formDirective.addControl(this) :
-            this._addStandaloneControl();
-        this._added = true;
+    NgModel.prototype._setUpControl = function () {
+        this._isStandalone() ? this._setUpStandalone() :
+            this.formDirective.addControl(this);
+        this._registered = true;
     };
-    NgModel.prototype._addStandaloneControl = function () {
+    NgModel.prototype._isStandalone = function () {
+        return !this._parent || (this.options && this.options.standalone);
+    };
+    NgModel.prototype._setUpStandalone = function () {
         shared_1.setUpControl(this._control, this);
         this._control.updateValueAndValidity({ emitEvent: false });
-        return this._control;
+    };
+    NgModel.prototype._checkForErrors = function () {
+        if (!this._isStandalone()) {
+            this._checkParentType();
+        }
+        this._checkName();
+    };
+    NgModel.prototype._checkParentType = function () {
+        if (!(this._parent instanceof ng_model_group_1.NgModelGroup) &&
+            this._parent instanceof abstract_form_group_directive_1.AbstractFormGroupDirective) {
+            template_driven_errors_1.TemplateDrivenErrors.formGroupNameException();
+        }
+        else if (!(this._parent instanceof ng_model_group_1.NgModelGroup) && !(this._parent instanceof ng_form_1.NgForm)) {
+            template_driven_errors_1.TemplateDrivenErrors.modelParentException();
+        }
     };
     NgModel.prototype._checkName = function () {
         if (this.options && this.options.name)
             this.name = this.options.name;
-        if (this._parent && !this.name) {
-            throw new exceptions_1.BaseException("Name attribute must be set if ngModel is used within a form.\n                      Example: <input [(ngModel)]=\"person.firstName\" name=\"first\">");
+        if (!this._isStandalone() && !this.name) {
+            template_driven_errors_1.TemplateDrivenErrors.missingNameException();
         }
+    };
+    NgModel.prototype._updateValue = function (value) {
+        var _this = this;
+        resolvedPromise.then(function () { _this.control.setValue(value, { emitViewToModelChange: false }); });
     };
     /** @nocollapse */
     NgModel.decorators = [

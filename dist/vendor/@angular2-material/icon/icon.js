@@ -14,6 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var error_1 = require('@angular2-material/core/errors/error');
 var icon_registry_1 = require('./icon-registry');
 var icon_registry_2 = require('./icon-registry');
@@ -234,5 +235,21 @@ var MdIcon = (function () {
     return MdIcon;
 }());
 exports.MdIcon = MdIcon;
+/** @deprecated */
 exports.MD_ICON_DIRECTIVES = [MdIcon];
+var MdIconModule = (function () {
+    function MdIconModule() {
+    }
+    MdIconModule = __decorate([
+        core_1.NgModule({
+            imports: [http_1.HttpModule],
+            exports: exports.MD_ICON_DIRECTIVES,
+            declarations: exports.MD_ICON_DIRECTIVES,
+            providers: [icon_registry_1.MdIconRegistry],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdIconModule);
+    return MdIconModule;
+}());
+exports.MdIconModule = MdIconModule;
 //# sourceMappingURL=icon.js.map

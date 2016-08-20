@@ -56,6 +56,12 @@ md-slider *::after {
   transition-property: width, height;
   background-color: #4caf50; }
 
+.md-slider-tick-container, .md-slider-last-tick-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%; }
+
 .md-slider-thumb-container {
   position: absolute;
   left: 0;

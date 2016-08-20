@@ -143,8 +143,8 @@ var MdProgressCircle = (function () {
             this.currentPath = getSvgArc(animateTo, rotation);
         }
         else {
-            var animation_1 = function (currentTime) {
-                var elapsedTime = Math.max(0, Math.min((currentTime || Date.now()) - startTime, duration));
+            var animation_1 = function () {
+                var elapsedTime = Math.max(0, Math.min(Date.now() - startTime, duration));
                 _this.currentPath = getSvgArc(ease(elapsedTime, animateFrom, changeInValue, duration), rotation);
                 // Prevent overlapping animations by checking if a new animation has been called for and
                 // if the animation has lasted long than the animation duration.
@@ -300,5 +300,19 @@ function getSvgArc(currentValue, rotation) {
     }
     return "M" + start + "A" + pathRadius + "," + pathRadius + " 0 " + largeArcFlag + "," + arcSweep + " " + end;
 }
+/** @deprecated */
 exports.MD_PROGRESS_CIRCLE_DIRECTIVES = [MdProgressCircle, MdSpinner];
+var MdProgressCircleModule = (function () {
+    function MdProgressCircleModule() {
+    }
+    MdProgressCircleModule = __decorate([
+        core_1.NgModule({
+            exports: exports.MD_PROGRESS_CIRCLE_DIRECTIVES,
+            declarations: exports.MD_PROGRESS_CIRCLE_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdProgressCircleModule);
+    return MdProgressCircleModule;
+}());
+exports.MdProgressCircleModule = MdProgressCircleModule;
 //# sourceMappingURL=progress-circle.js.map

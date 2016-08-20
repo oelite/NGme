@@ -9,6 +9,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
  * Created by mleader1 on 01/07/2016.
  */
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var MdlUpgradeDirective = (function () {
     function MdlUpgradeDirective(elem) {
         this.elem = elem;
@@ -24,4 +25,17 @@ var MdlUpgradeDirective = (function () {
     return MdlUpgradeDirective;
 }());
 exports.MdlUpgradeDirective = MdlUpgradeDirective;
+var OEmeMdlUpgradeDirectiveModule = (function () {
+    function OEmeMdlUpgradeDirectiveModule() {
+    }
+    OEmeMdlUpgradeDirectiveModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule],
+            declarations: [MdlUpgradeDirective],
+            exports: [MdlUpgradeDirective]
+        })
+    ], OEmeMdlUpgradeDirectiveModule);
+    return OEmeMdlUpgradeDirectiveModule;
+}());
+exports.OEmeMdlUpgradeDirectiveModule = OEmeMdlUpgradeDirectiveModule;
 //# sourceMappingURL=mdl.component.js.map

@@ -90,5 +90,6 @@ exports.OVERLAY_PROVIDERS = [
     viewport_ruler_1.ViewportRuler,
     overlay_position_builder_1.OverlayPositionBuilder,
     Overlay,
+    overlay_container_1.OverlayContainer,
 ];
 //# sourceMappingURL=overlay.js.map

@@ -1,0 +1,100 @@
+@import "../../style/theme";
+
+:host {
+  $login-form-width: 420px;
+  md-progress-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  section {
+    width: 100%;
+    min-height: 100%;
+  }
+  imgSection, loginSection {
+    min-height: 100%;
+    display: block;
+    position: relative;
+  }
+  imgSection {
+    flex: 1 1 auto;
+
+  }
+  loginSection {
+    flex: 0 0 420px;
+    .login-form-wrapper {
+      width: 100%;
+      height: 100%;
+      //background: rgba(255, 255, 255, 0.2);
+      display: block;
+
+      .login-form {
+        background: rgba(255, 255, 255, 0.8);
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;;
+        padding: 10px 20px;
+
+        md-hint {
+          right: 0;
+          color: md-color($md-warn);
+          &.md-hint {
+            font-size: 70%;
+          }
+        }
+        #forgotPassword {
+          line-height: 36px;
+          color: md-color($md-grey, 600);
+        }
+        #btnLogin {
+          color: md-color($md-grey, A100);
+        }
+      }
+
+      .btnLoadingCircle {
+        width: 18px;
+        height: 18px;
+        line-height: 100%;
+        display: inline-block;
+      }
+
+      #oelite-logo {
+        background: url('../../../../assets/img/logo.png') no-repeat;
+        background-size: contain;
+        height: 30px;
+
+      }
+      #footer {
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+        color: md-color($md-grey, 900);
+      }
+      .appNotificationBar {
+        position: relative;
+        width: 100%;
+
+      }
+
+    }
+    .mobile-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+  }
+  /**
+  * Additional fix on user resizing on desktop (gap between the loginSectino form and sm width
+  */
+  @media (max-width: $layout-breakpoint-md - 1) {
+    loginSection {
+      flex: 0 0 100%;
+    }
+
+  }
+
+}

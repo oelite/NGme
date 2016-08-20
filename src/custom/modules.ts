@@ -1,6 +1,8 @@
-import {MODULES_ERRORHANDLING} from "../app/modules/errorHandlings/errorHandlingModule";
-import {MODULES_DEFAULT} from "../app/modules/default/default.module";
-import {MODULES_Account} from "../app/modules/account/account.module";
+import {MODULE_Default} from "../app/views/default.module";
+import {MODULE_Account} from "../app/views/account/account.module";
+import {IOEModule} from "../app/core/framework/IOEModule";
+import {DashboardMasterPageModule} from "../app/views/shared/dashboard/dashboard.masterpage";
+import {SimpleMasterPageModule} from "../app/views/shared/simple/simple.masterpage";
 /**
  * Created by mleader1 on 28/06/2016.
  */
@@ -9,9 +11,10 @@ import {MODULES_Account} from "../app/modules/account/account.module";
 
 
 //Instantiate a global module serivce and pre-configure all required modules
-export const OE_MODULES = [
-    MODULES_DEFAULT,
-    MODULES_ERRORHANDLING,
-
-    MODULES_Account,
+export const OE_MODULES: any[] = [
+    DashboardMasterPageModule,
+    SimpleMasterPageModule,
+    
+    MODULE_Account
 ];
+

@@ -71,4 +71,7 @@ export declare class MdProgressCircle implements OnDestroy {
 export declare class MdSpinner extends MdProgressCircle {
     constructor(changeDetectorRef: ChangeDetectorRef);
 }
+/** @deprecated */
 export declare const MD_PROGRESS_CIRCLE_DIRECTIVES: typeof MdProgressCircle[];
+export declare class MdProgressCircleModule {
+}

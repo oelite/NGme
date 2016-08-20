@@ -1,0 +1,27 @@
+<div class="oe-accordion__group" [ngClass]="{'active': isActive, 'expanded':isExpanded}" [attr.itemId]="itemId">
+    <input [(ngModel)]="isExpanded" class="isExpandedGroupBinder" type="hidden"/>
+    <input [(ngModel)]="isActive" class="isActiveGroupBinder" type="hidden"/>
+    <div class="oe-accordion__group__heading oe-accordion__item mdl-list__item" (click)="toggle($event)"
+         [ngClass]="{'active': isActive}" >
+        <section class="mdl-list__item-primary-content">
+        <span class="material-icons mdl-list__item-icon"
+              [ngClass]="{'mdl-badge--overlap': mdBadgeOverlap && mdBadgeOverlap.toString().toLowerCase()=='true', 'mdl-badge':mdIcon && mdBadge, 'mdl-badge--no-background':mdIcon && mdBadge && mdBadgeNoBackground}"
+              [attr.data-badge]="mdBadge">
+            {{mdIcon}}
+        </span>
+            <span class="heading"
+                  [ngClass]="{ 'mdl-badge':mdIcon==null && mdBadge!=null, 'mdl-badge--no-background':mdBadgeNoBackground}"
+                  [attr.data-badge]="mdBadge">
+            <ng-content select="accordion-group-heading"></ng-content>
+        </span>
+        </section>
+        <span class="mdl-list__item-secondary-content">
+          <a class="mdl-list__item-secondary-action" href="javascript:void(0);" (click)="toggle($event)"><i
+                  class="material-icons">{{isExpanded? 'keyboard_arrow_down':'keyboard_arrow_right'}}</i></a>
+    </span>
+    </div>
+    <div *ngIf="mdDivider.toString().toLowerCase()==='true'" class="mdl-menu__item--full-bleed-divider"></div>
+    <div class="oe-accordion__group__items">
+        <ng-content></ng-content>
+    </div>
+</div>

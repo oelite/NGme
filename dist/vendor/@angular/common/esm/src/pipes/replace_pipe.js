@@ -1,5 +1,12 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 import { Pipe } from '@angular/core';
-import { RegExpWrapper, StringWrapper, isBlank, isFunction, isNumber, isString } from '../facade/lang';
+import { StringWrapper, isBlank, isFunction, isNumber, isString } from '../facade/lang';
 import { InvalidPipeArgumentException } from './invalid_pipe_argument_exception';
 export class ReplacePipe {
     transform(value, pattern, replacement) {
@@ -17,7 +24,7 @@ export class ReplacePipe {
             throw new InvalidPipeArgumentException(ReplacePipe, replacement);
         }
         if (isFunction(replacement)) {
-            const rgxPattern = isString(pattern) ? RegExpWrapper.create(pattern) : pattern;
+            const rgxPattern = isString(pattern) ? new RegExp(pattern, 'g') : pattern;
             return StringWrapper.replaceAllMapped(input, rgxPattern, replacement);
         }
         if (pattern instanceof RegExp) {

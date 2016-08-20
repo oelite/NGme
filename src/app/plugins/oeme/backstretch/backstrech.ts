@@ -3,10 +3,12 @@
  */
 
 
-import {Component, Input, ViewEncapsulation, ElementRef} from "@angular/core";
+import {Component, Input, ViewEncapsulation, ElementRef, NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
 
 
-declare var $:any;  //jquery support
+declare var $: any;  //jquery support
 
 @Component({
     selector: 'oe-backstretch',
@@ -16,20 +18,26 @@ declare var $:any;  //jquery support
 })
 
 export class OE_JQuery_BackStretch {
-    @Input()
-    source:string[]|string;
-    @Input()
-    target:string;
-    @Input()
-    options:any;
+    @Input() source: string[]|string;
+    @Input() target: string;
+    @Input() options: any;
 
-    el:HTMLElement;
+    el: HTMLElement;
 
-    constructor(el:ElementRef) {
+    constructor(el: ElementRef) {
         this.el = el.nativeElement;
     }
 
     ngOnInit() {
         $(this.target || 'body').backstretch(this.source, this.options);
     }
+}
+
+@NgModule({
+    imports: [BrowserModule, FormsModule],
+    declarations: [OE_JQuery_BackStretch],
+    providers:[],
+    exports: [OE_JQuery_BackStretch]
+})
+export class OEmeJqueryBackstretch {
 }

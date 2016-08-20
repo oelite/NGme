@@ -1,7 +1,7 @@
 @import "mixins";
 
 $layout-top-outer-visible-height: 68px;
-$layout-left-outer-visible-width: 72px;
+$layout-left-outer-visible-width: 64px;
 $layout-right-outer-visible-width: 0;
 $layout-bottom-outer-visible-height: 0;
 
@@ -78,3 +78,6 @@ $i: 8;
   $i: $i * 2;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

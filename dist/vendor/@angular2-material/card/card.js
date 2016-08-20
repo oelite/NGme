@@ -99,5 +99,19 @@ var MdCardTitleGroup = (function () {
     return MdCardTitleGroup;
 }());
 exports.MdCardTitleGroup = MdCardTitleGroup;
+/** @deprecated */
 exports.MD_CARD_DIRECTIVES = [MdCard, MdCardHeader, MdCardTitleGroup];
+var MdCardModule = (function () {
+    function MdCardModule() {
+    }
+    MdCardModule = __decorate([
+        core_1.NgModule({
+            exports: exports.MD_CARD_DIRECTIVES,
+            declarations: exports.MD_CARD_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdCardModule);
+    return MdCardModule;
+}());
+exports.MdCardModule = MdCardModule;
 //# sourceMappingURL=card.js.map

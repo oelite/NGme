@@ -14,6 +14,11 @@ export declare class MdSlider implements AfterContentInit {
     /** The values at which the thumb will snap. */
     step: number;
     /**
+     * How often to show ticks. Relative to the step so that a tick always appears on a step.
+     * Ex: Tick interval of 4 with a step of 3 will draw a tick every 4 steps (every 12 values).
+     */
+    private _tickInterval;
+    /**
      * Whether or not the thumb is sliding.
      * Used to determine if there should be a transition for the thumb and fill track.
      * TODO: internal
@@ -67,6 +72,28 @@ export declare class MdSlider implements AfterContentInit {
      */
     snapToValue(): void;
     /**
+     * Calculates the separation in pixels of tick marks. If there is no tick interval or the interval
+     * is set to something other than a number or 'auto', nothing happens.
+     */
+    private _updateTickSeparation();
+    /**
+     * Calculates the optimal separation in pixels of tick marks based on the minimum auto tick
+     * separation constant.
+     */
+    private _updateAutoTickSeparation();
+    /**
+     * Calculates the separation of tick marks by finding the pixel value of the tickInterval.
+     */
+    private _updateTickSeparationFromInterval();
+    /**
+     * Calculates the percentage of the slider that a value is.
+     */
+    calculatePercentage(value: number): number;
+    /**
+     * Calculates the value a percentage of the slider corresponds to.
+     */
+    calculateValue(percentage: number): number;
+    /**
      * Return a number between two numbers.
      */
     clamp(value: number, min?: number, max?: number): number;
@@ -92,5 +119,12 @@ export declare class SliderRenderer {
      * Currently only used to allow a blur event to fire but will be used with keyboard input later.
      */
     addFocus(): void;
+    /**
+     * Draws ticks onto the tick container.
+     */
+    drawTicks(tickSeparation: number): void;
 }
+/** @deprecated */
 export declare const MD_SLIDER_DIRECTIVES: typeof MdSlider[];
+export declare class MdSliderModule {
+}

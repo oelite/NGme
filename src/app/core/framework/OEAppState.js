@@ -10,14 +10,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var OELayoutState_1 = require("./layout/OELayoutState");
-var OERouteState_1 = require("./service/OERouteState");
-var OEModuleState_1 = require("./service/OEModuleState");
 var OEAppState = (function () {
     function OEAppState() {
         this.appName = "OElite Common Framework";
         this.layoutState = new OELayoutState_1.OELayoutState();
-        this.routeState = new OERouteState_1.OERouteState();
-        this.moduleState = new OEModuleState_1.OEModuleState(this.routeState);
     }
     OEAppState = __decorate([
         core_1.Injectable()

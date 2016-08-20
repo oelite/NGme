@@ -75,8 +75,15 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 | app.modules | defines all necessary modules/routes (i.e. built-in examples) | 1.0.0-alpha | Infant |
 | app.views | defines all visible views of the app | 1.0.0 | Infant |
 
+## UI Components
+
+| Component  | Usage | Location | Dependencies | Status |
+|---|---|---|---|---|
+| oe-accordion | an accordion/left navigation menu/leveled list component | plugins/mdl/accordion | jQuery, mdl css, angular 2 material theming | adult |
+| oe-backstretch | a simple backstretch jquery plugin wrapper in angular 2 | plugins/oeme/backstretch | jQuery, jquery.backstretch.min.js | adult |
 
 ## Update Logs
+* 05/08/2015 - add new left nav component <oe-accordion></oe-accordion>
 * 11/07/2016 - dynamic routing (masterpage + page), login page, api service 
 * 01/07/2016 - Finally got the first view (home) working with 8-sides (4 outer + 4 inner) views surrounded the main content (screen) view
 * 27/06/2016 - Build the first draft of framework structure

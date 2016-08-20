@@ -6,16 +6,17 @@
  * User Configuration.
  **********************************************************************************************/
 /** Map relative paths to URLs. */
-const map:any = {
+const map: any = {
     '@angular2-material': 'vendor/@angular2-material',
     'angular2-cookie': 'vendor/angular2-cookie'
 };
 
 /** User packages configuration. */
-const packages:any = {};
+const packages: any = {};
 
-const materialPkgs:string[] = [
+const materialPkgs: string[] = [
     'button',
+    'button-toggle',
     'card',
     'checkbox',
     'core',
@@ -23,13 +24,16 @@ const materialPkgs:string[] = [
     'icon',
     'input',
     'list',
+    'menu',
     'progress-bar',
     'progress-circle',
     'radio',
     'sidenav',
+    'slider',
     'slide-toggle',
     'tabs',
-    'toolbar'
+    'toolbar',
+    'tooltip'
 ];
 materialPkgs.forEach((pkg) => {
     packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
@@ -40,7 +44,7 @@ materialPkgs.forEach((pkg) => {
 /***********************************************************************************************
  * Everything underneath this line is managed by the CLI.
  **********************************************************************************************/
-const barrels:string[] = [
+const barrels: string[] = [
     // Angular specific barrels.
     '@angular/core',
     '@angular/common',
@@ -61,8 +65,8 @@ const barrels:string[] = [
     /** @cli-barrel */
 ];
 
-const cliSystemConfigPackages:any = {};
-barrels.forEach((barrelName:string) => {
+const cliSystemConfigPackages: any = {};
+barrels.forEach((barrelName: string) => {
     cliSystemConfigPackages[barrelName] = {main: 'index'};
 });
 
@@ -70,7 +74,7 @@ cliSystemConfigPackages['angular2-cookie'] = {main: 'core'};
 
 
 /** Type declaration for ambient System. */
-declare var System:any;
+declare var System: any;
 
 // Apply the CLI SystemJS configuration.
 System.config({

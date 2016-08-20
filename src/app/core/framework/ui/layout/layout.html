@@ -25,12 +25,11 @@
             <ng-content select="oe-layout-left-inner" *ngIf="!isViewable(leftInnerView)"></ng-content>
         </oe-section>
         <oe-section class="oe-main"
-                    [ngClass]="{'fixed':  mainView.uiState.isFixed, 'active':mainView && mainView.uiState.isActive}">
+                    [ngClass]="{'fixed': isViewable(mainView) &&  mainView.uiState.isFixed, 'active':mainView && mainView.uiState.isActive}">
             <oe-partial-view *ngIf="isViewable(mainView)" [layoutConfig]="mainView"
                              class="oe-layout-main">
             </oe-partial-view>
             <ng-content select="oe-layout-main" *ngIf="!isViewable(mainView)"></ng-content>
-            <router-outlet></router-outlet>
         </oe-section>
         <oe-section class="oe-layout-right-inner "
                     [ngClass]="{'fixed': isViewable(rightInnerView)&& rightInnerView.uiState.isFixed, 'active':rightInnerView && rightInnerView.uiState.isActive}">

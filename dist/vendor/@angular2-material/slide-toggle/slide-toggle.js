@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var field_value_1 = require('@angular2-material/core/annotations/field-value');
 var Observable_1 = require('rxjs/Observable');
 var apply_transform_1 = require('@angular2-material/core/style/apply-transform');
+var core_2 = require('@angular2-material/core/core');
 exports.MD_SLIDE_TOGGLE_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return MdSlideToggle; }),
@@ -292,5 +294,23 @@ var SlideToggleRenderer = (function () {
     };
     return SlideToggleRenderer;
 }());
+/** @deprecated */
 exports.MD_SLIDE_TOGGLE_DIRECTIVES = [MdSlideToggle];
+var MdSlideToggleModule = (function () {
+    function MdSlideToggleModule() {
+    }
+    MdSlideToggleModule = __decorate([
+        core_1.NgModule({
+            imports: [forms_1.FormsModule],
+            exports: exports.MD_SLIDE_TOGGLE_DIRECTIVES,
+            declarations: exports.MD_SLIDE_TOGGLE_DIRECTIVES,
+            providers: [
+                { provide: platform_browser_1.HAMMER_GESTURE_CONFIG, useClass: core_2.MdGestureConfig },
+            ],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdSlideToggleModule);
+    return MdSlideToggleModule;
+}());
+exports.MdSlideToggleModule = MdSlideToggleModule;
 //# sourceMappingURL=slide-toggle.js.map

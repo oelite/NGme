@@ -109,4 +109,17 @@ var PortalHostDirective = (function (_super) {
 }(portal_1.BasePortalHost));
 exports.PortalHostDirective = PortalHostDirective;
 exports.PORTAL_DIRECTIVES = [TemplatePortalDirective, PortalHostDirective];
+var PortalModule = (function () {
+    function PortalModule() {
+    }
+    PortalModule = __decorate([
+        core_1.NgModule({
+            exports: exports.PORTAL_DIRECTIVES,
+            declarations: exports.PORTAL_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], PortalModule);
+    return PortalModule;
+}());
+exports.PortalModule = PortalModule;
 //# sourceMappingURL=portal-directives.js.map

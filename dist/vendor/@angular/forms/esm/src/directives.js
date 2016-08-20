@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { NgModule } from '@angular/core';
 import { CheckboxControlValueAccessor } from './directives/checkbox_value_accessor';
 import { DefaultValueAccessor } from './directives/default_value_accessor';
 import { NgControlStatus } from './directives/ng_control_status';
@@ -9,7 +17,7 @@ import { RadioControlValueAccessor } from './directives/radio_control_value_acce
 import { FormControlDirective } from './directives/reactive_directives/form_control_directive';
 import { FormControlName } from './directives/reactive_directives/form_control_name';
 import { FormGroupDirective } from './directives/reactive_directives/form_group_directive';
-import { FormGroupName } from './directives/reactive_directives/form_group_name';
+import { FormArrayName, FormGroupName } from './directives/reactive_directives/form_group_name';
 import { NgSelectOption, SelectControlValueAccessor } from './directives/select_control_value_accessor';
 import { NgSelectMultipleOption, SelectMultipleControlValueAccessor } from './directives/select_multiple_control_value_accessor';
 import { MaxLengthValidator, MinLengthValidator, PatternValidator, RequiredValidator } from './directives/validators';
@@ -25,10 +33,18 @@ export { RadioControlValueAccessor } from './directives/radio_control_value_acce
 export { FormControlDirective } from './directives/reactive_directives/form_control_directive';
 export { FormControlName } from './directives/reactive_directives/form_control_name';
 export { FormGroupDirective } from './directives/reactive_directives/form_group_directive';
-export { FormGroupName } from './directives/reactive_directives/form_group_name';
+export { FormArrayName, FormGroupName } from './directives/reactive_directives/form_group_name';
 export { NgSelectOption, SelectControlValueAccessor } from './directives/select_control_value_accessor';
 export { NgSelectMultipleOption, SelectMultipleControlValueAccessor } from './directives/select_multiple_control_value_accessor';
 export { MaxLengthValidator, MinLengthValidator, PatternValidator, RequiredValidator } from './directives/validators';
+export const SHARED_FORM_DIRECTIVES = [
+    NgSelectOption, NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor,
+    CheckboxControlValueAccessor, SelectControlValueAccessor, SelectMultipleControlValueAccessor,
+    RadioControlValueAccessor, NgControlStatus, RequiredValidator, MinLengthValidator,
+    MaxLengthValidator, PatternValidator
+];
+export const TEMPLATE_DRIVEN_DIRECTIVES = [NgModel, NgModelGroup, NgForm];
+export const REACTIVE_DRIVEN_DIRECTIVES = [FormControlDirective, FormGroupDirective, FormControlName, FormGroupName, FormArrayName];
 /**
  *
  * A list of all the form directives used as part of a `@Component` annotation.
@@ -46,13 +62,15 @@ export { MaxLengthValidator, MinLengthValidator, PatternValidator, RequiredValid
  * ```
  * @experimental
  */
-export const FORM_DIRECTIVES = [
-    NgModel, NgModelGroup, NgForm,
-    NgSelectOption, NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor,
-    CheckboxControlValueAccessor, SelectControlValueAccessor, SelectMultipleControlValueAccessor,
-    RadioControlValueAccessor, NgControlStatus,
-    RequiredValidator, MinLengthValidator, MaxLengthValidator, PatternValidator
+export const FORM_DIRECTIVES = [TEMPLATE_DRIVEN_DIRECTIVES, SHARED_FORM_DIRECTIVES];
+/**
+ * @experimental
+ */
+export const REACTIVE_FORM_DIRECTIVES = [REACTIVE_DRIVEN_DIRECTIVES, SHARED_FORM_DIRECTIVES];
+export class InternalFormsSharedModule {
+}
+/** @nocollapse */
+InternalFormsSharedModule.decorators = [
+    { type: NgModule, args: [{ declarations: SHARED_FORM_DIRECTIVES, exports: SHARED_FORM_DIRECTIVES },] },
 ];
-export const REACTIVE_FORM_DIRECTIVES = 
-/*@ts2dart_const*/ [FormControlDirective, FormGroupDirective, FormControlName, FormGroupName];
 //# sourceMappingURL=directives.js.map

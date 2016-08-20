@@ -63,4 +63,8 @@ export declare class MdTabGroup {
     /** Decrement the focus index by 1; prevent going below 0 */
     focusPreviousTab(): void;
 }
+/** @deprecated */
 export declare const MD_TABS_DIRECTIVES: (typeof MdTabGroup | typeof MdTabLabel | typeof MdTab)[];
+export declare const TABS_INTERNAL_DIRECTIVES: (typeof MdInkBar | typeof MdTabLabelWrapper)[];
+export declare class MdTabsModule {
+}

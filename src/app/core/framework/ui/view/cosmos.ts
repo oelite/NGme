@@ -1,9 +1,9 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {OE_MODULES} from "../../../../../custom/modules";
 import {OEAppState} from "../../OEAppState";
 import {Utils} from "../../../utils/funcs";
+import {CookieService} from "angular2-cookie/services/cookies.service";
 
 /**
  * Created by mleader1 on 27/06/2016.
@@ -17,8 +17,6 @@ import {Utils} from "../../../utils/funcs";
 @Component({
     selector: 'body',
     moduleId: module.id,
-    directives: [ROUTER_DIRECTIVES],
-    providers: [],
     encapsulation: ViewEncapsulation.None,
     template: '<router-outlet></router-outlet>'
 })
@@ -26,24 +24,11 @@ import {Utils} from "../../../utils/funcs";
 
 export class CosmosComponent {
 
-    constructor(private titleService:Title, public appState:OEAppState, private router:Router) {
+    constructor(private titleService: Title, private appState: OEAppState, private cookies: CookieService) {
         titleService.setTitle(appState.appName);
-        // appState.onMasterPageChange$.subscribe((result)=> {
-        //     this.reloadMasterPage(result);
-        // });
-        this.initModules();
+        console.log('even I can have it');
+        console.log(cookies);
     }
 
-    initModules() {
-        var modules = Utils.flatArrays(OE_MODULES);
-        for (var module of modules) {
-            this.appState.moduleState.registereModule(module);
-        }
-    }
-
-    // reloadMasterPage(route:IOERoute):void {
-    //     this.router.navigateByUrl(route.path);
-    //
-    // }
 
 }

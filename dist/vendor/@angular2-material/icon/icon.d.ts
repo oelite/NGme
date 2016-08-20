@@ -80,4 +80,7 @@ export declare class MdIcon implements OnChanges, OnInit, AfterViewChecked {
     private _setSvgElement(svg);
     private _updateFontIconClasses();
 }
+/** @deprecated */
 export declare const MD_ICON_DIRECTIVES: typeof MdIcon[];
+export declare class MdIconModule {
+}

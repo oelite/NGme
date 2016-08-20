@@ -1,6 +1,13 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 /**
- * Defines template and style encapsulation options available for Component's {@link View}.
+ * Defines template and style encapsulation options available for Component's {@link Component}.
  *
  * See {@link ViewMetadata#encapsulation}.
  * @stable
@@ -57,7 +64,8 @@ exports.VIEW_ENCAPSULATION_VALUES = [ViewEncapsulation.Emulated, ViewEncapsulati
  *   }
  * }
  * ```
- * @ts2dart_const
+ *
+ * @deprecated Use ComponentMetadata instead.
  */
 var ViewMetadata = (function () {
     function ViewMetadata(_a) {

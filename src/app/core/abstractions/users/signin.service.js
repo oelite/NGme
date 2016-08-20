@@ -15,8 +15,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var framework_1 = require("../../framework");
-var Rx_1 = require("rxjs/Rx");
-var async_1 = require("@angular/platform-browser-dynamic/src/facade/async");
 var globals_1 = require("../../../../custom/globals");
 var ApiGateway_1 = require("../../framework/service/ApiGateway");
 var SignInService = (function (_super) {
@@ -25,10 +23,12 @@ var SignInService = (function (_super) {
         _super.call(this, http, cookies);
         this.CurrentUser_Info = 'oe.users.currentUserInfo';
         this.CurrentUser_Roles = 'oe.roles.currentUserRoles';
+        console.log(this.cookies);
+        console.log('constructor of signin service');
         this.loggedInUser = null;
         this.loggedInUserRoles = [];
-        this.onUserAuthenticated$ = new async_1.EventEmitter();
-        this.onUserAuthorized$ = new async_1.EventEmitter();
+        this.onUserAuthenticated$ = new core_1.EventEmitter();
+        this.onUserAuthorized$ = new core_1.EventEmitter();
     }
     SignInService.prototype.url = function (relativePath) {
         if (!relativePath.startsWith('/'))
@@ -38,7 +38,8 @@ var SignInService = (function (_super) {
     Object.defineProperty(SignInService.prototype, "loggedInUser", {
         get: function () {
             if (this.UserTimeStamp) {
-                var user = JSON.parse(localStorage.getItem(this.CurrentUser_Info));
+                var userInfo = localStorage.getItem(this.CurrentUser_Info);
+                var user = JSON.parse(userInfo);
                 if (user && user.id > 0)
                     return user;
             }
@@ -63,15 +64,20 @@ var SignInService = (function (_super) {
     SignInService.prototype.Authenticate = function (emitEvent) {
         var _this = this;
         if (emitEvent === void 0) { emitEvent = false; }
-        return this.post(this.url('/users/myinfo'), {}, {}).toPromise().then(function (result) {
+        return this.post(this.url('/users/myinfo'), {}, {}).map(function (result) {
             if (result && result.id > 0) {
                 _this.loggedInUser = result;
             }
-            else
+            else {
+                console.log('user info not returned from server, local data will now be erased.');
                 _this.loggedInUser = null;
+            }
             if (emitEvent)
                 _this.onUserAuthenticated$.emit(result);
-            return (result && result.id > 0);
+            return result && result.id > 0;
+        }).toPromise().catch(function (ex) {
+            console.log(ex);
+            return Promise.resolve(false);
         });
     };
     SignInService.prototype.Authorize = function (emailOrUsername, password, emitEvent) {
@@ -87,29 +93,24 @@ var SignInService = (function (_super) {
             'client_id': globals_1.apiClientId,
             'username': emailOrUsername,
             'password': password
-        }, {}, {}, ApiGateway_1.ApiContentType.WwwForm).toPromise().then(function (result) {
+        }, {}, {}, ApiGateway_1.ApiContentType.WwwForm).map(function (result) {
             if (result && result.access_token) {
                 _this.UserAuthToken = result.access_token;
-                _this.Authenticate(emitEvent);
-                if (emitEvent) {
-                    _this.onUserAuthorized$.emit(result.access_token);
-                }
                 _this.UserTimeStamp = new Date();
-                return true;
+                return _this.Authenticate(emitEvent).then(function (authResult) {
+                    if (emitEvent) {
+                        _this.onUserAuthorized$.emit(result.access_token);
+                    }
+                    return authResult;
+                });
             }
             else {
                 _this.UserTimeStamp = null;
                 return false;
             }
-        }).catch(function (ex) {
-            if (ex && ex.error) {
-                if (ex.error == "invalid_grant" ||
-                    ex.error.indexOf("invalid") >= 0) {
-                    _this.UserTimeStamp = null;
-                    return false;
-                }
-            }
-            Rx_1.Observable.throw(ex);
+        }).toPromise().catch(function (ex) {
+            console.log(ex);
+            return Promise.resolve(false);
         });
     };
     SignInService = __decorate([

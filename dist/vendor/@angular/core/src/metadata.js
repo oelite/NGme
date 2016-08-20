@@ -1,12 +1,17 @@
 /**
- * This indirection is needed to free up Component, etc symbols in the public API
- * to be used by the decorator versions of these annotations.
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
  */
 "use strict";
 var di_1 = require('./metadata/di');
 var directives_1 = require('./metadata/directives');
-var view_1 = require('./metadata/view');
+var ng_module_1 = require('./metadata/ng_module');
+var decorators_1 = require('./util/decorators');
 var di_2 = require('./metadata/di');
+exports.ANALYZE_FOR_ENTRY_COMPONENTS = di_2.ANALYZE_FOR_ENTRY_COMPONENTS;
 exports.AttributeMetadata = di_2.AttributeMetadata;
 exports.ContentChildMetadata = di_2.ContentChildMetadata;
 exports.ContentChildrenMetadata = di_2.ContentChildrenMetadata;
@@ -31,10 +36,12 @@ exports.DoCheck = lifecycle_hooks_1.DoCheck;
 exports.OnChanges = lifecycle_hooks_1.OnChanges;
 exports.OnDestroy = lifecycle_hooks_1.OnDestroy;
 exports.OnInit = lifecycle_hooks_1.OnInit;
-var view_2 = require('./metadata/view');
-exports.ViewEncapsulation = view_2.ViewEncapsulation;
-exports.ViewMetadata = view_2.ViewMetadata;
-var decorators_1 = require('./util/decorators');
+var ng_module_2 = require('./metadata/ng_module');
+exports.CUSTOM_ELEMENTS_SCHEMA = ng_module_2.CUSTOM_ELEMENTS_SCHEMA;
+exports.NgModuleMetadata = ng_module_2.NgModuleMetadata;
+var view_1 = require('./metadata/view');
+exports.ViewEncapsulation = view_1.ViewEncapsulation;
+exports.ViewMetadata = view_1.ViewMetadata;
 // TODO(alexeagle): remove the duplication of this doc. It is copied from ComponentMetadata.
 /**
  * Declare reusable UI building blocks for an application.
@@ -52,8 +59,9 @@ var decorators_1 = require('./util/decorators');
  *
  * ## Lifecycle hooks
  *
- * When the component class implements some {@link ../../guide/lifecycle-hooks.html} the callbacks
- * are called by the change detection at defined points in time during the life of the component.
+ * When the component class implements some {@linkDocs guide/lifecycle-hooks} the
+ * callbacks are called by the change detection at defined points in time during the life of the
+ * component.
  *
  * ### Example
  *
@@ -61,7 +69,7 @@ var decorators_1 = require('./util/decorators');
  * @stable
  * @Annotation
  */
-exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata, function (fn) { return fn.View = View; });
+exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata);
 // TODO(alexeagle): remove the duplication of this doc. It is copied from DirectiveMetadata.
 /**
  * Directives allow you to attach behavior to elements in the DOM.
@@ -99,7 +107,7 @@ exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata, f
  * current `ElementInjector` resolves the constructor dependencies for each directive.
  *
  * Angular then resolves dependencies as follows, according to the order in which they appear in the
- * {@link ViewMetadata}:
+ * {@link ComponentMetadata}:
  *
  * 1. Dependencies on the current element
  * 2. Dependencies on element injectors and their parents until it encounters a Shadow DOM boundary
@@ -317,7 +325,7 @@ exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata, f
  *   overlayManager:OverlayManager; // NOT YET IMPLEMENTED
  *
  *   constructor(overlayManager:OverlayManager) {
- *     this.overlay = overlay;
+ *     this.overlayManager = overlayManager;
  *   }
  *
  *   onMouseEnter() {
@@ -348,7 +356,8 @@ exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata, f
  * location in the current view
  * where these actions are performed.
  *
- * Views are always created as children of the current {@link ViewMetadata}, and as siblings of the
+ * Views are always created as children of the current {@link ComponentMetadata}, and as siblings of
+ * the
  * `<template>` element. Thus a
  * directive in a child view cannot inject the directive that created it.
  *
@@ -381,8 +390,9 @@ exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata, f
  *
  * ## Lifecycle hooks
  *
- * When the directive class implements some {@link ../../guide/lifecycle-hooks.html} the callbacks
- * are called by the change detection at defined points in time during the life of the directive.
+ * When the directive class implements some {@linkDocs guide/lifecycle-hooks} the
+ * callbacks are called by the change detection at defined points in time during the life of the
+ * directive.
  *
  * ### Example
  *
@@ -444,39 +454,6 @@ exports.Component = decorators_1.makeDecorator(directives_1.ComponentMetadata, f
  * @Annotation
  */
 exports.Directive = decorators_1.makeDecorator(directives_1.DirectiveMetadata);
-// TODO(alexeagle): remove the duplication of this doc. It is copied from ViewMetadata.
-/**
- * Metadata properties available for configuring Views.
- *
- * Each Angular component requires a single `@Component` and at least one `@View` annotation. The
- * `@View` annotation specifies the HTML template to use, and lists the directives that are active
- * within the template.
- *
- * When a component is instantiated, the template is loaded into the component's shadow root, and
- * the expressions and statements in the template are evaluated against the component.
- *
- * For details on the `@Component` annotation, see {@link ComponentMetadata}.
- *
- * ### Example
- *
- * ```
- * @Component({
- *   selector: 'greet',
- *   template: 'Hello {{name}}!',
- *   directives: [GreetUser, Bold]
- * })
- * class Greet {
- *   name: string;
- *
- *   constructor() {
- *     this.name = 'World';
- *   }
- * }
- * ```
- * @deprecated
- * @Annotation
- */
-var View = decorators_1.makeDecorator(view_1.ViewMetadata, function (fn) { return fn.View = View; });
 /**
  * Specifies that a constant attribute value should be injected.
  *
@@ -1039,4 +1016,10 @@ exports.HostBinding = decorators_1.makePropDecorator(directives_1.HostBindingMet
  * @Annotation
  */
 exports.HostListener = decorators_1.makePropDecorator(directives_1.HostListenerMetadata);
+/**
+ * Declares an ng module.
+ * @experimental
+ * @Annotation
+ */
+exports.NgModule = decorators_1.makeDecorator(ng_module_1.NgModuleMetadata);
 //# sourceMappingURL=metadata.js.map

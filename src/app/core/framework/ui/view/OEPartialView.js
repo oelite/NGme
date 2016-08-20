@@ -9,36 +9,34 @@ var core_1 = require("@angular/core");
 /**
  * Created by mleader1 on 29/06/2016.
  */
-function createComponentFactory(resolver, metadata) {
-    var cmpClass = (function () {
-        function OEmePartialView() {
-        }
-        return OEmePartialView;
-    }());
-    var decoratedCmp = core_1.Component(metadata)(cmpClass);
-    return resolver.resolveComponent(decoratedCmp);
-}
-exports.createComponentFactory = createComponentFactory;
 var OEPartialView = (function () {
-    function OEPartialView(resolver) {
-        this.resolver = resolver;
+    function OEPartialView(compiler) {
+        this.compiler = compiler;
         this.layoutConfig = null;
     }
+    OEPartialView.prototype._createDynamicComponent = function () {
+        var metaData = new core_1.ComponentMetadata({
+            selector: 'view',
+            template: this.parseViewSelectorToTags(this.layoutConfig.viewSelector),
+            encapsulation: core_1.ViewEncapsulation.None
+        });
+        var cmpClass = (function () {
+            function _() {
+            }
+            return _;
+        }());
+        cmpClass.prototype = this.viewContainerRef;
+        return core_1.Component(metaData)(cmpClass);
+    };
     OEPartialView.prototype.ngOnChanges = function () {
         var _this = this;
         if (!this.layoutConfig)
             return;
-        var metaData = new core_1.ComponentMetadata({
-            selector: 'view',
-            template: this.parseViewSelectorToTags(this.layoutConfig.viewSelector),
-            encapsulation: core_1.ViewEncapsulation.None,
-            directives: this.layoutConfig.viewDirectives,
-            providers: this.layoutConfig.viewProviders
-        });
-        createComponentFactory(this.resolver, metaData)
+        this.compiler.compileComponentAsync(this._createDynamicComponent())
             .then(function (factory) {
             var injector = core_1.ReflectiveInjector.fromResolvedProviders([], _this.viewContainerRef.parentInjector);
-            _this.viewContainerRef.createComponent(factory, 0, injector, []);
+            _this.viewContainerRef.clear();
+            _this.viewContainerRef.createComponent(factory, 0, injector);
         });
     };
     /**
@@ -101,6 +99,7 @@ var OEPartialView = (function () {
     ], OEPartialView.prototype, "viewContainerRef");
     OEPartialView = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "oe-partial-view",
             encapsulation: core_1.ViewEncapsulation.None,
             template: "<div #target></div>"

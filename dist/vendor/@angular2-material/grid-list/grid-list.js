@@ -147,5 +147,20 @@ var MdGridList = (function () {
     return MdGridList;
 }());
 exports.MdGridList = MdGridList;
-exports.MD_GRID_LIST_DIRECTIVES = [MdGridList, grid_tile_1.MdGridTile, line_1.MdLine, grid_tile_1.MdGridTileText];
+/** @deprecated */
+exports.MD_GRID_LIST_DIRECTIVES = [MdGridList, grid_tile_1.MdGridTile, grid_tile_1.MdGridTileText];
+var MdGridListModule = (function () {
+    function MdGridListModule() {
+    }
+    MdGridListModule = __decorate([
+        core_1.NgModule({
+            imports: [line_1.MdLineModule],
+            exports: [exports.MD_GRID_LIST_DIRECTIVES, line_1.MdLineModule],
+            declarations: exports.MD_GRID_LIST_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdGridListModule);
+    return MdGridListModule;
+}());
+exports.MdGridListModule = MdGridListModule;
 //# sourceMappingURL=grid-list.js.map

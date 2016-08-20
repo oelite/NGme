@@ -1,0 +1,73 @@
+<section layout="row">
+    <imgSection hide-xs hide-sm>
+        <oe-backstretch
+                target="oe-section.oe-main imgSection"
+                [source]="loginBg">
+        </oe-backstretch>
+    </imgSection>
+    <loginSection>
+        <div class="mobile-background" hide-gt-md>
+            <oe-backstretch target="oe-section.oe-main .mobile-background"
+                            [options]="{fade:500,centeredX:true, centeredY:true}"
+                            [source]="loginBg">
+            </oe-backstretch>
+        </div>
+        <form class="login-form-wrapper" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="login-form xs-m-40 md-mt-80 md-ml-40">
+                <div class="lg-mt-40 md-mt-10 sm-mt-0" id="oelite-logo"></div>
+                <div class="xs-mt-20 xs-mb-20">A platform built with love for your business</div>
+                <div class="xs-mt-20 md-mt-50" layout="column">
+                    <div class="appNotificationBar">
+                        <mdl-snackbar [isFullWidth]="true" foreColor="#FFF"
+                                      bgColor="#d32f2f"></mdl-snackbar>
+                    </div>
+
+                    <md-input class="txtEmail" [dividerColor]="txtEmailColor"
+                              type="email"
+                              [(ngModel)]="email"
+                              name="email"
+                              placeholder="Email address"
+                              #frmEmail="ngModel"
+                              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                              required>
+                        <md-hint color="warn" *ngIf="!frmEmail.valid && frmEmail.touched">is
+                            your email correct?
+                        </md-hint>
+                    </md-input>
+                    <md-input class="txtPassword" placeholder="Password"
+                              [dividerColor]="txtPasswordColor"
+                              [(ngModel)]="password"
+                              name="password"
+                              #frmPassword="ngModel"
+                              required
+                              type="password">
+                        <md-hint *ngIf="!frmPassword.valid && frmPassword.touched">is your
+                            password correct?
+                        </md-hint>
+                    </md-input>
+                    <div class="xs-pt-10">
+                    </div>
+                    <div layout="row" layout-align="space-between" class="xs-mt-10">
+                        <button md-ink md-raised-button color="primary" id="btnLogin"
+                                [disabled]="(!loginForm.valid) || isValidating"
+                                type="submit">
+                            <span [hidden]="isValidating">Login</span>
+                            <md-progress-circle class="btnLoadingCircle" [hidden]="!isValidating" mode="indeterminate"
+                                                color="primary"></md-progress-circle>
+                        </button>
+                        <input type="hidden" [(ngModel)]="returnUrl" name="returnUrl"/>
+                        <a href="#" id="forgotPassword">forgot your password?</a>
+                    </div>
+                </div>
+                <div id="footer">
+                    &copy; 2016 OElite Ltd.
+                </div>
+            </div>
+        </form>
+
+    </loginSection>
+</section>
+<md-progress-bar color="primary" [mode]="isValidating ? 'indeterminate': 'determinate'"
+                 [value]="100"
+                 [bufferValue]="0">
+</md-progress-bar>

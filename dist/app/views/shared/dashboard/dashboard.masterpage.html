@@ -1,0 +1,61 @@
+<oe-layout [attr.viewId]="viewId" >
+    <oe-layout-top-outer>
+        <md-progress-bar color="primary" [mode]="isAppLoading ? 'indeterminate': 'determinate'" [value]="100"
+                         [bufferValue]="0">
+        </md-progress-bar>
+        <md-card class="mdl-color--primary mdl-color-text--white">
+            <div layout="row">
+                <div flex>
+                    <div class="leftNavSwitch" (click)="toggleLeftNav()">
+                        <span class="logo"></span>
+                    </div>
+                </div>
+                <div flex flex-auto class="mdl-typography--text-right navButtons">
+                    <div mdlUpgrade>
+                        <button md-button id="demo-menu-lower-left2"
+                                class="mdl-js-button mdl-js-ripple-effect divider-right userMenu">
+
+                            <img src="../../../../assets/img/avatar/profile.jpg"
+                                 class="img-responsive img-circle box-32-32"/>
+                            <span>Lida Weng</span>
+                            <md-icon>keyboard_arrow_down</md-icon>
+                        </button>
+                        <ul class="mdl-menu mdl-menu--bottom-right  mdl-js-menu mdl-js-ripple-effect"
+                            for="demo-menu-lower-left2">
+                            <li class="mdl-menu__item">Some Action222</li>
+                            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider">Another Action</li>
+                            <li disabled class="mdl-menu__item">Disabled Action</li>
+                            <li class="mdl-menu__item"><a [routerLink]="['/login']">Yet Another Action</a></li>
+                        </ul>
+                        <button md-button id="btnRightOuterMenuToggle"
+                                class="mdl-js-button mdl-js-ripple-effect divider-right "
+                                (click)="toggleRightNav()">
+                            <md-icon>more_vert</md-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </md-card>
+    </oe-layout-top-outer>
+
+
+    <oe-layout-left-outer *ngIf="layout.isViewable(layout.leftOuterView)"
+                          [ngClass]="{'active': layout.leftOuterView && layout.leftOuterView.uiState.isActive}">
+        <md-card>
+            <div class="mdl-color--primary mdl-color-text--white">
+                <div class="leftNavSwitch">
+                    <span class="logo"></span>
+                </div>
+                <md-slide-toggle class="leftNavSwitch-toggle" [ngModel]="layout.leftOuterView.uiState.isActive"
+                                 (change)="toggleLeftNav($event)"></md-slide-toggle>
+            </div>
+            <div oe-portal-leftnav>
+            </div>
+        </md-card>
+    </oe-layout-left-outer>
+    <oe-layout-right-inner [ngClass]="{'active':layout.rightInnerView && layout.rightInnerView.uiState.isActive}">
+        <md-card>
+            sdf
+        </md-card>
+    </oe-layout-right-inner>
+</oe-layout>

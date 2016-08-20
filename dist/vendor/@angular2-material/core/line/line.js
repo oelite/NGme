@@ -52,4 +52,17 @@ var MdLineSetter = (function () {
     return MdLineSetter;
 }());
 exports.MdLineSetter = MdLineSetter;
+var MdLineModule = (function () {
+    function MdLineModule() {
+    }
+    MdLineModule = __decorate([
+        core_1.NgModule({
+            exports: [MdLine],
+            declarations: [MdLine],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdLineModule);
+    return MdLineModule;
+}());
+exports.MdLineModule = MdLineModule;
 //# sourceMappingURL=line.js.map

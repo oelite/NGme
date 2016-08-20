@@ -13,8 +13,8 @@
 .oe-logo-circle.active {
   animation: rotate 0.8s infinite linear;
   border: 6px solid #fff;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   background: none;
   border-right-color: #acd036;
   border-radius: 50%;

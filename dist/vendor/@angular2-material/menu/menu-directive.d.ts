@@ -1,8 +1,8 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import { MenuPositionX, MenuPositionY } from './menu-positions';
 export declare class MdMenu {
-    private _showClickCatcher;
-    private _classList;
+    _showClickCatcher: boolean;
+    _classList: Object;
     positionX: MenuPositionX;
     positionY: MenuPositionY;
     templateRef: TemplateRef<any>;

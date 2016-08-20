@@ -12,3 +12,5 @@ export declare class Dir {
     dir: LayoutDirection;
     value: LayoutDirection;
 }
+export declare class RtlModule {
+}

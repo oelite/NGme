@@ -319,5 +319,19 @@ var MdCheckbox = (function () {
     return MdCheckbox;
 }());
 exports.MdCheckbox = MdCheckbox;
+/** @deprecated */
 exports.MD_CHECKBOX_DIRECTIVES = [MdCheckbox];
+var MdCheckboxModule = (function () {
+    function MdCheckboxModule() {
+    }
+    MdCheckboxModule = __decorate([
+        core_1.NgModule({
+            exports: exports.MD_CHECKBOX_DIRECTIVES,
+            declarations: exports.MD_CHECKBOX_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdCheckboxModule);
+    return MdCheckboxModule;
+}());
+exports.MdCheckboxModule = MdCheckboxModule;
 //# sourceMappingURL=checkbox.js.map

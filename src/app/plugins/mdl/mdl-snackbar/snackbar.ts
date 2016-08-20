@@ -1,9 +1,11 @@
 /**
  * Created by mleader1 on 06/07/2016.
  */
-import {Component, Input} from "@angular/core";
+import {Component, Input, NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule} from "@angular/forms";
 
-declare var $:any;
+declare var $: any;
 
 /**
  * NOTE: Lida Weng  05/07/2016
@@ -17,17 +19,17 @@ declare var $:any;
 })
 
 export class MdlSnackbar {
-    messages:MdlSnackbarMessage[] = [];
+    messages: MdlSnackbarMessage[] = [];
     @Input()
-    bgColor:string;
+    bgColor: string;
     @Input()
-    foreColor:string;
+    foreColor: string;
     @Input()
-    isFullWidth:boolean;
+    isFullWidth: boolean;
     @Input()
-    showOnTop:boolean;
+    showOnTop: boolean;
 
-    public  push(msg:MdlSnackbarMessage):void {
+    public  push(msg: MdlSnackbarMessage): void {
 
         var notification = <any>document.querySelector('.mdl-js-snackbar');
         if (msg) {
@@ -76,15 +78,23 @@ export class MdlSnackbar {
 }
 
 export class MdlSnackbarMessage {
-    message:string;
-    actionHandler:any;
-    actionText:string;
-    timeout:number
+    message: string;
+    actionHandler: any;
+    actionText: string;
+    timeout: number
 
-    constructor(message?:string, actionHandler?, actionText?:string, timeout?:number) {
+    constructor(message?: string, actionHandler?, actionText?: string, timeout?: number) {
         this.message = message || 'untitled message';
         this.actionHandler = actionHandler;
         this.actionText = actionText;
         this.timeout = timeout || 1500;
     }
+}
+
+@NgModule({
+    imports: [BrowserModule, FormsModule],
+    declarations: [MdlSnackbar],
+    exports: [MdlSnackbar]
+})
+export class OEmeMdlSnackbarModule {
 }

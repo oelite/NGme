@@ -2,18 +2,18 @@
   "_args": [
     [
       {
-        "raw": "angular2-cookie",
+        "raw": "angular2-cookie@1.2.2",
         "scope": null,
         "escapedName": "angular2-cookie",
         "name": "angular2-cookie",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
+        "rawSpec": "1.2.2",
+        "spec": "1.2.2",
+        "type": "version"
       },
       "/Volumes/Data/OElite/cosmos/public/OEme"
     ]
   ],
-  "_from": "angular2-cookie@latest",
+  "_from": "angular2-cookie@1.2.2",
   "_id": "angular2-cookie@1.2.2",
   "_inCache": true,
   "_installable": true,
@@ -30,13 +30,13 @@
   "_npmVersion": "3.8.9",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "angular2-cookie",
+    "raw": "angular2-cookie@1.2.2",
     "scope": null,
     "escapedName": "angular2-cookie",
     "name": "angular2-cookie",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "rawSpec": "1.2.2",
+    "spec": "1.2.2",
+    "type": "version"
   },
   "_requiredBy": [
     "#USER",
@@ -45,7 +45,7 @@
   "_resolved": "https://registry.npmjs.org/angular2-cookie/-/angular2-cookie-1.2.2.tgz",
   "_shasum": "805b5e08a8e89b15d62ad8efd19b7bd1fd6294e5",
   "_shrinkwrap": null,
-  "_spec": "angular2-cookie",
+  "_spec": "angular2-cookie@1.2.2",
   "_where": "/Volumes/Data/OElite/cosmos/public/OEme",
   "author": {
     "name": "Samet Alemdar",

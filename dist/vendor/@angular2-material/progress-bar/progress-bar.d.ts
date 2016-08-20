@@ -28,4 +28,7 @@ export declare class MdProgressBar {
         transform: string;
     };
 }
+/** @deprecated */
 export declare const MD_PROGRESS_BAR_DIRECTIVES: typeof MdProgressBar[];
+export declare class MdProgressBarModule {
+}

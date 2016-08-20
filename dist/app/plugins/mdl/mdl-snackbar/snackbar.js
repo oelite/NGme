@@ -12,6 +12,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by mleader1 on 06/07/2016.
  */
 var core_1 = require("@angular/core");
+var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
 /**
  * NOTE: Lida Weng  05/07/2016
  * Ths component requires jQuery and Google MDL library (getmdl.io)
@@ -87,4 +89,18 @@ var MdlSnackbarMessage = (function () {
     return MdlSnackbarMessage;
 }());
 exports.MdlSnackbarMessage = MdlSnackbarMessage;
+var OEmeMdlSnackbarModule = (function () {
+    function OEmeMdlSnackbarModule() {
+    }
+    OEmeMdlSnackbarModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
+            declarations: [MdlSnackbar],
+            exports: [MdlSnackbar]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], OEmeMdlSnackbarModule);
+    return OEmeMdlSnackbarModule;
+}());
+exports.OEmeMdlSnackbarModule = OEmeMdlSnackbarModule;
 //# sourceMappingURL=snackbar.js.map

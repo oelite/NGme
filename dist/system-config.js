@@ -13,6 +13,7 @@ var map = {
 var packages = {};
 var materialPkgs = [
     'button',
+    'button-toggle',
     'card',
     'checkbox',
     'core',
@@ -20,13 +21,16 @@ var materialPkgs = [
     'icon',
     'input',
     'list',
+    'menu',
     'progress-bar',
     'progress-circle',
     'radio',
     'sidenav',
+    'slider',
     'slide-toggle',
     'tabs',
-    'toolbar'
+    'toolbar',
+    'tooltip'
 ];
 materialPkgs.forEach(function (pkg) {
     packages[("@angular2-material/" + pkg)] = { main: pkg + ".js" };

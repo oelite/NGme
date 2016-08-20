@@ -15,3 +15,5 @@ export declare class MdLineSetter {
     private _resetClasses();
     private _setClass(className, bool);
 }
+export declare class MdLineModule {
+}

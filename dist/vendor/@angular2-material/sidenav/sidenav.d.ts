@@ -137,4 +137,7 @@ export declare class MdSidenavLayout implements AfterContentInit {
         transform: string;
     };
 }
+/** @deprecated */
 export declare const MD_SIDENAV_DIRECTIVES: (typeof MdSidenavLayout | typeof MdSidenav)[];
+export declare class MdSidenavModule {
+}

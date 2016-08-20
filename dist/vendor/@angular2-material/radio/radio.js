@@ -270,9 +270,6 @@ var MdRadioButton = (function () {
                 // Notify all radio buttons with the same name to un-check.
                 this.radioDispatcher.notify(this.id, this.name);
             }
-            if (newCheckedState != this._checked) {
-                this._emitChangeEvent();
-            }
             this._checked = newCheckedState;
             if (newCheckedState && this.radioGroup && this.radioGroup.value != this.value) {
                 this.radioGroup.selected = this;
@@ -334,22 +331,6 @@ var MdRadioButton = (function () {
         event.value = this._value;
         this.change.emit(event);
     };
-    MdRadioButton.prototype._onClick = function (event) {
-        if (this.disabled) {
-            event.preventDefault();
-            event.stopPropagation();
-            return;
-        }
-        if (this.radioGroup != null) {
-            // Propagate the change one-way via the group, which will in turn mark this
-            // button as checked.
-            this.radioGroup.selected = this;
-            this.radioGroup._touch();
-        }
-        else {
-            this.checked = true;
-        }
-    };
     /**
      * We use a hidden native input field to handle changes to focus state via keyboard navigation,
      * with visual rendering done separately. The native element is kept in sync with the overall
@@ -358,14 +339,28 @@ var MdRadioButton = (function () {
     MdRadioButton.prototype._onInputFocus = function () {
         this._isFocused = true;
     };
+    /** TODO: internal */
     MdRadioButton.prototype._onInputBlur = function () {
         this._isFocused = false;
         if (this.radioGroup) {
             this.radioGroup._touch();
         }
     };
+    /** TODO: internal */
+    MdRadioButton.prototype._onInputClick = function (event) {
+        // We have to stop propagation for click events on the visual hidden input element.
+        // By default, when a user clicks on a label element, a generated click event will be
+        // dispatched on the associated input element. Since we are using a label element as our
+        // root container, the click event on the `radio-button` will be executed twice.
+        // The real click event will bubble up, and the generated click event also tries to bubble up.
+        // This will lead to multiple click events.
+        // Preventing bubbling for the second event will solve that issue.
+        event.stopPropagation();
+    };
     /**
-     * Checks the radio due to an interaction with the underlying native <input type="radio">
+     * Triggered when the radio button received a click or the input recognized any change.
+     * Clicking on a label element, will trigger a change event on the associated input.
+     * TODO: internal
      */
     MdRadioButton.prototype._onInputChange = function (event) {
         // We always have to stop propagation on the change event.
@@ -373,6 +368,7 @@ var MdRadioButton = (function () {
         // emit its event object to the `change` output.
         event.stopPropagation();
         this.checked = true;
+        this._emitChangeEvent();
         if (this.radioGroup) {
             this.radioGroup._touch();
         }
@@ -424,12 +420,9 @@ var MdRadioButton = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'md-radio-button',
-            template: "<!-- TODO(jelbourn): render the radio on either side of the content --> <!-- TODO(mtlin): Evaluate trade-offs of using native radio vs. cost of additional bindings. --> <label [attr.for]=\"inputId\" class=\"md-radio-label\"> <!-- The actual 'radio' part of the control. --> <div class=\"md-radio-container\"> <div class=\"md-radio-outer-circle\"></div> <div class=\"md-radio-inner-circle\"></div> <div class=\"md-ink-ripple\"></div> </div> <input #input class=\"md-radio-input\" type=\"radio\" [id]=\"inputId\" [checked]=\"checked\" [disabled]=\"disabled\" [name]=\"name\" [attr.aria-label]=\"ariaLabel\" [attr.aria-labelledby]=\"ariaLabelledby\" (change)=\"_onInputChange($event)\" (focus)=\"_onInputFocus()\" (blur)=\"_onInputBlur()\"> <!-- The label content for radio control. --> <div class=\"md-radio-label-content\" [class.md-radio-align-end]=\"align == 'end'\"> <ng-content></ng-content> </div> </label> ",
+            template: "<!-- TODO(jelbourn): render the radio on either side of the content --> <!-- TODO(mtlin): Evaluate trade-offs of using native radio vs. cost of additional bindings. --> <label [attr.for]=\"inputId\" class=\"md-radio-label\"> <!-- The actual 'radio' part of the control. --> <div class=\"md-radio-container\"> <div class=\"md-radio-outer-circle\"></div> <div class=\"md-radio-inner-circle\"></div> <div class=\"md-ink-ripple\"></div> </div> <input #input class=\"md-radio-input\" type=\"radio\" [id]=\"inputId\" [checked]=\"checked\" [disabled]=\"disabled\" [name]=\"name\" [attr.aria-label]=\"ariaLabel\" [attr.aria-labelledby]=\"ariaLabelledby\" (change)=\"_onInputChange($event)\" (focus)=\"_onInputFocus()\" (blur)=\"_onInputBlur()\" (click)=\"_onInputClick($event)\"> <!-- The label content for radio control. --> <div class=\"md-radio-label-content\" [class.md-radio-align-end]=\"align == 'end'\"> <ng-content></ng-content> </div> </label> ",
             styles: ["/** * Mixin that creates a new stacking context. * see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context */ /** * This mixin hides an element visually. * That means it's still accessible for screen-readers but not visible in view. */ /** * Forces an element to grow to fit floated contents; used as as an alternative to * `overflow: hidden;` because it doesn't cut off contents. */ /** * A mixin, which generates temporary ink ripple on a given component. * When $bindToParent is set to true, it will check for the focused class on the same selector as you included * that mixin. * It is also possible to specify the color palette of the temporary ripple. By default it uses the * accent palette for its background. */ md-radio-button { display: inline-block; } .md-radio-label { cursor: pointer; display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; -webkit-box-align: baseline; -ms-flex-align: baseline; align-items: baseline; white-space: nowrap; } .md-radio-container { box-sizing: border-box; display: inline-block; height: 20px; position: relative; width: 20px; top: 2px; } .md-radio-outer-circle { border-color: rgba(0, 0, 0, 0.54); border: solid 2px; border-radius: 50%; box-sizing: border-box; height: 20px; left: 0; position: absolute; top: 0; -webkit-transition: border-color ease 280ms; transition: border-color ease 280ms; width: 20px; } .md-radio-checked .md-radio-outer-circle { border-color: #4caf50; } .md-radio-disabled .md-radio-outer-circle { border-color: rgba(0, 0, 0, 0.38); } .md-radio-inner-circle { background-color: #4caf50; border-radius: 50%; box-sizing: border-box; height: 20px; left: 0; position: absolute; top: 0; -webkit-transition: background-color ease 280ms, -webkit-transform ease 280ms; transition: background-color ease 280ms, -webkit-transform ease 280ms; transition: transform ease 280ms, background-color ease 280ms; transition: transform ease 280ms, background-color ease 280ms, -webkit-transform ease 280ms; -webkit-transform: scale(0); transform: scale(0); width: 20px; } .md-radio-checked .md-radio-inner-circle { -webkit-transform: scale(0.5); transform: scale(0.5); } .md-radio-disabled .md-radio-inner-circle { background-color: rgba(0, 0, 0, 0.38); } .md-radio-label-content { display: inline-block; -webkit-box-ordinal-group: 1; -ms-flex-order: 0; order: 0; line-height: inherit; padding-left: 8px; padding-right: 0; } [dir='rtl'] .md-radio-label-content { padding-right: 8px; padding-left: 0; } .md-radio-label-content.md-radio-align-end { -webkit-box-ordinal-group: 0; -ms-flex-order: -1; order: -1; padding-left: 0; padding-right: 8px; } [dir='rtl'] .md-radio-label-content.md-radio-align-end { padding-right: 0; padding-left: 8px; } .md-radio-input { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; text-transform: none; width: 1px; } .md-radio-disabled, .md-radio-disabled .md-radio-label { cursor: default; } .md-ink-ripple { border-radius: 50%; opacity: 0; height: 48px; left: 50%; overflow: hidden; pointer-events: none; position: absolute; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -webkit-transition: opacity ease 280ms, background-color ease 280ms; transition: opacity ease 280ms, background-color ease 280ms; width: 48px; } .md-radio-focused .md-ink-ripple { opacity: 1; background-color: rgba(76, 175, 80, 0.26); } .md-radio-disabled .md-ink-ripple { background-color: #000; } "],
-            encapsulation: core_1.ViewEncapsulation.None,
-            host: {
-                '(click)': '_onClick($event)'
-            }
+            encapsulation: core_1.ViewEncapsulation.None
         }),
         __param(0, core_1.Optional()), 
         __metadata('design:paramtypes', [MdRadioGroup, unique_selection_dispatcher_1.MdUniqueSelectionDispatcher])
@@ -437,5 +430,20 @@ var MdRadioButton = (function () {
     return MdRadioButton;
 }());
 exports.MdRadioButton = MdRadioButton;
+/** @deprecated */
 exports.MD_RADIO_DIRECTIVES = [MdRadioGroup, MdRadioButton];
+var MdRadioModule = (function () {
+    function MdRadioModule() {
+    }
+    MdRadioModule = __decorate([
+        core_1.NgModule({
+            exports: exports.MD_RADIO_DIRECTIVES,
+            declarations: exports.MD_RADIO_DIRECTIVES,
+            providers: [unique_selection_dispatcher_1.MdUniqueSelectionDispatcher]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdRadioModule);
+    return MdRadioModule;
+}());
+exports.MdRadioModule = MdRadioModule;
 //# sourceMappingURL=radio.js.map

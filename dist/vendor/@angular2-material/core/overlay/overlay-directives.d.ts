@@ -32,3 +32,5 @@ export declare class ConnectedOverlayDirective implements OnInit, OnDestroy {
     private _destroyOverlay();
 }
 export declare const OVERLAY_DIRECTIVES: (typeof ConnectedOverlayDirective | typeof OverlayOrigin)[];
+export declare class OverlayModule {
+}

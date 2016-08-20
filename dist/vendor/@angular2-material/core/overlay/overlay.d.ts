@@ -48,4 +48,4 @@ export declare class Overlay {
     private _createOverlayRef(pane, state);
 }
 /** Providers for Overlay and its related injectables. */
-export declare const OVERLAY_PROVIDERS: (typeof ViewportRuler | typeof OverlayPositionBuilder | typeof Overlay)[];
+export declare const OVERLAY_PROVIDERS: (typeof ViewportRuler | typeof OverlayPositionBuilder | typeof Overlay | typeof OverlayContainer)[];

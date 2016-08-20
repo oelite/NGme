@@ -125,6 +125,9 @@ section {
   width: 64px !important;
   height: 64px !important; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 .oe-logo-circle {
   background: url("../../../assets/img/logo_circle.png") no-repeat;
   -webkit-background-size: cover;
@@ -140,8 +143,8 @@ section {
 .oe-logo-circle.active {
   animation: rotate 0.8s infinite linear;
   border: 6px solid #fff;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   background: none;
   border-right-color: #acd036;
   border-radius: 50%;

@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -7,13 +14,12 @@ var __extends = (this && this.__extends) || function (d, b) {
 var core_1 = require('@angular/core');
 var async_1 = require('../../facade/async');
 var collection_1 = require('../../facade/collection');
-var exceptions_1 = require('../../facade/exceptions');
 var lang_1 = require('../../facade/lang');
 var validators_1 = require('../../validators');
 var control_container_1 = require('../control_container');
+var reactive_errors_1 = require('../reactive_errors');
 var shared_1 = require('../shared');
-exports.formDirectiveProvider = 
-/*@ts2dart_const*/ /* @ts2dart_Provider */ {
+exports.formDirectiveProvider = {
     provide: control_container_1.ControlContainer,
     useExisting: core_1.forwardRef(function () { return FormGroupDirective; })
 };
@@ -60,41 +66,48 @@ var FormGroupDirective = (function (_super) {
         configurable: true
     });
     FormGroupDirective.prototype.addControl = function (dir) {
-        var ctrl = this.form.find(dir.path);
+        var ctrl = this.form.get(dir.path);
         shared_1.setUpControl(ctrl, dir);
         ctrl.updateValueAndValidity({ emitEvent: false });
         this.directives.push(dir);
-        return ctrl;
     };
-    FormGroupDirective.prototype.getControl = function (dir) { return this.form.find(dir.path); };
+    FormGroupDirective.prototype.getControl = function (dir) { return this.form.get(dir.path); };
     FormGroupDirective.prototype.removeControl = function (dir) { collection_1.ListWrapper.remove(this.directives, dir); };
     FormGroupDirective.prototype.addFormGroup = function (dir) {
-        var ctrl = this.form.find(dir.path);
-        shared_1.setUpFormGroup(ctrl, dir);
+        var ctrl = this.form.get(dir.path);
+        shared_1.setUpFormContainer(ctrl, dir);
         ctrl.updateValueAndValidity({ emitEvent: false });
     };
     FormGroupDirective.prototype.removeFormGroup = function (dir) { };
-    FormGroupDirective.prototype.getFormGroup = function (dir) { return this.form.find(dir.path); };
+    FormGroupDirective.prototype.getFormGroup = function (dir) { return this.form.get(dir.path); };
+    FormGroupDirective.prototype.addFormArray = function (dir) {
+        var ctrl = this.form.get(dir.path);
+        shared_1.setUpFormContainer(ctrl, dir);
+        ctrl.updateValueAndValidity({ emitEvent: false });
+    };
+    FormGroupDirective.prototype.removeFormArray = function (dir) { };
+    FormGroupDirective.prototype.getFormArray = function (dir) { return this.form.get(dir.path); };
     FormGroupDirective.prototype.updateModel = function (dir, value) {
-        var ctrl = this.form.find(dir.path);
-        ctrl.updateValue(value);
+        var ctrl = this.form.get(dir.path);
+        ctrl.setValue(value);
     };
     FormGroupDirective.prototype.onSubmit = function () {
         this._submitted = true;
-        async_1.ObservableWrapper.callEmit(this.ngSubmit, null);
+        this.ngSubmit.emit(null);
         return false;
     };
+    FormGroupDirective.prototype.onReset = function () { this.form.reset(); };
     /** @internal */
     FormGroupDirective.prototype._updateDomValue = function () {
         var _this = this;
         this.directives.forEach(function (dir) {
-            var ctrl = _this.form.find(dir.path);
+            var ctrl = _this.form.get(dir.path);
             dir.valueAccessor.writeValue(ctrl.value);
         });
     };
     FormGroupDirective.prototype._checkFormPresent = function () {
         if (lang_1.isBlank(this.form)) {
-            throw new exceptions_1.BaseException("formGroup expects a FormGroup instance. Please pass one in.\n           Example: <form [formGroup]=\"myFormGroup\">\n      ");
+            reactive_errors_1.ReactiveErrors.missingFormException();
         }
     };
     /** @nocollapse */
@@ -102,7 +115,7 @@ var FormGroupDirective = (function (_super) {
         { type: core_1.Directive, args: [{
                     selector: '[formGroup]',
                     providers: [exports.formDirectiveProvider],
-                    host: { '(submit)': 'onSubmit()' },
+                    host: { '(submit)': 'onSubmit()', '(reset)': 'onReset()' },
                     exportAs: 'ngForm'
                 },] },
     ];

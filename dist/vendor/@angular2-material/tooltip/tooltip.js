@@ -9,9 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var overlay_1 = require('@angular2-material/core/overlay/overlay');
-var overlay_state_1 = require('@angular2-material/core/overlay/overlay-state');
-var portal_1 = require('@angular2-material/core/portal/portal');
+var core_2 = require('@angular2-material/core/core');
 var MdTooltip = (function () {
     function MdTooltip(_overlay, _elementRef, _viewContainerRef, _changeDetectionRef) {
         this._overlay = _overlay;
@@ -75,7 +73,7 @@ var MdTooltip = (function () {
             var origin = this._getOrigin();
             var position = this._getOverlayPosition();
             var strategy = this._overlay.position().connectedTo(this._elementRef, origin, position);
-            var config = new overlay_state_1.OverlayState();
+            var config = new core_2.OverlayState();
             config.positionStrategy = strategy;
             this._overlay.create(config).then(function (ref) {
                 _this._overlayRef = ref;
@@ -125,7 +123,7 @@ var MdTooltip = (function () {
         var _this = this;
         if (!this.visible && this._overlayRef && !this._overlayRef.hasAttached()) {
             this.visible = true;
-            var promise = this._overlayRef.attach(new portal_1.ComponentPortal(TooltipComponent, this._viewContainerRef));
+            var promise = this._overlayRef.attach(new core_2.ComponentPortal(TooltipComponent, this._viewContainerRef));
             promise.then(function (ref) {
                 ref.instance.message = _this.message;
                 _this._updatePosition();
@@ -178,7 +176,7 @@ var MdTooltip = (function () {
                 '(mouseleave)': '_handleMouseLeave($event)',
             }
         }), 
-        __metadata('design:paramtypes', [overlay_1.Overlay, core_1.ElementRef, core_1.ViewContainerRef, core_1.ChangeDetectorRef])
+        __metadata('design:paramtypes', [core_2.Overlay, core_1.ElementRef, core_1.ViewContainerRef, core_1.ChangeDetectorRef])
     ], MdTooltip);
     return MdTooltip;
 }());
@@ -197,5 +195,22 @@ var TooltipComponent = (function () {
     ], TooltipComponent);
     return TooltipComponent;
 }());
+exports.TooltipComponent = TooltipComponent;
+/** @deprecated */
 exports.MD_TOOLTIP_DIRECTIVES = [MdTooltip];
+var MdTooltipModule = (function () {
+    function MdTooltipModule() {
+    }
+    MdTooltipModule = __decorate([
+        core_1.NgModule({
+            imports: [core_2.OverlayModule],
+            exports: [exports.MD_TOOLTIP_DIRECTIVES, TooltipComponent],
+            declarations: [exports.MD_TOOLTIP_DIRECTIVES, TooltipComponent],
+            entryComponents: [TooltipComponent],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdTooltipModule);
+    return MdTooltipModule;
+}());
+exports.MdTooltipModule = MdTooltipModule;
 //# sourceMappingURL=tooltip.js.map

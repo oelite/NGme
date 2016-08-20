@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 var exceptions_1 = require('../facade/exceptions');
 var lang_1 = require('../facade/lang');
@@ -23,6 +30,16 @@ var AbstractControlDirective = (function () {
     });
     Object.defineProperty(AbstractControlDirective.prototype, "valid", {
         get: function () { return lang_1.isPresent(this.control) ? this.control.valid : null; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractControlDirective.prototype, "invalid", {
+        get: function () { return lang_1.isPresent(this.control) ? this.control.invalid : null; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractControlDirective.prototype, "pending", {
+        get: function () { return lang_1.isPresent(this.control) ? this.control.pending : null; },
         enumerable: true,
         configurable: true
     });
@@ -53,11 +70,30 @@ var AbstractControlDirective = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AbstractControlDirective.prototype, "statusChanges", {
+        get: function () {
+            return lang_1.isPresent(this.control) ? this.control.statusChanges : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractControlDirective.prototype, "valueChanges", {
+        get: function () {
+            return lang_1.isPresent(this.control) ? this.control.valueChanges : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(AbstractControlDirective.prototype, "path", {
         get: function () { return null; },
         enumerable: true,
         configurable: true
     });
+    AbstractControlDirective.prototype.reset = function (value) {
+        if (value === void 0) { value = undefined; }
+        if (lang_1.isPresent(this.control))
+            this.control.reset(value);
+    };
     return AbstractControlDirective;
 }());
 exports.AbstractControlDirective = AbstractControlDirective;

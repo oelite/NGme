@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 var core_1 = require('@angular/core');
 var lang_1 = require('../facade/lang');
@@ -20,7 +27,7 @@ var ReplacePipe = (function () {
             throw new invalid_pipe_argument_exception_1.InvalidPipeArgumentException(ReplacePipe, replacement);
         }
         if (lang_1.isFunction(replacement)) {
-            var rgxPattern = lang_1.isString(pattern) ? lang_1.RegExpWrapper.create(pattern) : pattern;
+            var rgxPattern = lang_1.isString(pattern) ? new RegExp(pattern, 'g') : pattern;
             return lang_1.StringWrapper.replaceAllMapped(input, rgxPattern, replacement);
         }
         if (pattern instanceof RegExp) {

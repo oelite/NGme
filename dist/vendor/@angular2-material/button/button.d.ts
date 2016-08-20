@@ -7,6 +7,8 @@ export declare class MdButton {
     _isKeyboardFocused: boolean;
     /** Whether a mousedown has occurred on this element in the last 100ms. */
     _isMouseDown: boolean;
+    /** Whether the ripple effect on click should be disabled. */
+    disableRipple: boolean;
     constructor(_elementRef: ElementRef, _renderer: Renderer);
     color: string;
     _setMousedown(): void;
@@ -16,6 +18,9 @@ export declare class MdButton {
     _removeKeyboardFocus(): void;
     /** TODO(hansl): e2e test this function. */
     focus(): void;
+    getHostElement(): any;
+    isRoundButton(): any;
+    isRippleEnabled(): boolean;
 }
 export declare class MdAnchor extends MdButton {
     _disabled: boolean;
@@ -25,4 +30,7 @@ export declare class MdAnchor extends MdButton {
     disabled: boolean;
     _haltDisabledEvents(event: Event): void;
 }
+/** @deprecated */
 export declare const MD_BUTTON_DIRECTIVES: Type[];
+export declare class MdButtonModule {
+}

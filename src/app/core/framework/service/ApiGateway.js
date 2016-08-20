@@ -5,9 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Rx_1 = require("rxjs/Rx");
+var core_2 = require("angular2-cookie/core");
 /**
  * Created by mleader1 on 29/06/2016.
  * The code was adapted from
@@ -242,7 +246,9 @@ var ApiGateway = (function () {
         return (value.json());
     };
     ApiGateway = __decorate([
-        core_1.Injectable()
+        core_1.Injectable(),
+        __param(0, core_1.Inject(http_1.Http)),
+        __param(1, core_1.Inject(core_2.CookieService))
     ], ApiGateway);
     return ApiGateway;
 }());

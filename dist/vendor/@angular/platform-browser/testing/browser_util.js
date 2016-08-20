@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 "use strict";
 var dom_adapter_1 = require('../src/dom/dom_adapter');
 var collection_1 = require('../src/facade/collection');
@@ -27,7 +34,8 @@ var BrowserDetection = (function () {
     Object.defineProperty(BrowserDetection.prototype, "isAndroid", {
         get: function () {
             return this._ua.indexOf('Mozilla/5.0') > -1 && this._ua.indexOf('Android') > -1 &&
-                this._ua.indexOf('AppleWebKit') > -1 && this._ua.indexOf('Chrome') == -1;
+                this._ua.indexOf('AppleWebKit') > -1 && this._ua.indexOf('Chrome') == -1 &&
+                this._ua.indexOf('IEMobile') == -1;
         },
         enumerable: true,
         configurable: true
@@ -44,14 +52,16 @@ var BrowserDetection = (function () {
     });
     Object.defineProperty(BrowserDetection.prototype, "isWebkit", {
         get: function () {
-            return this._ua.indexOf('AppleWebKit') > -1 && this._ua.indexOf('Edge') == -1;
+            return this._ua.indexOf('AppleWebKit') > -1 && this._ua.indexOf('Edge') == -1 &&
+                this._ua.indexOf('IEMobile') == -1;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(BrowserDetection.prototype, "isIOS7", {
         get: function () {
-            return this._ua.indexOf('iPhone OS 7') > -1 || this._ua.indexOf('iPad OS 7') > -1;
+            return (this._ua.indexOf('iPhone OS 7') > -1 || this._ua.indexOf('iPad OS 7') > -1) &&
+                this._ua.indexOf('IEMobile') == -1;
         },
         enumerable: true,
         configurable: true

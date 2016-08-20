@@ -6,34 +6,34 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var OEView_1 = require("./OEView");
 var funcs_1 = require("../../../utils/funcs");
-var globals_1 = require("../../../../../custom/globals");
 /**
  * Created by mleader1 on 04/07/2016.
  */
 var AuthorizedView = (function (_super) {
     __extends(AuthorizedView, _super);
-    function AuthorizedView(appState, signInService, router, viewId) {
+    function AuthorizedView(appState, router, activatedRoute, signInService, viewId) {
         var _this = this;
-        _super.call(this, appState, router, viewId);
+        _super.call(this, appState, router, activatedRoute, viewId);
         this.signInService = signInService;
-        signInService.onUserAuthenticated$.subscribe(function (result) {
+        this.signInService.onUserAuthenticated$.subscribe(function (result) {
             if (result.id > 0)
                 _this.currentUser = result;
         });
     }
     AuthorizedView.prototype.ngOnInit = function () {
-        var _this = this;
-        _super.prototype.ngOnInit.call(this);
+        console.log('a==============a');
+        console.log(this.signInService.loggedInUser);
         this.currentUser = this.currentUser || this.signInService.loggedInUser;
-        if (this.currentUser == null) {
-            this.signInService.Authenticate(true).catch(function (e) {
-                _this.router.navigateByUrl(globals_1.loginPath);
-            }).then(function (res) {
-                if (!res) {
-                    _this.router.navigateByUrl(globals_1.loginPath);
-                }
-            });
-        }
+        // if (this.currentUser == null) {
+        //     this.signInService.Authenticate(true).catch(e=> {
+        //         this.router.navigateByUrl(loginPath);
+        //     }).then((res)=> {
+        //         if (!res) {
+        //             this.router.navigateByUrl(loginPath);
+        //         }
+        //     });
+        // }
+        _super.prototype.ngOnInit.call(this);
     };
     AuthorizedView.viewSelector = "oe-auth-view-" + funcs_1.Utils.NewGuid().toString();
     return AuthorizedView;

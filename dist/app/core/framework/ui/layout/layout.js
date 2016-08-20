@@ -12,7 +12,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var framework_1 = require("../../../framework");
 var OELayoutConfig_1 = require("../../layout/OELayoutConfig");
 var OEAppState_1 = require("../../OEAppState");
 var OELayout = (function () {
@@ -94,9 +93,7 @@ var OELayout = (function () {
             selector: 'oe-layout',
             encapsulation: core_1.ViewEncapsulation.None,
             templateUrl: 'layout.html',
-            directives: [framework_1.OEPartialView],
             styleUrls: ['layout.css'],
-            providers: []
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, OEAppState_1.OEAppState])
     ], OELayout);

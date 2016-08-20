@@ -17,4 +17,7 @@ export declare class MdListItem implements AfterContentInit {
     _handleFocus(): void;
     _handleBlur(): void;
 }
+/** @deprecated */
 export declare const MD_LIST_DIRECTIVES: (typeof MdList | typeof MdListItem)[];
+export declare class MdListModule {
+}

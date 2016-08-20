@@ -165,6 +165,17 @@
   [md-icon-button] .md-button-wrapper > * {
     vertical-align: middle; }
 
+.md-button-ripple {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+
+.md-button-ripple-round {
+  border-radius: 50%;
+  z-index: 1; }
+
 [md-button]:hover::after, [md-icon-button]:hover::after {
   position: absolute;
   top: 0;

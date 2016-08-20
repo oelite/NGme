@@ -1,14 +1,11 @@
 import {
     Component,
     ViewContainerRef,
-    ComponentResolver,
     ComponentMetadata,
-    ComponentFactory,
-    ReflectiveInjector,
     ViewEncapsulation,
     OnChanges,
     Input,
-    ViewChild
+    ViewChild, Compiler, ReflectiveInjector,
 } from "@angular/core";
 import {OELayoutConfig} from "../../layout/OELayoutConfig";
 
@@ -16,14 +13,8 @@ import {OELayoutConfig} from "../../layout/OELayoutConfig";
  * Created by mleader1 on 29/06/2016.
  */
 
-export function createComponentFactory(resolver:ComponentResolver, metadata:ComponentMetadata):Promise<ComponentFactory<any>> {
-    const cmpClass = class OEmePartialView {
-    };
-    const decoratedCmp = Component(metadata)(cmpClass);
-    return resolver.resolveComponent(decoratedCmp);
-}
-
 @Component({
+    moduleId: module.id,
     selector: "oe-partial-view",
     encapsulation: ViewEncapsulation.None,
     template: "<div #target></div>"
@@ -31,30 +22,35 @@ export function createComponentFactory(resolver:ComponentResolver, metadata:Comp
 
 export class OEPartialView implements OnChanges {
     @Input()
-    public layoutConfig:OELayoutConfig;
-    @ViewChild('target', {read: ViewContainerRef}) viewContainerRef:ViewContainerRef;
+    public layoutConfig: OELayoutConfig;
+    @ViewChild('target', {read: ViewContainerRef}) viewContainerRef: ViewContainerRef;
 
-    constructor(private resolver:ComponentResolver) {
+    constructor(private compiler: Compiler) {
         this.layoutConfig = null;
     }
 
-    ngOnChanges() {
-
-        if (!this.layoutConfig) return;
-
-
+    private _createDynamicComponent() {
         const metaData = new ComponentMetadata({
             selector: 'view',
             template: this.parseViewSelectorToTags(this.layoutConfig.viewSelector),
             encapsulation: ViewEncapsulation.None,
-            directives: this.layoutConfig.viewDirectives,
-            providers: this.layoutConfig.viewProviders
+            //directives: this.layoutConfig.viewDirectives,
+            //providers: this.layoutConfig.viewProviders
         });
 
-        createComponentFactory(this.resolver, metaData)
-            .then(factory=> {
+        const cmpClass = class _ {
+        };
+        cmpClass.prototype = this.viewContainerRef;
+        return Component(metaData)(cmpClass);
+    }
+
+    ngOnChanges() {
+        if (!this.layoutConfig) return;
+        this.compiler.compileComponentAsync(this._createDynamicComponent())
+            .then(factory => {
                 const injector = ReflectiveInjector.fromResolvedProviders([], this.viewContainerRef.parentInjector);
-                this.viewContainerRef.createComponent(factory, 0, injector, []);
+                this.viewContainerRef.clear();
+                this.viewContainerRef.createComponent(factory, 0, injector);
             });
     }
 
@@ -64,7 +60,7 @@ export class OEPartialView implements OnChanges {
      * TODO: should be improved, it' lack of full functionality
      * @param viewSelector
      */
-    parseViewSelectorToTags(viewSelector:string):string {
+    parseViewSelectorToTags(viewSelector: string): string {
         var result = "";
         var tag = "";
         var classes = "";

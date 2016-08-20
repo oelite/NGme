@@ -107,4 +107,7 @@ export declare class MdCheckbox implements ControlValueAccessor {
     _onInputClick(event: Event): void;
     private _getAnimationClassForCheckStateTransition(oldState, newState);
 }
+/** @deprecated */
 export declare const MD_CHECKBOX_DIRECTIVES: typeof MdCheckbox[];
+export declare class MdCheckboxModule {
+}

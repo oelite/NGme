@@ -9,7 +9,7 @@ import {OELayoutStateChange} from "../../layout/OELayoutState";
 import {OEAppState} from "../../OEAppState";
 import {OEUIState} from "../../layout/OEUIState";
 import {IOERoute} from "../../IOEModule";
-declare var $:any;  //jquery support
+declare var $: any;  //jquery support
 
 
 @Component({
@@ -17,29 +17,27 @@ declare var $:any;  //jquery support
     selector: 'oe-layout',
     encapsulation: ViewEncapsulation.None,
     templateUrl: 'layout.html',
-    directives: [OEPartialView],
     styleUrls: ['layout.css'],
-    providers: []
 })
 
 export class OELayout {
-    private el:HTMLElement;
+    private el: HTMLElement;
 
-    public topOuterView:OELayoutConfig;
-    public mainView:OELayoutConfig;
-    public bottomInnerView:OELayoutConfig;
-    public bottomOuterView:OELayoutConfig;
-    public rightInnerView:OELayoutConfig;
-    public rightOuterView:OELayoutConfig;
-    public leftInnerView:OELayoutConfig;
-    public leftOuterView:OELayoutConfig;
-    public topInnerView:OELayoutConfig;
+    public topOuterView: OELayoutConfig;
+    public mainView: OELayoutConfig;
+    public bottomInnerView: OELayoutConfig;
+    public bottomOuterView: OELayoutConfig;
+    public rightInnerView: OELayoutConfig;
+    public rightOuterView: OELayoutConfig;
+    public leftInnerView: OELayoutConfig;
+    public leftOuterView: OELayoutConfig;
+    public topInnerView: OELayoutConfig;
 
 
     @Input('viewId')
-    viewId:string;
+    viewId: string;
 
-    constructor(el:ElementRef, public appState:OEAppState) {
+    constructor(el: ElementRef, public appState: OEAppState) {
         this.el = el.nativeElement;
         appState.layoutState.rootLayoutsUpdated$.subscribe(item=>this.viewStateUpdated(item));
     }
@@ -56,11 +54,11 @@ export class OELayout {
         this.topInnerView = this.appState.layoutState.getState(LayoutSection.TopInner, this.viewId);
     }
 
-    isViewable(viewConfig:OELayoutConfig):boolean {
+    isViewable(viewConfig: OELayoutConfig): boolean {
         return viewConfig && viewConfig.isViewable();
     }
 
-    viewStateUpdated(item:OELayoutStateChange) {
+    viewStateUpdated(item: OELayoutStateChange) {
         if (item && item.viewId == this.viewId) {
             switch (item.updatedLayoutConfig.layoutSection) {
                 case LayoutSection.TopOuter:

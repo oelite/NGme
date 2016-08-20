@@ -1,5 +1,5 @@
 import { ElementRef, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
-import { Overlay } from '@angular2-material/core/overlay/overlay';
+import { Overlay } from '@angular2-material/core/core';
 export declare type TooltipPosition = 'before' | 'after' | 'above' | 'below';
 export declare class MdTooltip {
     private _overlay;
@@ -54,4 +54,10 @@ export declare class MdTooltip {
      */
     private _updatePosition();
 }
+export declare class TooltipComponent {
+    message: string;
+}
+/** @deprecated */
 export declare const MD_TOOLTIP_DIRECTIVES: typeof MdTooltip[];
+export declare class MdTooltipModule {
+}

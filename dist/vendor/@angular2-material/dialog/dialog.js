@@ -9,9 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var overlay_1 = require('@angular2-material/core/overlay/overlay');
-var overlay_state_1 = require('@angular2-material/core/overlay/overlay-state');
-var portal_1 = require('@angular2-material/core/portal/portal');
+var core_2 = require('@angular2-material/core/core');
 var dialog_ref_1 = require('./dialog-ref');
 var dialog_injector_1 = require('./dialog-injector');
 var dialog_container_1 = require('./dialog-container');
@@ -63,7 +61,7 @@ var MdDialog = (function () {
      * @returns A promise resolving to a ComponentRef for the attached container.
      */
     MdDialog.prototype._attachDialogContainer = function (overlay, config) {
-        var containerPortal = new portal_1.ComponentPortal(dialog_container_1.MdDialogContainer, config.viewContainerRef);
+        var containerPortal = new core_2.ComponentPortal(dialog_container_1.MdDialogContainer, config.viewContainerRef);
         return overlay.attach(containerPortal).then(function (containerRef) {
             // Pass the config directly to the container so that it can consume any relevant settings.
             containerRef.instance.dialogConfig = config;
@@ -86,7 +84,7 @@ var MdDialog = (function () {
         // inject the MdDialogRef. This allows a component loaded inside of a dialog to close itself
         // and, optionally, to return a value.
         var dialogInjector = new dialog_injector_1.DialogInjector(dialogRef, this._injector);
-        var contentPortal = new portal_1.ComponentPortal(component, null, dialogInjector);
+        var contentPortal = new core_2.ComponentPortal(component, null, dialogInjector);
         return dialogContainer.attachComponentPortal(contentPortal).then(function (contentRef) {
             dialogRef.componentInstance = contentRef.instance;
             return dialogRef;
@@ -98,7 +96,7 @@ var MdDialog = (function () {
      * @returns The overlay configuration.
      */
     MdDialog.prototype._getOverlayState = function (dialogConfig) {
-        var state = new overlay_state_1.OverlayState();
+        var state = new core_2.OverlayState();
         state.positionStrategy = this._overlay.position()
             .global()
             .centerHorizontally()
@@ -107,9 +105,25 @@ var MdDialog = (function () {
     };
     MdDialog = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [overlay_1.Overlay, core_1.Injector])
+        __metadata('design:paramtypes', [core_2.Overlay, core_1.Injector])
     ], MdDialog);
     return MdDialog;
 }());
 exports.MdDialog = MdDialog;
+var MdDialogModule = (function () {
+    function MdDialogModule() {
+    }
+    MdDialogModule = __decorate([
+        core_1.NgModule({
+            imports: [core_2.OverlayModule, core_2.PortalModule],
+            exports: [dialog_container_1.MdDialogContainer],
+            declarations: [dialog_container_1.MdDialogContainer],
+            entryComponents: [dialog_container_1.MdDialogContainer],
+            providers: [MdDialog],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdDialogModule);
+    return MdDialogModule;
+}());
+exports.MdDialogModule = MdDialogModule;
 //# sourceMappingURL=dialog.js.map

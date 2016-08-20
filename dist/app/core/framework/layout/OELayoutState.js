@@ -12,7 +12,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by mleader1 on 29/06/2016.
  */
 var core_1 = require("@angular/core");
-var async_1 = require("@angular/platform-browser-dynamic/src/facade/async");
 var OELayoutStateChange = (function () {
     function OELayoutStateChange(viewId, updatedLayoutConfig) {
         this.viewId = viewId;
@@ -24,13 +23,15 @@ exports.OELayoutStateChange = OELayoutStateChange;
 var OELayoutState = (function () {
     function OELayoutState() {
         this.layouts = [];
-        this.rootLayoutsUpdated$ = new async_1.EventEmitter();
+        this.rootLayoutsUpdated$ = new core_1.EventEmitter();
     }
     OELayoutState.prototype.getState = function (layoutSection, viewId) {
         viewId = viewId || '';
         return this.layouts[viewId + layoutSection];
     };
     OELayoutState.prototype.setState = function (definition, viewId) {
+        console.log('layout set===>' + viewId);
+        console.log(definition);
         if (definition) {
             viewId = viewId || '';
             this.layouts[viewId + definition.layoutSection] = definition;

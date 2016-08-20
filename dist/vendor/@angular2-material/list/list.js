@@ -87,5 +87,20 @@ var MdListItem = (function () {
     return MdListItem;
 }());
 exports.MdListItem = MdListItem;
-exports.MD_LIST_DIRECTIVES = [MdList, MdListItem, line_1.MdLine, MdListAvatar];
+/** @deprecated */
+exports.MD_LIST_DIRECTIVES = [MdList, MdListItem, MdListAvatar];
+var MdListModule = (function () {
+    function MdListModule() {
+    }
+    MdListModule = __decorate([
+        core_1.NgModule({
+            imports: [line_1.MdLineModule],
+            exports: [exports.MD_LIST_DIRECTIVES, line_1.MdLineModule],
+            declarations: exports.MD_LIST_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdListModule);
+    return MdListModule;
+}());
+exports.MdListModule = MdListModule;
 //# sourceMappingURL=list.js.map

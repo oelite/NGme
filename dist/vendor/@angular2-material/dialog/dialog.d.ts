@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { Overlay } from '@angular2-material/core/overlay/overlay';
+import { Overlay } from '@angular2-material/core/core';
 import { ComponentType } from '@angular2-material/core/overlay/generic-component-type';
 import { MdDialogConfig } from './dialog-config';
 import { MdDialogRef } from './dialog-ref';
@@ -45,4 +45,6 @@ export declare class MdDialog {
      * @returns The overlay configuration.
      */
     private _getOverlayState(dialogConfig);
+}
+export declare class MdDialogModule {
 }

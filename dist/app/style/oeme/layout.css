@@ -124,3 +124,6 @@ section {
 .box-64-64 {
   width: 64px !important;
   height: 64px !important; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }

@@ -54,5 +54,19 @@ var MdToolbar = (function () {
     return MdToolbar;
 }());
 exports.MdToolbar = MdToolbar;
+/** @deprecated */
 exports.MD_TOOLBAR_DIRECTIVES = [MdToolbar];
+var MdToolbarModule = (function () {
+    function MdToolbarModule() {
+    }
+    MdToolbarModule = __decorate([
+        core_1.NgModule({
+            exports: exports.MD_TOOLBAR_DIRECTIVES,
+            declarations: exports.MD_TOOLBAR_DIRECTIVES,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], MdToolbarModule);
+    return MdToolbarModule;
+}());
+exports.MdToolbarModule = MdToolbarModule;
 //# sourceMappingURL=toolbar.js.map

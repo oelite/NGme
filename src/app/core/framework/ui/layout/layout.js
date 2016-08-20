@@ -9,7 +9,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var framework_1 = require("../../../framework");
 var OELayoutConfig_1 = require("../../layout/OELayoutConfig");
 var OELayout = (function () {
     function OELayout(el, appState) {
@@ -89,9 +88,7 @@ var OELayout = (function () {
             selector: 'oe-layout',
             encapsulation: core_1.ViewEncapsulation.None,
             templateUrl: 'layout.html',
-            directives: [framework_1.OEPartialView],
-            styleUrls: ['layout.css'],
-            providers: []
+            styleUrls: ['layout.css']
         })
     ], OELayout);
     return OELayout;

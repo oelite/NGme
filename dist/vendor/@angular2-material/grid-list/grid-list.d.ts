@@ -44,4 +44,7 @@ export declare class MdGridList implements OnInit, AfterContentChecked {
     /** Sets style on the main grid-list element, given the style name and value. */
     _setListStyle(style: [string, string]): void;
 }
+/** @deprecated */
 export declare const MD_GRID_LIST_DIRECTIVES: any[];
+export declare class MdGridListModule {
+}

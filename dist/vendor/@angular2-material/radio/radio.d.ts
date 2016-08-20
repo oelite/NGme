@@ -106,17 +106,24 @@ export declare class MdRadioButton implements OnInit {
     ngOnInit(): void;
     /** Dispatch change event with current value. */
     private _emitChangeEvent();
-    _onClick(event: Event): void;
     /**
      * We use a hidden native input field to handle changes to focus state via keyboard navigation,
      * with visual rendering done separately. The native element is kept in sync with the overall
      * state of the component.
      */
     _onInputFocus(): void;
+    /** TODO: internal */
     _onInputBlur(): void;
+    /** TODO: internal */
+    _onInputClick(event: Event): void;
     /**
-     * Checks the radio due to an interaction with the underlying native <input type="radio">
+     * Triggered when the radio button received a click or the input recognized any change.
+     * Clicking on a label element, will trigger a change event on the associated input.
+     * TODO: internal
      */
     _onInputChange(event: Event): void;
 }
+/** @deprecated */
 export declare const MD_RADIO_DIRECTIVES: (typeof MdRadioGroup | typeof MdRadioButton)[];
+export declare class MdRadioModule {
+}

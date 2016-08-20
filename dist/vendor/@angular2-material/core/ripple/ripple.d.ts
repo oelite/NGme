@@ -70,4 +70,7 @@ export declare class MdRipple implements OnInit, OnDestroy, OnChanges {
      */
     private _mouseLeave(event);
 }
+/** @deprecated */
 export declare const MD_RIPPLE_DIRECTIVES: typeof MdRipple[];
+export declare class MdRippleModule {
+}

@@ -7,14 +7,13 @@
 /** Map relative paths to URLs. */
 var map = {
     '@angular2-material': 'vendor/@angular2-material',
-    app: 'app'
+    'angular2-cookie': 'vendor/angular2-cookie'
 };
 /** User packages configuration. */
-var packages = {
-    app: {main: 'index'}
-};
+var packages = {};
 var materialPkgs = [
     'button',
+    'button-toggle',
     'card',
     'checkbox',
     'core',
@@ -22,16 +21,19 @@ var materialPkgs = [
     'icon',
     'input',
     'list',
+    'menu',
     'progress-bar',
-    'progres-circle',
+    'progress-circle',
     'radio',
     'sidenav',
+    'slider',
     'slide-toggle',
     'tabs',
-    'toolbar'
+    'toolbar',
+    'tooltip'
 ];
 materialPkgs.forEach(function (pkg) {
-    packages[("@angular2-material/" + pkg)] = {main: pkg + ".js"};
+    packages[("@angular2-material/" + pkg)] = { main: pkg + ".js" };
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -42,7 +44,9 @@ var barrels = [
     '@angular/core',
     '@angular/common',
     '@angular/compiler',
+    '@angular/forms',
     '@angular/service',
+    '@angular/http',
     '@angular/router',
     '@angular/platform-browser',
     '@angular/platform-browser-dynamic',
@@ -54,16 +58,18 @@ var barrels = [
 ];
 var cliSystemConfigPackages = {};
 barrels.forEach(function (barrelName) {
-    cliSystemConfigPackages[barrelName] = {main: 'index'};
+    cliSystemConfigPackages[barrelName] = { main: 'index' };
 });
+cliSystemConfigPackages['angular2-cookie'] = { main: 'core' };
 // Apply the CLI SystemJS configuration.
 System.config({
     map: {
         '@angular': 'vendor/@angular',
         'rxjs': 'vendor/rxjs'
     },
-    packages: cliSystemConfigPackages
+    packages: cliSystemConfigPackages,
+    defaultJSExtensions: true
 });
 // Apply the user's configuration.
-System.config({map: map, packages: packages});
+System.config({ map: map, packages: packages });
 //# sourceMappingURL=system-config.js.map

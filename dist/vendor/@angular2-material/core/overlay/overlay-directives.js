@@ -13,6 +13,7 @@ var overlay_1 = require('./overlay');
 var portal_1 = require('../portal/portal');
 var overlay_state_1 = require('./overlay-state');
 var connected_position_1 = require('./position/connected-position');
+var portal_directives_1 = require('../portal/portal-directives');
 /** Default set of positions for the overlay. Follows the behavior of a dropdown. */
 var defaultPositionList = [
     new connected_position_1.ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
@@ -103,4 +104,19 @@ var ConnectedOverlayDirective = (function () {
 }());
 exports.ConnectedOverlayDirective = ConnectedOverlayDirective;
 exports.OVERLAY_DIRECTIVES = [ConnectedOverlayDirective, OverlayOrigin];
+var OverlayModule = (function () {
+    function OverlayModule() {
+    }
+    OverlayModule = __decorate([
+        core_1.NgModule({
+            imports: [portal_directives_1.PortalModule],
+            exports: exports.OVERLAY_DIRECTIVES,
+            declarations: exports.OVERLAY_DIRECTIVES,
+            providers: overlay_1.OVERLAY_PROVIDERS,
+        }), 
+        __metadata('design:paramtypes', [])
+    ], OverlayModule);
+    return OverlayModule;
+}());
+exports.OverlayModule = OverlayModule;
 //# sourceMappingURL=overlay-directives.js.map

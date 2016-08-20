@@ -10,15 +10,17 @@ var OELayoutConfig_1 = require("../../layout/OELayoutConfig");
 var funcs_1 = require("../../../utils/funcs");
 var OEUIState_1 = require("../../layout/OEUIState");
 var OEView = (function () {
-    function OEView(appState, router, viewId) {
+    function OEView(appState, router, activatedRoute, viewId) {
         this.appState = appState;
         this.router = router;
+        this.activatedRoute = activatedRoute;
         this.viewId = viewId;
     }
     OEView.prototype.isViewable = function (viewDefinition) {
         return viewDefinition && viewDefinition.isViewable();
     };
     OEView.prototype.ngOnInit = function () {
+        console.log('view is now initiating....');
         this.initMainView();
     };
     /**
@@ -26,32 +28,8 @@ var OEView = (function () {
      */
     OEView.prototype.initMainView = function (triggeredByRoute) {
         var mainViewLocal = null;
-        // if (mainViewLocal)
-        //     return;
-        if (this.appState.routeState) {
-            var existingOERoute = triggeredByRoute || this.appState.routeState.findRouteByPath(document.location.pathname);
-            if (!existingOERoute || !existingOERoute.page) {
-                //give another try using wild card
-                /**
-                 ** validate   pathSec1/**,  pathSec1/pathSec2/**, ....  ,path/**  and **
-                 */
-                var segments = document.location.pathname.split('/');
-                if (segments && segments.length > 0) {
-                    var segmentGrowth = '';
-                    //lowest priority check
-                    existingOERoute = this.appState.routeState.findRouteByPath('**');
-                    for (var _i = 0, segments_1 = segments; _i < segments_1.length; _i++) {
-                        var seg = segments_1[_i];
-                        segmentGrowth = segmentGrowth == '' ? seg : segmentGrowth + '/' + seg;
-                        var higherPriorityCheck = this.appState.routeState.findRouteByPath(segmentGrowth + '/**');
-                        if (higherPriorityCheck && higherPriorityCheck.page)
-                            existingOERoute = higherPriorityCheck;
-                    }
-                }
-            }
-            if (existingOERoute) {
-                mainViewLocal = new OELayoutConfig_1.OELayoutConfig(existingOERoute.viewSelector, [existingOERoute.page], new OEUIState_1.OEUIState(true, false, false, null), OELayoutConfig_1.LayoutSection.Main);
-            }
+        if (this.activatedRoute.data) {
+            mainViewLocal = new OELayoutConfig_1.OELayoutConfig(this.activatedRoute.snapshot.data['viewSelector'], [], new OEUIState_1.OEUIState(true, false, false, null), OELayoutConfig_1.LayoutSection.Main);
         }
         if (mainViewLocal)
             this.appState.layoutState.setState(mainViewLocal, this.viewId);
@@ -61,6 +39,7 @@ var OEView = (function () {
     OEView.viewSelector = 'oeView-' + funcs_1.Utils.NewGuid().toString();
     OEView = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: OEView.viewSelector,
             template: '<ng-content select="oeview-enforced"></ng-content>'
         })

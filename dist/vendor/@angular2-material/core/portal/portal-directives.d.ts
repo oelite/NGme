@@ -34,3 +34,5 @@ export declare class PortalHostDirective extends BasePortalHost {
     private _replaceAttachedPortal(p);
 }
 export declare const PORTAL_DIRECTIVES: (typeof TemplatePortalDirective | typeof PortalHostDirective)[];
+export declare class PortalModule {
+}

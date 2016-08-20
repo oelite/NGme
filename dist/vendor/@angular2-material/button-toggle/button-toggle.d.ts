@@ -98,5 +98,10 @@ export declare class MdButtonToggle implements OnInit {
     private _toggle();
     /** Checks the button toggle due to an interaction with the underlying native input. */
     _onInputChange(event: Event): void;
+    /** TODO: internal */
+    _onInputClick(event: Event): void;
 }
+/** @deprecated */
 export declare const MD_BUTTON_TOGGLE_DIRECTIVES: (typeof MdButtonToggleGroup | typeof MdButtonToggleGroupMultiple | typeof MdButtonToggle)[];
+export declare class MdButtonToggleModule {
+}

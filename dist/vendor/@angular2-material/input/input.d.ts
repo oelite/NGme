@@ -129,4 +129,7 @@ export declare class MdInput implements ControlValueAccessor, AfterContentInit, 
      */
     private _validateConstraints();
 }
+/** @deprecated */
 export declare const MD_INPUT_DIRECTIVES: typeof MdPlaceholder[];
+export declare class MdInputModule {
+}

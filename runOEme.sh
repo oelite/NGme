@@ -16,7 +16,7 @@ git fetch origin
 git checkout .
 #git clean -fdx
 git pull -f
-#npm install
+npm install
 #npm upgrade
 echo "${TXT_GREEN}==> 2. apply theme patch file from ${TXT_NC}./src/app/style/material-theme.template.txt"
 cp -f $currentPath/src/app/style/material-theme.template.txt $materialPath/src/core/style/_default-theme.scss
