@@ -83,6 +83,7 @@ In my concept, there' just one layout. Which can be demonstrated as 5x5 table be
 | oe-backstretch | a simple backstretch jquery plugin wrapper in angular 2 | plugins/oeme/backstretch | jQuery, jquery.backstretch.min.js | adult |
 
 ## Update Logs
+* 20/08/2015 - upgrade concept repo onto Angular 2, RC5 with extensive rewrite of components and framework structures
 * 05/08/2015 - add new left nav component <oe-accordion></oe-accordion>
 * 11/07/2016 - dynamic routing (masterpage + page), login page, api service 
 * 01/07/2016 - Finally got the first view (home) working with 8-sides (4 outer + 4 inner) views surrounded the main content (screen) view
