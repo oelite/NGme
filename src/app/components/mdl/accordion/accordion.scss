@@ -1,0 +1,97 @@
+@import "../../md/core/core";
+
+:host {
+  .oe-accordion, .oe-accordion .oe-accordion__item, .oe-accordion .oe-accordion__group {
+    min-height: 48px;
+    font-size: 13px !important;
+
+    .isActiveBinder, .isExpandedBinder {
+      display: none;
+    }
+  }
+  .oe-accordion {
+    .material-icons {
+      font-size: 16px;
+      line-height: 24px;
+      color: md-color($md-primary);
+    }
+    &.mdl-list {
+      padding: 0;
+    }
+    .mdl-list__item {
+      cursor: pointer;
+      padding: 8px !important;
+      .mdl-list__item-primary-content {
+        flex-shrink: 0;
+        -webkit-flex-shrink: 0;
+        flex-flow: row;
+        align-items: center;
+        .heading {
+          margin-left: 2px;
+          width: 136px;
+        }
+        .mdl-list__item-icon {
+          margin: 0px 15px !important;
+        }
+      }
+      &.active, &:hover {
+        background: md-color($md-primary, 500, 0.1);
+      }
+    }
+
+    .oe-accordion__group {
+      .oe-accordion__group.expanded {
+        background: none;
+        .oe-accordion__group__heading {
+          border-bottom: 1px solid md-color($md-light-theme-background, disabled-button, 0.12);
+          background: none;
+        }
+        .oe-accordion__group__items {
+          background: md-color($md-light-theme-background, status-bar, 0.2)
+        }
+      }
+      .oe-accordion__group__heading {
+        font-weight: 400;
+      }
+      .oe-accordion__group__items {
+        display: none;
+        overflow: hidden;
+        font-size: 12px;
+      }
+      &.active {
+        background: md-color($md-primary, 500, 0.1);
+      }
+
+      &.expanded {
+        background: md-color($md-primary, 500, 0.1);
+        & > .oe-accordion__group__items {
+          display: block;
+          background: md-color($md-light-theme-background, background);
+          .mdl-list__item-icon.material-icons {
+            width: 12px;
+            margin: 0 5px 0 15px !important;
+            font-size: 12px;
+          }
+          .heading {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .mdl-badge.mdl-badge--overlap:after {
+      right: -1px !important;
+    }
+    .mdl-badge[data-badge]:after {
+      background: md-color($md-accent);
+      color: md-color($md-dark-theme-foreground, text);
+      font-size: 9px;
+      top: -5px;
+      right: -24px;
+      min-width: 14px;
+      width: auto;
+      height: 14px;
+      border-radius: 3px;
+    }
+  }
+}

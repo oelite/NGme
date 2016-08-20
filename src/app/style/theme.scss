@@ -4,8 +4,8 @@
 @import "./oeme/animation";
 @import "./oeme/features";
 //Additional Material components
-@import "../plugins/materials/core/core";
+@import "../components/md/core/core";
 //Additional Styles
-@import "../plugins/less-space/sass-space";
+@import "../style/less-space/sass-space";
 //Custom theme for the current website
 @import "custom";

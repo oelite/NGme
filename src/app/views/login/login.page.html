@@ -1,14 +1,14 @@
 <section layout="row">
     <imgSection hide-xs hide-sm>
         <oe-backstretch
-                target="oe-section.oe-main imgSection"
+                target="imgSection"
                 [source]="loginBg">
         </oe-backstretch>
     </imgSection>
     <loginSection>
         <div class="mobile-background" hide-gt-md>
-            <oe-backstretch target="oe-section.oe-main .mobile-background"
-                            [options]="{fade:500,centeredX:true, centeredY:true}"
+            <oe-backstretch target="loginSection .mobile-background"
+                            [options]="{fade:500, centeredY:true}"
                             [source]="loginBg">
             </oe-backstretch>
         </div>
@@ -17,10 +17,10 @@
                 <div class="lg-mt-40 md-mt-10 sm-mt-0" id="oelite-logo"></div>
                 <div class="xs-mt-20 xs-mb-20">A platform built with love for your business</div>
                 <div class="xs-mt-20 md-mt-50" layout="column">
-                    <div class="appNotificationBar">
-                        <mdl-snackbar [isFullWidth]="true" foreColor="#FFF"
-                                      bgColor="#d32f2f"></mdl-snackbar>
-                    </div>
+                    <!--<div class="appNotificationBar">-->
+                    <!--<mdl-snackbar [isFullWidth]="true" foreColor="#FFF"-->
+                    <!--bgColor="#d32f2f"></mdl-snackbar>-->
+                    <!--</div>-->
 
                     <md-input class="txtEmail" [dividerColor]="txtEmailColor"
                               type="email"

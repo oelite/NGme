@@ -1,0 +1,47 @@
+<md-progress-bar
+        class="oe-layout-loader"
+        color="primary" [mode]="oeConfig.isAppLoading ? 'indeterminate': 'determinate'"
+        [ngClass]="{'loading': oeConfig.isAppLoading}"
+        [value]="100"
+        [bufferValue]="0">
+</md-progress-bar>
+<section class="oe-layout-top-outer"
+         [ngClass]="{'fixed':  isFixed(layout.topInnerView), 'active': isActive(layout.topInnerView), 'hidden': isHidden(layout.topInnerView)}">
+    <ng-content select="oe-layout-top-outer"></ng-content>
+</section>
+<section class="oe-layout-left-outer" hide-xs class="oe-layout-left-outer"
+         [ngClass]="{'fixed':  isFixed(layout.leftOuterView), 'active': isActive(layout.leftOuterView), 'hidden':isHidden(layout.leftOuterView)}">
+    <ng-content select="oe-layout-left-outer"></ng-content>
+</section>
+<section class="oe-screen">
+    <section class="oe-layout-top-inner"
+             [ngClass]="{'fixed': isFixed(layout.topInnerView), 'active': isActive(layout.topInnerView),'hidden':isHidden(layout.topInnerView)}">
+        <ng-content select="oe-layout-top-inner"></ng-content>
+    </section>
+    <section class="oe-main-screen">
+        <section class="oe-layout-left-inner"
+                 [ngClass]="{'fixed': isFixed(layout.leftInnerView), 'active': isActive(layout.leftInnerView), 'hidden':isHidden(layout.leftInnerView)}">
+            <ng-content select="oe-layout-left-inner"></ng-content>
+        </section>
+        <section class="oe-layout-main"
+                 [ngClass]="{'fixed': isFixed(layout.mainView), 'active': isActive(layout.mainView), 'hidden':isHidden(layout.mainView)}">
+            <ng-content select="oe-layout-main"></ng-content>
+        </section>
+        <section class="oe-layout-right-inner"
+                 [ngClass]="{'fixed': isFixed(layout.rightInnerView), 'active': isActive(layout.rightInnerView), 'hidden':isHidden(layout.rightInnerView)}">
+            <ng-content select="oe-layout-right-inner"></ng-content>
+        </section>
+    </section>
+    <section class="oe-layout-bottom-inner"
+             [ngClass]="{'fixed': isFixed(layout.bottomInnerView), 'active': isActive(layout.bottomInnerView), 'hidden':isHidden(layout.bottomInnerView)}">
+        <ng-content select="oe-layout-bottom-inner"></ng-content>
+    </section>
+</section>
+<section class="oe-layout-right-outer" transparent-xs
+         [ngClass]="{'fixed': isFixed(layout.rightOuterView), 'active': isActive(layout.rightOuterView), 'hidden':isHidden(layout.rightOuterView)}">
+    <ng-content select="oe-layout-right-outer"></ng-content>
+</section>
+<section class="oe-layout-bottom-outer" hide-xs
+         [ngClass]="{'fixed': isFixed(layout.bottomOuterView), 'active': isActive(layout.bottomOuterView), 'hidden':isHidden(layout.bottomOuterView)}">
+    <ng-content select="oe-layout-bottom-outer"></ng-content>
+</section>

@@ -1,0 +1,80 @@
+<oe-accordion id="leftNavMenu">
+    <accordion-item id="navDashboard" class="active" md-icon="dashboard"
+                    [md-badge-overlap]="true"
+                    [md-divider]="true" routerLink="/">Dashboard
+    </accordion-item>
+    <accordion-group id="navGrpWebsites" md-icon="public">
+        <accordion-group-heading>Websites</accordion-group-heading>
+        <accordion-group *ngFor="let item of websiteNavItems" [id]="item.itemId">
+            <accordion-group-heading>{{item.title}}</accordion-group-heading>
+            <accordion-item md-icon="view_compact" [id]="'navWebsite-'+item.data.siteId+'-pages'">Pages
+            </accordion-item>
+            <accordion-item md-icon="create" [id]="'navWebsite-'+item.data.siteId+'-posts'">Posts</accordion-item>
+            <accordion-item md-icon="image" [id]="'navWebsite-'+item.data.siteId+'-media'">Media</accordion-item>
+            <accordion-item md-icon="comment" [id]="'navWebsite-'+item.data.siteId+'-comments'">Comments
+            </accordion-item>
+            <accordion-item md-icon="storage" [id]="'navWebsite-'+item.data.siteId+'-catalogue'">Catalogue
+            </accordion-item>
+            <accordion-item md-icon="dns" [id]="'navWebsite-'+item.data.siteId+'-navigation'">Navigation
+            </accordion-item>
+            <accordion-item md-icon="bubble_chart" [id]="'navWebsite-'+item.data.siteId+'-themes'">Themes & Templates
+            </accordion-item>
+            <accordion-item md-icon="settings" [id]="'navWebsite-'+item.data.siteId+'-settings'">Settings
+            </accordion-item>
+        </accordion-group>
+        <accordion-item md-icon="add_box">New Website</accordion-item>
+        <accordion-item md-icon="format_color_fill">Theme Studio</accordion-item>
+    </accordion-group>
+    <accordion-group itemId="navEmail" md-icon="email" md-divider="true">
+        <accordion-group-heading>Emails</accordion-group-heading>
+        <accordion-item *ngFor="let item of emailAccountNavItems" [id]="item.itemId"
+                        [routerLink]="'/mailbox/'+item.data.emailAccountId">{{item.title}}
+        </accordion-item>
+        <accordion-item md-icon="add_box">New Mail Account</accordion-item>
+    </accordion-group>
+    <accordion-group id="navInventory" md-icon="domain">
+        <accordion-group-heading>Inventory</accordion-group-heading>
+        <accordion-item>Products</accordion-item>
+        <accordion-item>Stock Control</accordion-item>
+        <accordion-item md-badge="beta">Warehouse Fulfilment</accordion-item>
+        <accordion-item>Reports</accordion-item>
+    </accordion-group>
+    <accordion-group id="navCustomers" md-icon="group">
+        <accordion-group-heading>Customers</accordion-group-heading>
+        <accordion-item>Leads</accordion-item>
+        <accordion-item>Contacts</accordion-item>
+        <accordion-item>Customers</accordion-item>
+    </accordion-group>
+    <accordion-group id="navMarketing" md-icon="gps_fixed">
+        <accordion-group-heading>Marketing</accordion-group-heading>
+        <accordion-item>Discounts & Coupons</accordion-item>
+        <accordion-item md-badge="beta">Marketing Campaigns</accordion-item>
+        <accordion-item md-badge="beta">Internet Marketing</accordion-item>
+    </accordion-group>
+    <accordion-group id="navSales" md-icon="assessment" [md-divider]="true">
+        <accordion-group-heading>Sales</accordion-group-heading>
+        <accordion-item>Quotes</accordion-item>
+        <accordion-item>Sales Orders</accordion-item>
+        <accordion-item>Sales Channels</accordion-item>
+    </accordion-group>
+    <accordion-group id="navAccounting" md-icon="assessment">
+        <accordion-group-heading>Accounting</accordion-group-heading>
+        <accordion-item>Sales</accordion-item>
+        <accordion-item>Purchases</accordion-item>
+        <accordion-item>Tax Rates</accordion-item>
+    </accordion-group>
+    <accordion-group id="navAccount" md-icon="perm_identity" md-badge="1">
+        <accordion-group-heading>Settings</accordion-group-heading>
+        <accordion-item id="navAccount_Workflows" md-icon="account_box">Business Workflow
+        </accordion-item>
+        <accordion-item id="navAccount_MyAccount" md-icon="account_box" [md-divider]="true">Business
+            Settings
+        </accordion-item>
+        <accordion-item id="navAccount_OEliteBillings" md-icon="payment" routerLink="/account">
+            OElite Billings
+        </accordion-item>
+        <accordion-item id="navAccount_OEliteAddons">OElite Addons</accordion-item>
+        <accordion-item id="navAccount_Support" md-icon="help">OElite Support</accordion-item>
+
+    </accordion-group>
+</oe-accordion>

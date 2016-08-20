@@ -1,6 +1,6 @@
 @import "mixins";
 
-$layout-top-outer-visible-height: 68px;
+$layout-top-outer-visible-height: 60px;
 $layout-left-outer-visible-width: 64px;
 $layout-right-outer-visible-width: 0;
 $layout-bottom-outer-visible-height: 0;
@@ -16,46 +16,42 @@ $layout-bottom-outer-visible-height: 0;
 
 /* layout */
 .oe-layout, oe-layout,
-.oe-section, oe-section,
 section {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 
-  .oe-layout-top-outer, oe-layout-top-outer,
-  .oe-layout-bottom-outer, oe-layout-bottom-outer,
-  .oe-layout-left-outer, oe-layout-left-outer,
-  .oe-layout-right-outer, oe-layout-right-outer {
+  oe-layout-top-outer,
+  oe-layout-bottom-outer,
+  oe-layout-left-outer,
+  oe-layout-right-outer {
     position: absolute;
-    z-index: 9999;
+    z-index: 9998;
 
   }
-  .oe-layout-top-outer, oe-layout-top-outer,
-  .oe-layout-bottom-outer, oe-layout-bottom-outer {
+  oe-layout-top-outer,
+  oe-layout-bottom-outer {
     width: 100%;
   }
 
-  .oe-layout-left-outer, oe-layout-left-outer,
-  .oe-layout-right-outer, oe-layout-right-outer {
+  oe-layout-left-outer,
+  oe-layout-right-outer {
     height: 100%;
   }
-  .oe-layout-top-outer, oe-layout-top-outer,
-  .oe-layout-left-outer, oe-layout-left-outer {
+  oe-layout-top-outer,
+  oe-layout-left-outer {
     align-self: flex-start;
   }
 
-  .oe-layout-bottom-outer, oe-layout-bottom-outer,
-  .oe-layout-bottom-outer, oe-layout-bottom-outer {
+  oe-layout-bottom-outer,
+  oe-layout-bottom-outer {
     align-self: flex-end;
   }
 
 }
 
+
 .oe-screen,
-.oe-layout-top-inner,
-.oe-layout-bottom-inner,
-.oe-layout-right-inner,
-.oe-layout-left-inner,
-.oe-layout-main,
 .oe-main-screen {
   display: block;
   z-index: inherit;

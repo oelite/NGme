@@ -1,5 +1,3 @@
-import {Routes} from "@angular/router";
-
 /**
  * Created by mleader1 on 28/06/2016.
  */
@@ -71,18 +69,4 @@ export class Utils {
     }
 
 
-    public static ExtractOEViewDirectivesFromRoutes(routes: Routes): any[] {
-        var directives: any[] = [];
-        for (var route of routes) {
-
-            if (route.component)
-                directives.push(route.component);
-            if (route.data) {
-                var page = route.data['page'];
-                if (page)
-                    directives.push(page);
-            }
-        }
-        return directives;
-    }
 }

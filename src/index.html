@@ -2,37 +2,62 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{appConfig.appName}}</title>
+    <title>Portal</title>
     <base href="/">
-
-    {{#unless environment.production}}
-    <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
-    {{/unless}}
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="app/style/theme.css">
-
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"
             integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.light_green-green.min.css"/>
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .oe-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 176px;
+            height: 65px;
+            margin: -88px 0 0 -88px;
+            display: inline-block;
+            text-align: center;
+            background: url('app/assets/img/logo.png') no-repeat;
+            background-size: cover;
+        }
+
+        .oe-spinner .spinner-signal {
+            border: 8px solid #74787A;
+            border-right-color: transparent;
+            border-radius: 50%;
+            margin: 22.5px -1.5px;
+            width: 28px;
+            height: 28px;
+            float: left;
+            display: inline-block;
+
+            animation: rotate 0.8s infinite linear;
+        }
+
+        .oe-spinner .logo {
+        }
+
+    </style>
 </head>
-<body class="oe-me">
+<body>
 <div class="oe-spinner">
     <span class="logo"></span>
     <span class="spinner-signal"></span>
 </div>
-{{#each scripts.polyfills}}
-<script src="{{.}}"></script>
-{{/each}}
-<script>
-    System.import('system-config.js').then(function () {
-        System.import('custom/bootstrap');
-    }).catch(console.error.bind(console));
-</script>
-<script src="assets/js/backstretch/jquery.backstretch.min.js"></script>
-<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 </body>
 </html>
